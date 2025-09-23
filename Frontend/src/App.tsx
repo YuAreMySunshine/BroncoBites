@@ -16,6 +16,14 @@ function App() {
         console.error("Error fetching API:", err);
         setApiMessage("Error connecting to backend");
       });
+
+      fetch("http://localhost:3001/api/tim-lee") // <-- proxy will handle localhost:3001
+      .then((res) => res.json())
+      .then((data) => setApiMessage(data.message))
+      .catch((err) => {
+        console.error("Error fetching API:", err);
+        setApiMessage("Error connecting to backend");
+      });
   }, []);
 
   return (
