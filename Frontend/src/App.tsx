@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import viteLogo from "/vite.svg";
+import BroncoBites from "../src/images/BroncoBites.png";
 import "./App.css";
 
 function App() {
@@ -10,7 +10,11 @@ function App() {
 
   // Fetch message from backend API whenever selectedMember changes
   useEffect(() => {
-    fetch(`http://localhost:3001/api/${selectedMember.toLowerCase().replace(" ", "-")}`)
+    fetch(
+      `http://localhost:3001/api/${selectedMember
+        .toLowerCase()
+        .replace(" ", "-")}`
+    )
       .then((res) => res.json())
       .then((data) => setApiMessage(data.message))
       .catch((err) => {
@@ -22,8 +26,8 @@ function App() {
   return (
     <>
       <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
+        <a href="BroncoBites" target="_blank">
+          <img src={BroncoBites} className="logo" alt="bronco logo" />
         </a>
 
         {/* Dropdown menu */}
