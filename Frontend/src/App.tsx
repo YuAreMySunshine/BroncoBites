@@ -1,53 +1,50 @@
 import { useState, useEffect } from "react";
-import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
   const [apiMessage, setApiMessage] = useState<string>("Loading...");
+  const [selectedMember, setSelectedMember] = useState<string>("Tim Lee");
 
-  // Fetch message from backend API
+  const teamMembers = ["Tim Lee", "Eli Tolentino", "Jaron Lin", "Javi Wu"];
+
+  // Fetch message from backend API whenever selectedMember changes
   useEffect(() => {
-    fetch("http://localhost:3001/api/hello") // <-- proxy will handle localhost:3001
+    fetch(`http://localhost:3001/api/${selectedMember.toLowerCase().replace(" ", "-")}`)
       .then((res) => res.json())
       .then((data) => setApiMessage(data.message))
       .catch((err) => {
         console.error("Error fetching API:", err);
         setApiMessage("Error connecting to backend");
       });
-
-      fetch("http://localhost:3001/api/tim-lee") // <-- proxy will handle localhost:3001
-      .then((res) => res.json())
-      .then((data) => setApiMessage(data.message))
-      .catch((err) => {
-        console.error("Error fetching API:", err);
-        setApiMessage("Error connecting to backend");
-      });
-  }, []);
+  }, [selectedMember]);
 
   return (
     <>
-      <div>
+      <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+
+        {/* Dropdown menu */}
+        <select
+          value={selectedMember}
+          onChange={(e) => setSelectedMember(e.target.value)}
+        >
+          {teamMembers.map((member) => (
+            <option key={member} value={member}>
+              {member}
+            </option>
+          ))}
+        </select>
       </div>
-      <h1>Vite + React + Express</h1>
+
+      <h1>BroncoBites</h1>
 
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+        <p>Selected member: {selectedMember}</p>
         <p>Message from backend: {apiMessage}</p>
       </div>
-
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   );
 }

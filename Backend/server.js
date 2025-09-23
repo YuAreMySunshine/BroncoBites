@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import timRoute from './routes/tim.route.js';
+import eliRoute from './routes/eli.route.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -10,10 +11,7 @@ app.use(cors());
 
 // Routes
 app.use("/api/tim-lee", timRoute);
-
-app.get('/api/hello', (req, res) => {
-  res.json({ message: 'Hello from Express API!' });
-});
+app.use('/api/eli-tolentino', eliRoute);
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
