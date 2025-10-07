@@ -1,17 +1,8 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
-import Restaurant from "./models/Restaurant.js"
+import Restaurant from "../models/Restaurant.js"
 
-dotenv.config();
-
-mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("✅ MongoDB connected"))
-  .catch((err) => console.error("❌ MongoDB connection error:", err));
-
+const envPath = path.resolve(process.cwd(), '../.env');
+dotenv.config({ path: envPath });
 
 async function createRestaurant() {
   try {
