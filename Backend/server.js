@@ -8,7 +8,7 @@ import timRoute from "./routes/tim.route.js";
 import eliRoute from "./routes/eli.route.js";
 import jaronRoute from "./routes/jaron.route.js";
 import javiRoute from "./routes/javi.route.js";
-//import foodRoutes from "./routes/foodRoutes.js";
+import restaurantRoute from "./routes/restaurant.route.js";
 
 dotenv.config();
 const app = express();
@@ -29,6 +29,7 @@ app.use("/api/tim-lee", timRoute);
 app.use("/api/eli-tolentino", eliRoute);
 app.use("/api/jaron-lin", jaronRoute);
 app.use("/api/javi-wu", javiRoute);
+app.use("/api/restaurants", restaurantRoute);
 //app.use("/food", foodRoutes);
 
 // 3. Start server
