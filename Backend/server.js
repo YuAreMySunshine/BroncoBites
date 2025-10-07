@@ -8,9 +8,9 @@ import timRoute from "./routes/tim.route.js";
 import eliRoute from "./routes/eli.route.js";
 import jaronRoute from "./routes/jaron.route.js";
 import javiRoute from "./routes/javi.route.js";
+import foodRoutes from "./routes/foodRoutes.js";
 
 dotenv.config();
-
 const app = express();
 const PORT = process.env.PORT || 3001;
 

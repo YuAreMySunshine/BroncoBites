@@ -6,7 +6,13 @@
     "mongoose": "^8.18.2"
   },
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "test": "jest --detectOpenHandles --forceExit"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "jest": "^30.2.0",
+    "mongodb-memory-server": "^10.2.3",
+    "supertest": "^7.1.4"
+  }
 }
