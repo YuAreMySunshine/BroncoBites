@@ -30,7 +30,6 @@ app.use("/api/eli-tolentino", eliRoute);
 app.use("/api/jaron-lin", jaronRoute);
 app.use("/api/javi-wu", javiRoute);
 app.use("/api/restaurants", restaurantRoute);
-//app.use("/food", foodRoutes);
 
 // 3. Start server
 app.listen(PORT, () => {
