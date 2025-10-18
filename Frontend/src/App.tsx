@@ -26,7 +26,7 @@ function App() {
   return (
     <>
       <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-        <a href="BroncoBites" target="_blank">
+        <a href="BroncoBotes" target="_blank">
           <img src={BroncoBites} className="logo" alt="bronco logo" />
         </a>
 
