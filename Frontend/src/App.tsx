@@ -9,7 +9,7 @@ function App() {
   const teamMembers = ["Tim Lee", "Eli Tolentino", "Jaron Lin", "Javi Wu"];
 
   // Use Vite env var for API base URL, fallback to localhost for development
-  const API_BASE = (import.meta.env.VITE_API_URL as string) || "http://localhost:3001";
+  const API_BASE = (import.meta.env.VITE_API_URL as string) || "http://54.193.99.243:3001";
 
   // Fetch message from backend API whenever selectedMember changes
   useEffect(() => {
