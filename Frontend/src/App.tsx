@@ -43,7 +43,7 @@ function App() {
         </select>
       </div>
 
-      <h1>BroncoBotes</h1>
+      <h1>BroncoBites</h1>
 
       <div className="card">
         <p>Selected member: {selectedMember}</p>
