@@ -38,9 +38,11 @@ function App() {
         </div>
 
         <nav className="main-nav" aria-label="Main navigation">
-          <a href="#features">Features</a>
-          <a href="#team">Team</a>
-          <a href="#contact">Contact</a>
+          <div className="nav-links">
+            <a href="#features">Features</a>
+            <a href="#team">Team</a>
+            <a href="#contact">Contact</a>
+          </div>
 
           <div className="auth-controls">
             <SignedOut>

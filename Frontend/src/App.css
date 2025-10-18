@@ -43,10 +43,28 @@
   margin: 0;
 }
 
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.main-nav .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .main-nav a {
-  margin-left: 1rem;
   color: #444;
   text-decoration: none;
+}
+
+.main-nav .auth-controls {
+  margin-left: auto; /* push auth controls to the right */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .hero {
