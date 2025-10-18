@@ -3,9 +3,9 @@
 }
 
 #root, .page-root {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 2rem;
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   color: #222;
   background: #ffffff;
@@ -16,14 +16,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem 0;
+  gap: 2rem;
+  padding: 1.5rem 0;
+  margin-bottom: 2rem;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .logo {
@@ -46,13 +47,13 @@
 .main-nav {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .main-nav .nav-links {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .main-nav a {
@@ -69,13 +70,13 @@
 
 .hero {
   background: linear-gradient(180deg,#f7f8ff 0%,#fff 100%);
-  padding: 3rem 1rem;
+  padding: 4rem 2rem;
   border-radius: 8px;
-  margin: 1rem 0;
+  margin: 2rem 0;
 }
 
 .hero-inner {
-  max-width: 720px;
+  max-width: 800px;
   margin: 0 auto;
   text-align: center;
 }
@@ -109,35 +110,39 @@
 }
 
 .features {
-  margin: 2rem 0;
+  margin: 4rem 0;
+  padding: 2rem 0;
 }
 
 .feature-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
 }
 
 .feature {
   background: #fff;
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 6px 18px rgba(20,20,40,0.04);
 }
 
 .team {
-  margin: 2rem 0;
+  margin: 4rem 0;
+  padding: 2rem 0;
 }
 
 .team-controls {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   flex-direction: column;
   align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .card {
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 8px;
   background: #fff;
   box-shadow: 0 6px 18px rgba(20,20,40,0.04);
@@ -145,13 +150,14 @@
 }
 
 .contact {
-  margin: 2rem 0;
+  margin: 4rem 0;
+  padding: 3rem 0;
   text-align: center;
 }
 
 .site-footer {
-  margin-top: 2rem;
-  padding: 1rem 0;
+  margin-top: 4rem;
+  padding: 2rem 0;
   border-top: 1px solid #eee;
   text-align: center;
   color: #777;
@@ -161,5 +167,63 @@
   .team-controls {
     flex-direction: row;
     justify-content: center;
+  }
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 700px) {
+  #root, .page-root {
+    padding: 1rem;
+  }
+
+  .site-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .brand {
+    justify-content: space-between;
+  }
+
+  .logo {
+    height: 48px;
+    width: 48px;
+  }
+
+  .main-nav {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .main-nav .nav-links {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 0.75rem;
+  }
+
+  .main-nav .auth-controls {
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+
+  .hero {
+    padding: 2rem 0.75rem;
+  }
+
+  .hero-inner {
+    padding: 0 0.5rem;
+  }
+
+  .team-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .card {
+    width: 100%;
+    min-width: unset;
   }
 }
