@@ -1,4 +1,11 @@
 import { useState, useEffect } from "react";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from '@clerk/clerk-react'
 import BroncoBites from "../src/images/BroncoBites.png";
 import "./App.css";
 
@@ -8,7 +15,6 @@ function App() {
 
   const teamMembers = ["Tim Lee", "Eli Tolentino", "Jaron Lin", "Javi Wu"];
 
-  // Use Vite env var for API base URL, fallback to localhost for development
   const API_BASE = (import.meta.env.VITE_API_URL as string) || "http://54.193.99.243:3001";
 
   // Fetch message from backend API whenever selectedMember changes
@@ -35,6 +41,21 @@ function App() {
           <a href="#features">Features</a>
           <a href="#team">Team</a>
           <a href="#contact">Contact</a>
+
+          <div className="auth-controls">
+            <SignedOut>
+              <SignInButton>
+                <button className="btn">Sign in</button>
+              </SignInButton>
+              <SignUpButton>
+                <button className="btn">Sign up</button>
+              </SignUpButton>
+            </SignedOut>
+
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </div>
         </nav>
       </header>
 
