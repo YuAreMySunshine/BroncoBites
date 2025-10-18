@@ -26,7 +26,7 @@ function App() {
   return (
     <>
       <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-        <a href="BroncoBotes" target="_blank">
+        <a href="BroncoBites" target="_blank">
           <img src={BroncoBites} className="logo" alt="bronco logo" />
         </a>
 
@@ -43,7 +43,7 @@ function App() {
         </select>
       </div>
 
-      <h1>BroncoBites</h1>
+      <h1>BroncoBotes</h1>
 
       <div className="card">
         <p>Selected member: {selectedMember}</p>
