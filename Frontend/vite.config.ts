@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: '0.0.0.0',  // expose to 0.0.0.0
-    port: 5173   // default port
+    port: 80,
+    allowedHosts: ['ec2-54-193-99-243.us-west-1.compute.amazonaws.com', 'broncobites.com']
   }
 });
