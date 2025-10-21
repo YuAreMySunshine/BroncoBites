@@ -2,15 +2,6 @@
    BroncoBites Dashboard Header (Dark Theme)
    ========================= */
 
-/* Page wrapper */
-.page-root {
-  background: transparent !important;
-  padding: 0 !important;
-  max-width: none;
-  color: #e9eef6;
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-}
-
 /* ===== Header ===== */
 .site-header {
   position: sticky;
@@ -25,10 +16,23 @@
   backdrop-filter: blur(8px);
   background: linear-gradient(
     180deg,
-    rgba(15, 20, 32, 0.85),
-    rgba(15, 20, 32, 0.55)
-  );
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    rgba(15, 20, 32, 0.98),
+    rgba(15, 20, 32, 0.95)
+  ) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure dark background even if other styles try to override */
+.bb .site-header,
+header.site-header {
+  background: linear-gradient(
+    180deg,
+    rgba(15, 20, 32, 0.98),
+    rgba(15, 20, 32, 0.95)
+  ) !important;
+  color: #e9eef6 !important;
 }
 
 /* Brand */
@@ -39,7 +43,7 @@
 }
 
 .brand h1 {
-  color: #e9eef6;
+  color: #e9eef6 !important;
   font-weight: 800;
   letter-spacing: 0.2px;
   margin: 0;
@@ -71,7 +75,7 @@
 }
 
 .main-nav a {
-  color: #e9eef6;
+  color: #e9eef6 !important;
   opacity: 0.9;
   text-decoration: none;
   font-weight: 600;
@@ -79,6 +83,13 @@
 }
 .main-nav a:hover {
   opacity: 1;
+  color: #e9eef6 !important;
+}
+
+/* Ensure all navigation elements are properly styled */
+.site-header .main-nav a,
+.bb .site-header .main-nav a {
+  color: #e9eef6 !important;
 }
 
 .auth-controls {
@@ -89,16 +100,24 @@
 }
 
 .auth-controls .btn {
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
   border-radius: 10px;
   padding: 0.55rem 0.9rem;
   font-weight: 600;
   cursor: pointer;
 }
 .auth-controls .btn:hover {
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.18) !important;
+}
+
+/* Ensure buttons in the site header are styled correctly */
+.site-header .auth-controls .btn,
+.bb .site-header .auth-controls .btn {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
 }
 
 /* ===== Footer ===== */
@@ -107,7 +126,9 @@
   color: #b7c2d6;
   text-align: center;
   padding: 1rem 0;
-  margin-top: 2rem;
+  margin: 0;
+  margin-top: auto;
+  flex-shrink: 0;
 }
 
 /* ===== Responsive ===== */

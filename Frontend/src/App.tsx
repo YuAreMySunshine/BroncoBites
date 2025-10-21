@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import Admin from './pages/Admin';
 import ManageRestaurants from './pages/ManageRestaurants';
@@ -7,11 +9,13 @@ import "./App.css";
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-          <Route index element={<Home />} />
-          <Route path="admin" element={<Admin />} />
-          <Route path="admin/restaurants" element={<ManageRestaurants />} />
-      </Routes>
+      <div className="app-layout">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/admin" element={<><Navbar /><Admin /><Footer /></>} />
+          <Route path="/admin/restaurants" element={<><Navbar /><ManageRestaurants /><Footer /></>} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }

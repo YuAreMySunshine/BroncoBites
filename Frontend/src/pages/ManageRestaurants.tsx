@@ -248,7 +248,8 @@ export default function ManageRestaurants() {
 
   return (
     <div className="page-root">
-      <header style={{ marginBottom: '2rem' }}>
+      <div className="container">
+        <header style={{ marginBottom: '2rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
           <Link to="/admin" className="btn">
             ← Back to Admin
@@ -383,13 +384,13 @@ export default function ManageRestaurants() {
                     />
 
                     {restaurant.menuItems && restaurant.menuItems.length > 0 ? (
-                      <div style={{ overflowX: 'auto' }}>
+                      <div className="table-container">
                         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                           <thead>
                             <tr style={{ textAlign: 'left', background: '#f7f8ff' }}>
                               <th style={{ padding: '0.5rem', borderBottom: '1px solid #eee' }}>Item</th>
                               <th style={{ padding: '0.5rem', borderBottom: '1px solid #eee' }}>Category</th>
-                              <th style={{ padding: '0.5rem', borderBottom: '1px solid #eee' }}>Price</th>
+                              <th style={{ padding: '0.5rem', borderBottom: '1px solid #eee' }}>Price ($)</th>
                               <th style={{ padding: '0.5rem', borderBottom: '1px solid #eee' }}>Protein (g)</th>
                               <th style={{ padding: '0.5rem', borderBottom: '1px solid #eee' }}>Carbs (g)</th>
                               <th style={{ padding: '0.5rem', borderBottom: '1px solid #eee' }}>Fats (g)</th>
@@ -488,6 +489,7 @@ export default function ManageRestaurants() {
           Back to Admin Dashboard
         </Link>
       </footer>
+      </div>
     </div>
   );
 }
@@ -583,19 +585,31 @@ function InlineAddMenuItem({ onAdd, disabled }: { onAdd: (data: MenuItem) => voi
           <option key={o} value={o}>{o}</option>
         ))}
       </select>
-      <input
-        type="number"
-        value={price}
-        min={0}
-        step={0.5}
-        onChange={(e) => setPrice(Number(e.target.value))}
-        aria-label="Price"
-        style={{ width: 100 }}
-        disabled={disabled}
-      />
-      <input type="number" value={protein} min={0} onChange={(e) => setProtein(Number(e.target.value))} aria-label="Protein" style={{ width: 90 }} disabled={disabled} />
-      <input type="number" value={carbs} min={0} onChange={(e) => setCarbs(Number(e.target.value))} aria-label="Carbs" style={{ width: 90 }} disabled={disabled} />
-      <input type="number" value={fats} min={0} onChange={(e) => setFats(Number(e.target.value))} aria-label="Fats" style={{ width: 90 }} disabled={disabled} />
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <label style={{ fontSize: '0.8rem', color: '#666', marginBottom: '2px' }}>Price ($)</label>
+        <input
+          type="number"
+          value={price}
+          min={0}
+          step={0.5}
+          onChange={(e) => setPrice(Number(e.target.value))}
+          aria-label="Price"
+          style={{ width: 100 }}
+          disabled={disabled}
+        />
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <label style={{ fontSize: '0.8rem', color: '#666', marginBottom: '2px' }}>Protein (g)</label>
+        <input type="number" value={protein} min={0} onChange={(e) => setProtein(Number(e.target.value))} aria-label="Protein" style={{ width: 90 }} disabled={disabled} />
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <label style={{ fontSize: '0.8rem', color: '#666', marginBottom: '2px' }}>Carbs (g)</label>
+        <input type="number" value={carbs} min={0} onChange={(e) => setCarbs(Number(e.target.value))} aria-label="Carbs" style={{ width: 90 }} disabled={disabled} />
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <label style={{ fontSize: '0.8rem', color: '#666', marginBottom: '2px' }}>Fats (g)</label>
+        <input type="number" value={fats} min={0} onChange={(e) => setFats(Number(e.target.value))} aria-label="Fats" style={{ width: 90 }} disabled={disabled} />
+      </div>
       <button className="btn" disabled={disabled || !itemName.trim()}>Add Item</button>
     </form>
   );

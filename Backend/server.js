@@ -3,6 +3,8 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 
 import timRoute from "./routes/tim.route.js";
 import eliRoute from "./routes/eli.route.js";
@@ -24,14 +26,31 @@ mongoose
   .then(() => console.log("✅ MongoDB connected"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-// 2. Routes
+// 2. Get directory path for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// 3. Serve static files from React build
+app.use(express.static(path.join(__dirname, '../Frontend/dist')));
+
+// 4. API Routes
 app.use("/api/tim-lee", timRoute);
 app.use("/api/eli-tolentino", eliRoute);
 app.use("/api/jaron-lin", jaronRoute);
 app.use("/api/javi-wu", javiRoute);
 app.use("/api/restaurants", restaurantRoute);
 
-// 3. Start server
+// 5. Handle React Router - serve index.html for all non-API routes
+app.use((req, res, next) => {
+  // Skip API routes
+  if (req.path.startsWith('/api/')) {
+    return next();
+  }
+  // Serve index.html for all other routes (React Router will handle client-side routing)
+  res.sendFile(path.join(__dirname, '../Frontend/dist/index.html'));
+});
+
+// 6. Start server
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });

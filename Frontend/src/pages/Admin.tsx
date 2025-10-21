@@ -11,7 +11,7 @@ export default function Admin() {
   // Wait for user data to load
   if (!isLoaded) {
     return (
-      <div style={{ padding: '2rem', textAlign: 'center' }}>
+      <div className="container" style={{ padding: '2rem', textAlign: 'center' }}>
         <p>Loading...</p>
       </div>
     );
@@ -27,7 +27,8 @@ export default function Admin() {
 
   return (
     <div className="page-root">
-      <header className="admin-header" style={{ marginBottom: '2rem' }}>
+      <div className="container">
+        <header className="admin-header" style={{ marginBottom: '2rem', padding: '2rem 0' }}>
         <h1>Admin Dashboard</h1>
         <p style={{ color: '#666' }}>
           Welcome, {user?.firstName || user?.primaryEmailAddress?.emailAddress}
@@ -76,11 +77,12 @@ export default function Admin() {
         </section>
       </main>
 
-      <footer style={{ marginTop: '4rem', textAlign: 'center' }}>
+      <footer style={{ marginTop: '4rem', textAlign: 'center', padding: '2rem 0' }}>
         <Link to="/" className="btn" style={{ textDecoration: 'none' }}>
           Back to Home
         </Link>
       </footer>
+      </div>
     </div>
   );
 }

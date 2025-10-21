@@ -1,12 +1,10 @@
 
 import "../style/components/Navbar.css";
 
-export default function Layout() {
+export default function Footer() {
   return (
-    <div className="page-root">
-      <footer className="site-footer">
-        <small>© {new Date().getFullYear()} BroncoBites — CS4800 Project</small>
-      </footer>
-    </div>
+    <footer className="site-footer">
+      <small>© {new Date().getFullYear()} BroncoBites — CS4800 Project</small>
+    </footer>
   );
 }
