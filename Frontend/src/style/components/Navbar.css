@@ -1,0 +1,147 @@
+/* =========================
+   BroncoBites Dashboard Header (Dark Theme)
+   ========================= */
+
+/* Page wrapper */
+.page-root {
+  background: transparent !important;
+  padding: 0 !important;
+  max-width: none;
+  color: #e9eef6;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+/* ===== Header ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1rem 2rem;
+  margin-bottom: 0;
+  backdrop-filter: blur(8px);
+  background: linear-gradient(
+    180deg,
+    rgba(15, 20, 32, 0.85),
+    rgba(15, 20, 32, 0.55)
+  );
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Brand */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.brand h1 {
+  color: #e9eef6;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+
+.logo {
+  height: 56px;
+  width: 56px;
+  border-radius: 12px;
+  padding: 0;
+  filter: none;
+}
+.logo:hover {
+  transform: scale(1.02);
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.25));
+}
+
+/* ===== Nav ===== */
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.main-nav a {
+  color: #e9eef6;
+  opacity: 0.9;
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+.main-nav a:hover {
+  opacity: 1;
+}
+
+.auth-controls {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.auth-controls .btn {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  padding: 0.55rem 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.auth-controls .btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ===== Footer ===== */
+.site-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: #b7c2d6;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 700px) {
+  .site-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .main-nav {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 0.75rem;
+  }
+
+  .auth-controls {
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-start;
+  }
+
+  .logo {
+    height: 48px;
+    width: 48px;
+  }
+}
+
+/* Prevent anchors from hiding under sticky header */
+section[id] {
+  scroll-margin-top: 90px;
+}

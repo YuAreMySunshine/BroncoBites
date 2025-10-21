@@ -8,12 +8,12 @@ import {
 } from '@clerk/clerk-react';
 import { Link, Outlet } from 'react-router-dom';
 import BroncoBites from '../images/BroncoBites.png';
-import '../App.css';
+import '../style/components/Navbar.css';
 
 // Admin email is read from VITE_ADMIN_EMAIL environment variable
 const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL as string;
 
-export default function Layout() {
+export default function Dashboard() {
   const { user, isLoaded } = useUser();
 
   // Check if the current user is the admin
@@ -33,7 +33,6 @@ export default function Layout() {
           <div className="nav-links">
             <a href="#features">Features</a>
             <a href="#team">Team</a>
-            <a href="#contact">Contact</a>
             {isAdmin && (
               <Link to="/admin" style={{ color: '#605bfd', fontWeight: '600' }}>
                 Admin
@@ -59,10 +58,6 @@ export default function Layout() {
       </header>
 
       <Outlet />
-
-      <footer className="site-footer">
-        <small>© {new Date().getFullYear()} BroncoBites — CS4800 Project</small>
-      </footer>
     </div>
   );
 }
