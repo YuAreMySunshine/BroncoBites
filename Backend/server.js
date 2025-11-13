@@ -47,10 +47,22 @@ app.use((req, res, next) => {
     return next();
   }
   // Serve index.html for all other routes (React Router will handle client-side routing)
-  res.sendFile(path.join(__dirname, '../Frontend/dist/index.html'));
+  res.sendFile(path.join(__dirname, '../Frontend/dist/index.html'), (err) => {
+    if (err) {
+      res.status(500).send('Error loading page');
+    }
+  });
 });
 
-// 6. Start server
+// 6. Error handling middleware for malformed URIs
+app.use((err, req, res, next) => {
+  if (err instanceof URIError) {
+    return res.status(400).send('Bad Request: Malformed URI');
+  }
+  next(err);
+});
+
+// 7. Start server
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });

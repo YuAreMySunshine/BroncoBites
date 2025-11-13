@@ -61,11 +61,16 @@ const restaurantSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
-// Virtual field to compute if restaurant is open right now
+// Virtual field to compute if restaurant is open right now (using UTC-8 / Pacific Time)
 restaurantSchema.virtual('isOpen').get(function() {
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  
+  // Get current time in UTC-8 (Pacific Time)
   const now = new Date();
-  const dayName = days[now.getDay()]; // current day as string
+  const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000); // Convert to UTC
+  const pacificTime = new Date(utcTime - (8 * 3600000)); // UTC-8
+  
+  const dayName = days[pacificTime.getDay()]; // current day as string
 
   const hoursToday = this.hours.get(dayName);
   if (!hoursToday) return false; // no hours set for today
@@ -78,7 +83,7 @@ restaurantSchema.virtual('isOpen').get(function() {
     return hours * 60 + minutes; // total minutes since midnight
   };
 
-  const nowMinutes = now.getHours() * 60 + now.getMinutes();
+  const nowMinutes = pacificTime.getHours() * 60 + pacificTime.getMinutes();
   const openMinutes = parseTime(hoursToday.open);
   const closeMinutes = parseTime(hoursToday.close);
 

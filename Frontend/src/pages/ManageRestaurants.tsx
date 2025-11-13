@@ -1,7 +1,8 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useUser } from '@clerk/clerk-react';
-import { Navigate, Link } from 'react-router-dom';
-import '../App.css';
+import { Navigate } from 'react-router-dom';
+import '../style/home/Home.css';
+import Navbar from '../components/Navbar';
 
 // Admin email is read from VITE_ADMIN_EMAIL environment variable
 const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL as string;
@@ -56,6 +57,31 @@ function formatDate(iso?: string) {
   } catch {
     return iso;
   }
+}
+
+// Convert 12-hour format (08:00 AM) to 24-hour format (08:00)
+function convertTo24Hour(time12h: string): string {
+  const [timeStr, modifier] = time12h.split(' ');
+  let [hours, minutes] = timeStr.split(':');
+  if (hours === '12') {
+    hours = '00';
+  }
+  if (modifier === 'PM') {
+    hours = String(parseInt(hours, 10) + 12);
+  }
+  if (hours.length === 1) {
+    hours = '0' + hours;
+  }
+  return `${hours}:${minutes}`;
+}
+
+// Convert 24-hour format (20:00) to 12-hour format (08:00 PM)
+function convertTo12Hour(time24h: string): string {
+  const [hours, minutes] = time24h.split(':');
+  const hour = parseInt(hours, 10);
+  const modifier = hour >= 12 ? 'PM' : 'AM';
+  const hour12 = hour % 12 || 12;
+  return `${String(hour12).padStart(2, '0')}:${minutes} ${modifier}`;
 }
 
 export default function ManageRestaurants() {
@@ -247,16 +273,12 @@ export default function ManageRestaurants() {
   const dayOrder: DayName[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   return (
-    <div className="page-root">
-      <div className="container">
+    <div className="bb">
+      <Navbar />
+      <div className="container" style={{ paddingTop: '2rem' }}>
         <header style={{ marginBottom: '2rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
-          <Link to="/admin" className="btn">
-            ← Back to Admin
-          </Link>
-        </div>
-        <h1>Manage Restaurants</h1>
-        <p style={{ color: '#666' }}>
+        <h1 style={{ color: 'var(--text)' }}>Manage Restaurants</h1>
+        <p style={{ color: 'var(--text-muted, #b7c2d6)' }}>
           View every restaurant entry and all associated menu items
         </p>
         {/* Create */}
@@ -266,7 +288,7 @@ export default function ManageRestaurants() {
             onChange={(e) => setNewName(e.target.value)}
             placeholder="New restaurant name"
             aria-label="New restaurant name"
-            style={{ padding: '0.5rem', borderRadius: 6, border: '1px solid #ccc', flex: '0 1 320px' }}
+            style={{ padding: '0.5rem', borderRadius: 6, border: '1px solid rgba(255, 255, 255, 0.2)', background: 'rgba(255, 255, 255, 0.05)', color: 'var(--text)', flex: '0 1 320px' }}
           />
           <button className="btn primary" disabled={creating || !newName.trim()}>
             {creating ? 'Creating...' : 'Add Restaurant'}
@@ -298,13 +320,13 @@ export default function ManageRestaurants() {
         {!loading && !error && restaurants.length === 0 && (
           <div className="card" style={{ textAlign: 'center', padding: '3rem' }}>
             <h3>No restaurants found</h3>
-            <p style={{ color: '#666' }}>The database doesn't contain any restaurant entries yet.</p>
+            <p style={{ color: 'var(--text-muted, #b7c2d6)' }}>The database doesn't contain any restaurant entries yet.</p>
           </div>
         )}
 
         {!loading && !error && restaurants.length > 0 && (
           <>
-            <div style={{ marginBottom: '1.5rem', padding: '1rem', background: '#f7f8ff', borderRadius: '8px' }}>
+            <div style={{ marginBottom: '1.5rem', padding: '1rem', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '8px' }}>
               <p style={{ margin: 0, fontWeight: '600' }}>
                 Total Restaurants: <span style={{ color: '#605bfd' }}>{restaurants.length}</span>
                 <span style={{ marginLeft: '1rem', color: '#555', fontWeight: 400 }}>
@@ -327,7 +349,7 @@ export default function ManageRestaurants() {
                             if (next && next !== restaurant.name) onUpdateRestaurant(restaurant._id, { name: next });
                           }}
                           aria-label="Restaurant name"
-                          style={{ fontSize: '1.25rem', fontWeight: 700, border: '1px solid #eee', borderRadius: 6, padding: '0.25rem 0.5rem', minWidth: 200 }}
+                          style={{ fontSize: '1.25rem', fontWeight: 700, border: '1px solid rgba(255, 255, 255, 0.2)', background: 'rgba(255, 255, 255, 0.05)', color: 'var(--text)', borderRadius: 6, padding: '0.25rem 0.5rem', minWidth: 200 }}
                         />
                         {savingMap[restaurant._id] && <span style={{ color: '#999' }}>Saving...</span>}
                       </div>
@@ -357,43 +379,75 @@ export default function ManageRestaurants() {
                   </div>
 
                   {/* Hours */}
-                  <details style={{ marginBottom: '1rem' }}>
-                    <summary style={{ cursor: 'pointer', fontWeight: 600 }}>Hours</summary>
-                    <div style={{ marginTop: '0.75rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.5rem' }}>
+                  <div style={{ marginBottom: '1rem' }}>
+                    <h4 style={{ fontWeight: 600, color: 'var(--text)', marginBottom: '0.75rem' }}>Hours</h4>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '0.75rem' }}>
                       {dayOrder.map((day) => {
                         const slot = restaurant.hours?.[day];
                         return (
-                          <div key={day} style={{ display: 'flex', justifyContent: 'space-between', gap: '0.5rem' }}>
-                            <span style={{ color: '#555' }}>{day}</span>
-                            <span style={{ color: '#222' }}>
-                              {slot ? `${slot.open} - ${slot.close}` : '—'}
-                            </span>
+                          <div key={day} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem', background: 'rgba(255, 255, 255, 0.02)', borderRadius: '6px' }}>
+                            <span style={{ color: 'var(--text)', fontWeight: 500, minWidth: '90px' }}>{day}</span>
+                            <input
+                              type="time"
+                              defaultValue={slot?.open ? convertTo24Hour(slot.open) : '08:00'}
+                              onBlur={(e) => {
+                                const newOpen = convertTo12Hour(e.target.value);
+                                const currentClose = slot?.close || '08:00 PM';
+                                onUpdateRestaurant(restaurant._id, {
+                                  hours: { ...restaurant.hours, [day]: { open: newOpen, close: currentClose } }
+                                });
+                              }}
+                              style={{ border: '1px solid rgba(255, 255, 255, 0.2)', background: 'rgba(255, 255, 255, 0.05)', color: 'var(--text)', borderRadius: 4, padding: '0.25rem 0.5rem', width: '110px' }}
+                            />
+                            <span style={{ color: 'var(--text-muted, #b7c2d6)' }}>—</span>
+                            <input
+                              type="time"
+                              defaultValue={slot?.close ? convertTo24Hour(slot.close) : '20:00'}
+                              onBlur={(e) => {
+                                const newClose = convertTo12Hour(e.target.value);
+                                const currentOpen = slot?.open || '08:00 AM';
+                                onUpdateRestaurant(restaurant._id, {
+                                  hours: { ...restaurant.hours, [day]: { open: currentOpen, close: newClose } }
+                                });
+                              }}
+                              style={{ border: '1px solid rgba(255, 255, 255, 0.2)', background: 'rgba(255, 255, 255, 0.05)', color: 'var(--text)', borderRadius: 4, padding: '0.25rem 0.5rem', width: '110px' }}
+                            />
                           </div>
                         );
                       })}
                     </div>
-                  </details>
+                  </div>
 
                   {/* Menu Items */}
                   <div>
-                    <h4 style={{ margin: '0 0 0.5rem 0' }}>Menu Items ({restaurant.menuItems?.length || 0})</h4>
-                    {/* New menu item inline form */}
-                    <InlineAddMenuItem
-                      disabled={!!addingItemMap[restaurant._id]}
-                      onAdd={(data) => onAddMenuItem(restaurant._id, data)}
-                    />
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                      <h4 style={{ margin: 0 }}>Menu Items ({restaurant.menuItems?.length || 0})</h4>
+                      <button
+                        className="btn primary"
+                        onClick={() => onAddMenuItem(restaurant._id, {
+                          itemName: 'New Item',
+                          category: 'Lunch',
+                          price: 0,
+                          nutrition: { protein: 0, carbs: 0, fats: 0 }
+                        })}
+                        disabled={!!addingItemMap[restaurant._id]}
+                        style={{ fontSize: '0.9rem', padding: '0.4rem 0.8rem' }}
+                      >
+                        {addingItemMap[restaurant._id] ? 'Adding...' : 'Add Item'}
+                      </button>
+                    </div>
 
                     {restaurant.menuItems && restaurant.menuItems.length > 0 ? (
                       <div className="table-container">
                         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                           <thead>
-                            <tr style={{ textAlign: 'left', background: '#f7f8ff' }}>
-                              <th style={{ padding: '0.5rem', borderBottom: '1px solid #eee' }}>Item</th>
-                              <th style={{ padding: '0.5rem', borderBottom: '1px solid #eee' }}>Category</th>
-                              <th style={{ padding: '0.5rem', borderBottom: '1px solid #eee' }}>Price ($)</th>
-                              <th style={{ padding: '0.5rem', borderBottom: '1px solid #eee' }}>Protein (g)</th>
-                              <th style={{ padding: '0.5rem', borderBottom: '1px solid #eee' }}>Carbs (g)</th>
-                              <th style={{ padding: '0.5rem', borderBottom: '1px solid #eee' }}>Fats (g)</th>
+                            <tr style={{ textAlign: 'left', background: 'rgba(255, 255, 255, 0.05)' }}>
+                              <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>Item</th>
+                              <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>Category</th>
+                              <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>Price ($)</th>
+                              <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>Protein (g)</th>
+                              <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>Carbs (g)</th>
+                              <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>Fats (g)</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -462,7 +516,7 @@ export default function ManageRestaurants() {
                         </table>
                       </div>
                     ) : (
-                      <p style={{ color: '#666' }}>No menu items for this restaurant.</p>
+                      <p style={{ color: 'var(--text-muted, #b7c2d6)' }}>No menu items for this restaurant.</p>
                     )}
                   </div>
 
@@ -483,12 +537,6 @@ export default function ManageRestaurants() {
           </>
         )}
       </main>
-
-      <footer style={{ marginTop: '4rem', textAlign: 'center' }}>
-        <Link to="/admin" className="btn">
-          Back to Admin Dashboard
-        </Link>
-      </footer>
       </div>
     </div>
   );
@@ -506,7 +554,7 @@ function InlineEdit({ value, onSave, saving }: { value: string; onSave: (v: stri
         const next = val.trim();
         if (next && next !== value) onSave(next);
       }}
-      style={{ border: '1px solid #eee', borderRadius: 6, padding: '0.25rem 0.5rem', minWidth: 180 }}
+      style={{ border: '1px solid rgba(255, 255, 255, 0.2)', background: 'rgba(255, 255, 255, 0.05)', color: 'var(--text)', borderRadius: 6, padding: '0.25rem 0.5rem', minWidth: 180 }}
       aria-label="Edit text"
       disabled={saving}
     />
@@ -525,6 +573,7 @@ function InlineSelect({ value, onSave, options, saving }: { value: string; onSav
         if (v !== value) onSave(v);
       }}
       disabled={saving}
+      style={{ border: '1px solid rgba(255, 255, 255, 0.2)', background: 'rgba(255, 255, 255, 0.05)', color: 'var(--text)', borderRadius: 6, padding: '0.25rem 0.5rem' }}
     >
       {options.map((o) => (
         <option key={o} value={o}>{o}</option>
@@ -545,72 +594,9 @@ function InlineNumber({ value, onSave, saving }: { value?: number; onSave: (v: n
       onChange={(e) => setVal(Number(e.target.value))}
       onBlur={() => onSave(Number(val))}
       disabled={saving}
-      style={{ width: 90 }}
+      style={{ width: 90, border: '1px solid rgba(255, 255, 255, 0.2)', background: 'rgba(255, 255, 255, 0.05)', color: 'var(--text)', borderRadius: 6, padding: '0.25rem 0.5rem' }}
     />
   );
 }
 
-function InlineAddMenuItem({ onAdd, disabled }: { onAdd: (data: MenuItem) => void; disabled?: boolean }) {
-  const [itemName, setItemName] = useState('');
-  const [category, setCategory] = useState<MenuItem['category']>('Lunch');
-  const [price, setPrice] = useState<number>(10);
-  const [protein, setProtein] = useState<number>(0);
-  const [carbs, setCarbs] = useState<number>(0);
-  const [fats, setFats] = useState<number>(0);
 
-  return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        if (!itemName.trim()) return;
-        onAdd({ itemName: itemName.trim(), category, price, nutrition: { protein, carbs, fats } });
-        setItemName('');
-        setPrice(10);
-        setProtein(0);
-        setCarbs(0);
-        setFats(0);
-      }}
-      style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', margin: '0.5rem 0 1rem 0', flexWrap: 'wrap' }}
-    >
-      <input
-        value={itemName}
-        onChange={(e) => setItemName(e.target.value)}
-        placeholder="Item name"
-        aria-label="Item name"
-        style={{ padding: '0.25rem 0.5rem', border: '1px solid #ddd', borderRadius: 6 }}
-        disabled={disabled}
-      />
-      <select value={category} onChange={(e) => setCategory(e.target.value as any)} disabled={disabled}>
-        {['Breakfast','Lunch','Dinner','Snack','Beverage'].map((o) => (
-          <option key={o} value={o}>{o}</option>
-        ))}
-      </select>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <label style={{ fontSize: '0.8rem', color: '#666', marginBottom: '2px' }}>Price ($)</label>
-        <input
-          type="number"
-          value={price}
-          min={0}
-          step={0.5}
-          onChange={(e) => setPrice(Number(e.target.value))}
-          aria-label="Price"
-          style={{ width: 100 }}
-          disabled={disabled}
-        />
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <label style={{ fontSize: '0.8rem', color: '#666', marginBottom: '2px' }}>Protein (g)</label>
-        <input type="number" value={protein} min={0} onChange={(e) => setProtein(Number(e.target.value))} aria-label="Protein" style={{ width: 90 }} disabled={disabled} />
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <label style={{ fontSize: '0.8rem', color: '#666', marginBottom: '2px' }}>Carbs (g)</label>
-        <input type="number" value={carbs} min={0} onChange={(e) => setCarbs(Number(e.target.value))} aria-label="Carbs" style={{ width: 90 }} disabled={disabled} />
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <label style={{ fontSize: '0.8rem', color: '#666', marginBottom: '2px' }}>Fats (g)</label>
-        <input type="number" value={fats} min={0} onChange={(e) => setFats(Number(e.target.value))} aria-label="Fats" style={{ width: 90 }} disabled={disabled} />
-      </div>
-      <button className="btn" disabled={disabled || !itemName.trim()}>Add Item</button>
-    </form>
-  );
-}
