@@ -554,7 +554,7 @@ function InlineEdit({ value, onSave, saving }: { value: string; onSave: (v: stri
         const next = val.trim();
         if (next && next !== value) onSave(next);
       }}
-      style={{ border: '1px solid rgba(255, 255, 255, 0.2)', background: 'rgba(255, 255, 255, 0.05)', color: 'var(--text)', borderRadius: 6, padding: '0.25rem 0.5rem', minWidth: 180 }}
+      style={{ border: '1px solid rgba(255, 255, 255, 0.2)', background: 'rgba(255, 255, 255, 0.05)', color: 'var(--text)', borderRadius: 6, padding: '0.25rem 0.5rem', minWidth: 200 }}
       aria-label="Edit text"
       disabled={saving}
     />
@@ -576,25 +576,35 @@ function InlineSelect({ value, onSave, options, saving }: { value: string; onSav
       style={{ border: '1px solid rgba(255, 255, 255, 0.2)', background: 'rgba(255, 255, 255, 0.05)', color: 'var(--text)', borderRadius: 6, padding: '0.25rem 0.5rem' }}
     >
       {options.map((o) => (
-        <option key={o} value={o}>{o}</option>
+        <option key={o} value={o} style={{ background: '#1a1a2e', color: '#fff' }}>{o}</option>
       ))}
     </select>
   );
 }
 
 function InlineNumber({ value, onSave, saving }: { value?: number; onSave: (v: number) => void; saving?: boolean }) {
-  const [val, setVal] = useState(value ?? 0);
-  useEffect(() => setVal(value ?? 0), [value]);
+  const [val, setVal] = useState(value !== undefined && value !== 0 ? String(value) : '');
+  useEffect(() => setVal(value !== undefined && value !== 0 ? String(value) : ''), [value]);
   return (
     <input
-      type="number"
-      value={Number.isFinite(val) ? val : 0}
-      min={0}
-      step={1}
-      onChange={(e) => setVal(Number(e.target.value))}
-      onBlur={() => onSave(Number(val))}
+      type="text"
+      value={val}
+      onChange={(e) => {
+        const input = e.target.value;
+        // Only allow digits and decimal point
+        if (input === '' || /^\d*\.?\d*$/.test(input)) {
+          setVal(input);
+        }
+      }}
+      onBlur={() => {
+        const num = val === '' ? 0 : Number(val);
+        if (!isNaN(num) && num >= 0) {
+          onSave(num);
+        }
+      }}
       disabled={saving}
-      style={{ width: 90, border: '1px solid rgba(255, 255, 255, 0.2)', background: 'rgba(255, 255, 255, 0.05)', color: 'var(--text)', borderRadius: 6, padding: '0.25rem 0.5rem' }}
+      placeholder="0"
+      style={{ width: 80, border: '1px solid rgba(255, 255, 255, 0.2)', background: 'rgba(255, 255, 255, 0.05)', color: 'var(--text)', borderRadius: 6, padding: '0.25rem 0.5rem' }}
     />
   );
 }
