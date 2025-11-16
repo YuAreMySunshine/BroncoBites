@@ -22,11 +22,15 @@ jobs:
           script: |
             cd BroncoBites
             git remote set-url origin https://eli-tolentino:${{ secrets.DEPLOY_PAT }}@github.com/YuAreMySunshine/BroncoBites.git
+            git reset --hard HEAD
+            git clean -fd
             git pull origin main
             cd Backend
             npm install
             cd ../Frontend
+            rm -rf dist node_modules/.vite
             npm install
             npm run build
             cd ..
             sudo pm2 restart all
+            sudo pm2 save
