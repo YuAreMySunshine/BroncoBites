@@ -32,9 +32,10 @@ interface Nutrition {
 
 interface MenuItem {
   itemName: string;
-  category: 'Breakfast' | 'Lunch' | 'Dinner' | 'Snack' | 'Beverage';
-  price: number;
+  calories: number;
   nutrition: Nutrition;
+  vegetarian: boolean;
+  allergens: string[];
 }
 
 interface Restaurant {
@@ -82,6 +83,41 @@ function convertTo12Hour(time24h: string): string {
   const modifier = hour >= 12 ? 'PM' : 'AM';
   const hour12 = hour % 12 || 12;
   return `${String(hour12).padStart(2, '0')}:${minutes} ${modifier}`;
+}
+
+// Parse 12-hour time format to minutes since midnight
+function parseTime(timeStr: string): number {
+  const [time, modifier] = timeStr.split(' ');
+  let [hours, minutes] = time.split(':').map(Number);
+  if (modifier === 'PM' && hours !== 12) hours += 12;
+  if (modifier === 'AM' && hours === 12) hours = 0;
+  return hours * 60 + minutes;
+}
+
+// Get current Pacific Time
+function getPacificTime(): Date {
+  const now = new Date();
+  const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
+  return new Date(utcTime - (8 * 3600000));
+}
+
+// Get status message based on current time and restaurant hours
+function getStatusMessage(restaurant: Restaurant): string {
+  const days: DayName[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const pacificTime = getPacificTime();
+  const dayName = days[pacificTime.getDay()];
+  const hoursToday = restaurant.hours?.[dayName];
+  
+  if (!hoursToday) return 'Closed';
+  if (hoursToday.open === hoursToday.close) return 'Closed today';
+  
+  const nowMinutes = pacificTime.getHours() * 60 + pacificTime.getMinutes();
+  const openMinutes = parseTime(hoursToday.open);
+  const closeMinutes = parseTime(hoursToday.close);
+  
+  return nowMinutes >= openMinutes && nowMinutes <= closeMinutes
+    ? `Open until ${hoursToday.close}`
+    : `Closed until ${hoursToday.open}`;
 }
 
 export default function ManageRestaurants() {
@@ -191,9 +227,13 @@ export default function ManageRestaurants() {
         throw new Error(body?.error || 'Name must be unique');
       }
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      await refresh();
+      
+      // Update local state without full refresh
+      const updatedRestaurant = await res.json();
+      setRestaurants(prev => prev.map(r => r._id === id ? { ...r, ...updatedRestaurant } : r));
     } catch (e: any) {
       alert(`Failed to update: ${e.message || e}`);
+      await refresh(); // Only refresh on error
     } finally {
       setSavingMap((m) => ({ ...m, [id]: false }));
     }
@@ -367,7 +407,7 @@ export default function ManageRestaurants() {
                               fontWeight: 600,
                             }}
                           >
-                            {restaurant.isOpen ? 'Open now' : 'Closed'}
+                            {getStatusMessage(restaurant)}
                           </span>
                         )}
                       </div>
@@ -393,7 +433,7 @@ export default function ManageRestaurants() {
                               onBlur={(e) => {
                                 const newOpen = convertTo12Hour(e.target.value);
                                 const currentClose = slot?.close || '08:00 PM';
-                                onUpdateRestaurant(restaurant._id, {
+                                onUpdateRestaurant(restaurant._id, { 
                                   hours: { ...restaurant.hours, [day]: { open: newOpen, close: currentClose } }
                                 });
                               }}
@@ -406,7 +446,7 @@ export default function ManageRestaurants() {
                               onBlur={(e) => {
                                 const newClose = convertTo12Hour(e.target.value);
                                 const currentOpen = slot?.open || '08:00 AM';
-                                onUpdateRestaurant(restaurant._id, {
+                                onUpdateRestaurant(restaurant._id, { 
                                   hours: { ...restaurant.hours, [day]: { open: currentOpen, close: newClose } }
                                 });
                               }}
@@ -426,9 +466,10 @@ export default function ManageRestaurants() {
                         className="btn primary"
                         onClick={() => onAddMenuItem(restaurant._id, {
                           itemName: 'New Item',
-                          category: 'Lunch',
-                          price: 0,
-                          nutrition: { protein: 0, carbs: 0, fats: 0 }
+                          calories: 0,
+                          nutrition: { protein: 0, carbs: 0, fats: 0 },
+                          vegetarian: false,
+                          allergens: []
                         })}
                         disabled={!!addingItemMap[restaurant._id]}
                         style={{ fontSize: '0.9rem', padding: '0.4rem 0.8rem' }}
@@ -443,11 +484,12 @@ export default function ManageRestaurants() {
                           <thead>
                             <tr style={{ textAlign: 'left', background: 'rgba(255, 255, 255, 0.05)' }}>
                               <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>Item</th>
-                              <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>Category</th>
-                              <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>Price ($)</th>
+                              <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>Calories</th>
                               <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>Protein (g)</th>
                               <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>Carbs (g)</th>
                               <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>Fats (g)</th>
+                              <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>Vegetarian</th>
+                              <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>Allergens</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -464,17 +506,9 @@ export default function ManageRestaurants() {
                                     />
                                   </td>
                                   <td style={{ padding: '0.5rem', borderBottom: '1px solid #f1f1f1' }}>
-                                    <InlineSelect
-                                      value={mi.category}
-                                      options={['Breakfast','Lunch','Dinner','Snack','Beverage']}
-                                      onSave={(v) => onUpdateMenuItem(restaurant._id, itemId, { category: v as MenuItem['category'] })}
-                                      saving={!!savingMap[savingKey]}
-                                    />
-                                  </td>
-                                  <td style={{ padding: '0.5rem', borderBottom: '1px solid #f1f1f1' }}>
                                     <InlineNumber
-                                      value={mi.price}
-                                      onSave={(v) => onUpdateMenuItem(restaurant._id, itemId, { price: v })}
+                                      value={mi.calories}
+                                      onSave={(v) => onUpdateMenuItem(restaurant._id, itemId, { calories: v })}
                                       saving={!!savingMap[savingKey]}
                                     />
                                   </td>
@@ -493,10 +527,24 @@ export default function ManageRestaurants() {
                                     />
                                   </td>
                                   <td style={{ padding: '0.5rem', borderBottom: '1px solid #f1f1f1' }}>
+                                    <InlineNumber
+                                      value={mi.nutrition?.fats}
+                                      onSave={(v) => onUpdateMenuItem(restaurant._id, itemId, { nutrition: { ...mi.nutrition, fats: v } })}
+                                      saving={!!savingMap[savingKey]}
+                                    />
+                                  </td>
+                                  <td style={{ padding: '0.5rem', borderBottom: '1px solid #f1f1f1' }}>
+                                    <InlineCheckbox
+                                      value={mi.vegetarian ?? false}
+                                      onSave={(v) => onUpdateMenuItem(restaurant._id, itemId, { vegetarian: v })}
+                                      saving={!!savingMap[savingKey]}
+                                    />
+                                  </td>
+                                  <td style={{ padding: '0.5rem', borderBottom: '1px solid #f1f1f1' }}>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                      <InlineNumber
-                                        value={mi.nutrition?.fats}
-                                        onSave={(v) => onUpdateMenuItem(restaurant._id, itemId, { nutrition: { ...mi.nutrition, fats: v } })}
+                                      <InlineEdit
+                                        value={Array.isArray(mi.allergens) ? mi.allergens.join(', ') : ''}
+                                        onSave={(v) => onUpdateMenuItem(restaurant._id, itemId, { allergens: v.split(',').map(a => a.trim()).filter(a => a) })}
                                         saving={!!savingMap[savingKey]}
                                       />
                                       <button
@@ -561,27 +609,6 @@ function InlineEdit({ value, onSave, saving }: { value: string; onSave: (v: stri
   );
 }
 
-function InlineSelect({ value, onSave, options, saving }: { value: string; onSave: (v: string) => void; options: string[]; saving?: boolean }) {
-  const [val, setVal] = useState(value);
-  useEffect(() => setVal(value), [value]);
-  return (
-    <select
-      value={val}
-      onChange={(e) => {
-        const v = e.target.value;
-        setVal(v);
-        if (v !== value) onSave(v);
-      }}
-      disabled={saving}
-      style={{ border: '1px solid rgba(255, 255, 255, 0.2)', background: 'rgba(255, 255, 255, 0.05)', color: 'var(--text)', borderRadius: 6, padding: '0.25rem 0.5rem' }}
-    >
-      {options.map((o) => (
-        <option key={o} value={o} style={{ background: '#1a1a2e', color: '#fff' }}>{o}</option>
-      ))}
-    </select>
-  );
-}
-
 function InlineNumber({ value, onSave, saving }: { value?: number; onSave: (v: number) => void; saving?: boolean }) {
   const [val, setVal] = useState(value !== undefined && value !== 0 ? String(value) : '');
   useEffect(() => setVal(value !== undefined && value !== 0 ? String(value) : ''), [value]);
@@ -608,5 +635,24 @@ function InlineNumber({ value, onSave, saving }: { value?: number; onSave: (v: n
     />
   );
 }
+
+function InlineCheckbox({ value, onSave, saving }: { value: boolean; onSave: (v: boolean) => void; saving?: boolean }) {
+  const [val, setVal] = useState(value);
+  useEffect(() => setVal(value), [value]);
+  return (
+    <input
+      type="checkbox"
+      checked={val}
+      onChange={(e) => {
+        const newVal = e.target.checked;
+        setVal(newVal);
+        onSave(newVal);
+      }}
+      disabled={saving}
+      style={{ width: 20, height: 20, cursor: saving ? 'not-allowed' : 'pointer' }}
+    />
+  );
+}
+
 
 

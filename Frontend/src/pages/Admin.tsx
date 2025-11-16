@@ -30,30 +30,30 @@ export default function Admin() {
     <div className="bb">
       <Navbar />
       <div className="container" style={{ paddingTop: '2rem' }}>
-        <header className="admin-header" style={{ marginBottom: '2rem', padding: '2rem 0' }}>
-        <h1 style={{ color: 'var(--text)' }}>Admin Dashboard</h1>
-        <p style={{ color: 'var(--text-muted, #b7c2d6)' }}>
-          Welcome, {user?.firstName || user?.primaryEmailAddress?.emailAddress}
-        </p>
-      </header>
+        <header style={{ marginBottom: '2rem', padding: '2rem 0' }}>
+          <h1 style={{ color: 'var(--text)' }}>Admin Dashboard</h1>
+          <p style={{ color: 'var(--text-muted, #b7c2d6)' }}>
+            Welcome, {user?.firstName || user?.primaryEmailAddress?.emailAddress}
+          </p>
+        </header>
 
-      <main>
-        <section className="admin-section" style={{ marginBottom: '3rem' }}>
-          <h2 style={{ color: 'var(--text)' }}>Restaurant Management</h2>
-          <div className="card" style={{ background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.1)', color: 'var(--text)' }}>
-            <p>Add, edit, or remove restaurants from the platform.</p>
-            <Link to="/admin/restaurants" className="btn primary" style={{ marginTop: '1rem', display: 'inline-block', textDecoration: 'none' }}>
-              Manage Restaurants
-            </Link>
-          </div>
-        </section>
-      </main>
+        <main>
+          <section style={{ marginBottom: '3rem' }}>
+            <h2 style={{ color: 'var(--text)' }}>Restaurant Management</h2>
+            <div className="card">
+              <p>Add, edit, or remove restaurants from the platform.</p>
+              <Link to="/admin/restaurants" className="btn primary" style={{ marginTop: '1rem', display: 'inline-block', textDecoration: 'none' }}>
+                Manage Restaurants
+              </Link>
+            </div>
+          </section>
+        </main>
 
-      <footer style={{ marginTop: '4rem', textAlign: 'center', padding: '2rem 0', borderTop: '1px solid rgba(255, 255, 255, 0.06)' }}>
-        <Link to="/" className="btn" style={{ textDecoration: 'none' }}>
-          Back to Home
-        </Link>
-      </footer>
+        <footer style={{ marginTop: '4rem', textAlign: 'center', padding: '2rem 0', borderTop: '1px solid rgba(255, 255, 255, 0.06)' }}>
+          <Link to="/" className="btn" style={{ textDecoration: 'none' }}>
+            Back to Home
+          </Link>
+        </footer>
       </div>
     </div>
   );
