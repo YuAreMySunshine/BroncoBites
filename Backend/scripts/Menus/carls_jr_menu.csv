@@ -1,99 +1,30 @@
-Item,Protein (g),Carbs (g),Fat (g)
-Breakfast Burger,42,45,29
-Grilled Cheese Breakfast Sandwich (Ham),26,41,26
-Grilled Cheese Breakfast Sandwich (Sausage),27,41,29
-Grilled Cheese Breakfast Sandwich (Bacon),28,41,26
-Steak & Egg Burrito,32,36,37
-Loaded Breakfast Burrito,29,34,26
-Big Country® Breakfast Burrito,26,34,37
-"Bacon, Egg & Cheese Burrito",37,34,29
-French Toast Dips® (5 pcs),9,20,9
-Hash Rounds® - Small,2,20,10
-Hash Rounds® - Medium,3,29,14
-Hash Rounds® - Large,4,41,19
-"Sausage, Egg & Cheese Biscuit",19,36,29
-"Bacon, Egg & Cheese Biscuit",19,34,26
-Monster Biscuit®,34,44,44
-Biscuit ’N’ Gravy™,8,35,23
-Famous Star® with Cheese,28,47,30
-Super Star® with Cheese,47,65,44
-Western Bacon Cheeseburger®,38,73,47
-Double Western Bacon Cheeseburger®,58,82,65
-The Big Carl®,47,64,44
-Original Angus Burger,34,43,36
-Guacamole Bacon Angus Burger,44,41,33
-Jalapeño Angus Burger,35,41,41
-California Classic Double Cheeseburger,23,25,25
-Jalapeño Double Cheeseburger,47,41,41
-Beyond™ Famous Star® with Cheese,30,41,25
-Double Original Angus Burger,65,41,41
-Double Guacamole Bacon Angus Burger,73,41,41
-Double Jalapeño Angus Burger,64,41,41
-Double Cheeseburger,19,25,25
-Big Hamburger,25,41,41
-Big Hamburger with Cheese,28,41,41
-Hand-Breaded Chicken Sandwich,30,43,36
-Charbroiled Chicken Club™,43,36,33
-Charbroiled Santa Fe Chicken™,36,41,41
-Charbroiled BBQ Chicken™,33,25,25
-Hand-Breaded Bacon Swiss Chicken Sandwich,41,41,41
-Hand-Breaded Chicken Tenders™ (3 pcs),25,41,41
-Hand-Breaded Chicken Tenders™ (5 pcs),41,82,82
-Hand-Breaded Chicken Tenders™ (10 pcs),82,123,123
-Hand-Breaded Chicken Tenders™ (15 pcs),123,164,164
-Hand-Breaded Chicken Tenders™ (20 pcs),164,205,205
-Spicy Chicken Sandwich,14,38,14
-Chicken Stars™ (4 pcs),9,57,9
-Chicken Stars™ (6 pcs),14,36,14
-Chicken Stars™ (9 pcs),21,56,21
-Natural-Cut Fries (Kids),3,22,9
-Natural-Cut Fries (Small),3,29,13
-Natural-Cut Fries (Medium),5,41,19
-Natural-Cut Fries (Large),5,57,24
-Waffle Fries,9,36,23
-Onion Rings,4,57,24
-Jalapeño POPPERS® Bites (6 pcs),7,36,18
-Jalapeño POPPERS® Bites (9 pcs),13,57,27
-Fried Zucchini,6,36,16
-Chocolate Chip Cookie,3,22,9
-Strawberry Swirl Cheesecake,5,36,14
-Cinnamon Roll,5,57,27
-Chocolate Cake,9,36,16
-Kid’s Cheeseburger,16,33,19
-Kid’s Hamburger,14,32,17
-Kid’s Chicken Stars™ (4 pcs),9,20,9
-Kid’s Chicken Stars™ (6 pcs),14,29,14
-Kid’s Natural-Cut Fries,3,22,9
-Kid’s Drink (Coke Small),0,39,0
-Kid’s Drink (Milk),8,12,5
-Kid’s Drink (Chocolate Milk),8,26,5
-Coca-Cola® Classic (Small),0,39,0
-Coca-Cola® Classic (Medium),0,58,0
-Coca-Cola® Classic (Large),0,77,0
-Diet Coke® (Small),0,0,0
-Diet Coke® (Medium),0,0,0
-Diet Coke® (Large),0,0,0
-Sprite® (Small),0,38,0
-Sprite® (Medium),0,57,0
-Sprite® (Large),0,76,0
-Dr Pepper® (Small),0,40,0
-Dr Pepper® (Medium),0,59,0
-Dr Pepper® (Large),0,78,0
-Barq’s® Root Beer (Small),0,41,0
-Barq’s® Root Beer (Medium),0,61,0
-Barq’s® Root Beer (Large),0,81,0
-Minute Maid® Lemonade (Small),0,41,0
-Minute Maid® Lemonade (Medium),0,61,0
-Minute Maid® Lemonade (Large),0,81,0
-Iced Tea (Unsweetened),0,0,0
-Chocolate Shake (Small),12,88,19
-Chocolate Shake (Medium),16,118,25
-Chocolate Shake (Large),20,148,31
-Vanilla Shake (Small),12,88,19
-Vanilla Shake (Medium),16,118,25
-Vanilla Shake (Large),20,148,31
-Strawberry Shake (Small),12,88,19
-Strawberry Shake (Medium),16,118,25
-Strawberry Shake (Large),20,148,31
-Hand-Scooped Ice Cream (Cone),5,22,7
-Hand-Scooped Ice Cream (Cup),5,22,7
+Item Name,Calories,Protein,Carbohydrates,Fats,Vegetarian,Allergens
+Famous Star with Cheese - Single,680,28,57,38,FALSE,"E,M,S,SS,W"
+Famous Star with Cheese - Double,940,48,60,57,FALSE,"E,M,S,SS,W"
+Famous Star with Cheese - Triple,1190,67,59,77,FALSE,"E,M,S,SS,W"
+Western Bacon Cheeseburger - Single,770,35,77,36,FALSE,"M,S,SS,W"
+Western Bacon Cheeseburger - Double,1020,55,78,55,FALSE,"M,S,SS,W"
+Western Bacon Cheeseburger - Triple,1280,74,79,75,FALSE,"M,S,SS,W"
+The Big Carl - Single,670,28,55,38,FALSE,"E,M,S,SS,W"
+The Big Carl - Double,920,47,56,58,FALSE,"E,M,S,SS,W"
+The Big Carl - Triple,1180,66,57,77,FALSE,"E,M,S,SS,W"
+California Classic - Double,520,19,37,36,FALSE,"E,M,S,SS,W"
+Super Star with Cheese - Double,930,47,56,57,FALSE,"E,M,S,SS,W"
+Hand-Breaded Chicken Tenders (3 pieces),260,25,13,13,FALSE,"E,M,W"
+Hand-Breaded Chicken Tenders (5 pieces),440,41,21,21,FALSE,"E,M,W"
+Charbroiled BBQ Chicken Sandwich,440,35,48,13,FALSE,"S,W"
+Charbroiled Santa Fe Chicken Sandwich,690,38,45,40,FALSE,"E,M,S,W"
+Charbroiled Chicken Club Sandwich,690,43,45,38,FALSE,"E,M,S,W"
+Hand-Breaded Bacon Swiss Chicken Sandwich,790,40,53,47,FALSE,"E,M,S,SS,W"
+Hand-Breaded Chicken Sandwich,660,31,50,37,FALSE,"E,M,S,SS,W"
+Spicy Chicken Sandwich,490,14,43,29,FALSE,"E,M,SS,W"
+Natural-Cut Fries - Small,280,3,36,14,TRUE,	
+Natural-Cut Fries - Medium,400,4,51,19,TRUE,	
+Natural-Cut Fries - Large,450,5,59,22,TRUE,	
+Fried Zucchini,310,4,32,19,TRUE,"M,W"
+Waffle Fries,380,5,36,25,TRUE,W
+Onion Rings,560,9,66,30,TRUE,"M,W",
+Vanilla Shake,720,13,87,36,TRUE,"M,S"
+Chocolate Shake,710,13,86,36,TRUE,"M,S"
+Strawberry Shake,710,13,85,36,TRUE,"M,S"
+OREO Shake,730,14,81,40,TRUE,"M,S,SS,W"

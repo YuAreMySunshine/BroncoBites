@@ -24,14 +24,15 @@ function parseCSV(filePath) {
       .pipe(csv())
       .on("data", (row) => {
         items.push({
-          itemName: row["Item"],
-          category: row["Category"] || "Lunch",
-          price: parseFloat(row["Price"]) || 0,
+          itemName: row["Item Name"] || row["Item"],
+          calories: parseInt(row["Calories"]) || 0,
           nutrition: {
-            protein: parseFloat(row["Protein (g)"]) || 0,
-            carbs: parseFloat(row["Carbs (g)"]) || 0,
-            fats: parseFloat(row["Fat (g)"]) || 0,
+            protein: parseFloat(row["Protein"]) || parseFloat(row["Protein (g)"]) || 0,
+            carbs: parseFloat(row["Carbohydrates"]) || parseFloat(row["Carbs (g)"]) || 0,
+            fats: parseFloat(row["Fats"]) || parseFloat(row["Fat (g)"]) || 0,
           },
+          vegetarian: row["Vegetarian"] === "TRUE" || row["Vegetarian"] === "true" || false,
+          allergens: row["Allergens"] ? row["Allergens"].split(",").map(a => a.trim()) : [],
         });
       })
       .on("end", () => resolve(items))
@@ -60,13 +61,12 @@ async function ingestAll() {
     const filePath = path.join(menuDir, file);
     const items = await parseCSV(filePath);
 
-    const existingNames = new Set(restaurant.menuItems.map((i) => i.itemName));
-    const newItems = items.filter((i) => !existingNames.has(i.itemName));
-
-    restaurant.menuItems.push(...newItems);
+    // Clear existing menu items before adding new ones
+    restaurant.menuItems = [];
+    restaurant.menuItems.push(...items);
     await restaurant.save();
 
-    console.log(`✅ ${restaurant.name}: Added ${newItems.length} items`);
+    console.log(`✅ ${restaurant.name}: Added ${items.length} items`);
   }
 
   mongoose.connection.close();

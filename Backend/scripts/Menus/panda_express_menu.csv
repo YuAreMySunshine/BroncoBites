@@ -1,0 +1,18 @@
+Item Name,Calories,Protein,Carbohydrates,Fats,Vegetarian,Allergens
+Veggie Spring Rolls (2 rolls),240,4,24,14,TRUE,"W,S"
+Chicken Egg Roll (1 roll),200,6,20,10,FALSE,"W,S,E,M,SS"
+Cream Cheese Rangoons (3 pcs),190,5,24,8,TRUE,"W,E,M"
+Grilled Teriyaki Chicken,275,33,14,10,FALSE,"W,S,SS"
+String Bean Chicken Breast,210,12,13,12,FALSE,"W,S,SS"
+Orange Chicken,510,16,53,24,FALSE,"W,S,E,M,SS"
+Kung Pao Chicken,320,17,15,21,FALSE,"W,S,P,SS"
+Mushroom Chicken,220,13,10,14,FALSE,"W,S,SS"
+Broccoli Beef,150,15,12,6,FALSE,"W,S,SS"
+Beijing Beef,480,14,46,27,FALSE,"W,S"
+Honey Walnut Shrimp,430,13,32,28,FALSE,"W,S,T,SF,E,M"
+Eggplant Tofu,340,7,23,24,TRUE,"W,S,SS"
+Black Pepper Sirloin Steak,180,19,12,6,FALSE,"W,S"
+Fried Rice,620,13,101,19,TRUE,"W,S,E,SS"
+White Steamed Rice,520,10,118,0,TRUE,
+Chow Mein,600,15,94,23,TRUE,"W,S,SS"
+Super Greens,130,9,14,4,TRUE,"W,S"

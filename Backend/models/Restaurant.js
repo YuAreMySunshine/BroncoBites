@@ -5,7 +5,13 @@ name: Restaurant name (unique across the campus).
 
 menuItems: Array of menu items with nutrition details.
 
+calories: Caloric content of the item.
+
 nutrition: Contains protein, carbs, and fats values (in grams).
+
+vegetarian: Boolean indicating if the item is vegetarian.
+
+allergens: Array of allergen strings (e.g., ['Dairy', 'Nuts', 'Gluten']).
 
 isOpen and hours: Track operational status and hours.
 
@@ -26,12 +32,7 @@ const restaurantSchema = new mongoose.Schema({
         required: true,
         trim: true
       },
-      category: {
-        type: String,
-        enum: ['Breakfast', 'Lunch', 'Dinner', 'Snack', 'Beverage'],
-        required: true
-      },
-      price: {
+      calories: {
         type: Number,
         required: true,
         min: 0
@@ -40,6 +41,14 @@ const restaurantSchema = new mongoose.Schema({
         protein: { type: Number, required: true, min: 0 },
         carbs: { type: Number, required: true, min: 0 },
         fats: { type: Number, required: true, min: 0 }
+      },
+      vegetarian: {
+        type: Boolean,
+        default: false
+      },
+      allergens: {
+        type: [String],
+        default: []
       }
     }
   ],
