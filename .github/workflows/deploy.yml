@@ -21,7 +21,7 @@ jobs:
           key: ${{ secrets.EC2_RSA_KEY }}
           script: |
             cd BroncoBites
-            git remote set-url origin https://eli-tolentino:${{ secrets.DEPLOY_PAT }}@github.com/YuAreMySunshine/BroncoBites.git
+            git remote set-url origin https://${{ secrets.USERNAME }}:${{ secrets.DEPLOY_PAT }}@github.com/YuAreMySunshine/BroncoBites.git
             git reset --hard HEAD
             git clean -fd
             git pull origin main

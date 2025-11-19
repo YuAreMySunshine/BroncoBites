@@ -50,6 +50,16 @@ export default function Navbar() {
           </SignedOut>
 
           <SignedIn>
+            {user && (
+              <span style={{ 
+                fontSize: '0.85rem', 
+                color: '#999', 
+                marginRight: '0.75rem',
+                fontFamily: 'monospace'
+              }}>
+                ID: {user.id}
+              </span>
+            )}
             <UserButton />
           </SignedIn>
         </div>
