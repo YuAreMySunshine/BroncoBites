@@ -8,11 +8,16 @@ declare module '@clerk/clerk-react' {
   export const SignUpButton: React.ComponentType<any>
   export const UserButton: React.ComponentType<any>
 
-  // Fallback exports for other named exports
-  export const withClerk: any
-  export const useUser: any
-  export const useClerk: any
+  // Hooks
+  export const useAuth: any;   
+  export const useUser: any;
+  export const useClerk: any;
+
+  // HOCs
+  export const withClerk: any;
 
   const _default: any
   export default _default
 }
+
+
