@@ -6,11 +6,12 @@ import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
 
-import timRoute from "./routes/tim.route.js";
-import eliRoute from "./routes/eli.route.js";
-import jaronRoute from "./routes/jaron.route.js";
-import javiRoute from "./routes/javi.route.js";
+// import timRoute from "./routes/tim.route.js";
+// import eliRoute from "./routes/eli.route.js";
+// import jaronRoute from "./routes/jaron.route.js";
+// import javiRoute from "./routes/javi.route.js";
 import restaurantRoute from "./routes/restaurant.route.js";
+import userRoute from "./routes/user.route.js"; 
 
 dotenv.config();
 const app = express();
@@ -24,42 +25,47 @@ app.use(cors());
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB connected"))
-  .catch((err) => console.error("❌ MongoDB connection error:", err));
+  .catch((err) => {
+    console.error("❌ MongoDB connection error:", err);
+    process.exit(1); // exit if DB fails
+  });
 
 // 2. Get directory path for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // 3. Serve static files from React build
-app.use(express.static(path.join(__dirname, '../Frontend/dist')));
+app.use(express.static(path.join(__dirname, "../Frontend/dist")));
 
 // 4. API Routes
-app.use("/api/tim-lee", timRoute);
-app.use("/api/eli-tolentino", eliRoute);
-app.use("/api/jaron-lin", jaronRoute);
-app.use("/api/javi-wu", javiRoute);
+// app.use("/api/tim-lee", timRoute);
+// app.use("/api/eli-tolentino", eliRoute);
+// app.use("/api/jaron-lin", jaronRoute);
+// app.use("/api/javi-wu", javiRoute);
 app.use("/api/restaurants", restaurantRoute);
+app.use("/api/users", userRoute);
 
 // 5. Handle React Router - serve index.html for all non-API routes
 app.use((req, res, next) => {
   // Skip API routes
-  if (req.path.startsWith('/api/')) {
+  if (req.path.startsWith("/api/")) {
     return next();
   }
   // Serve index.html for all other routes (React Router will handle client-side routing)
-  res.sendFile(path.join(__dirname, '../Frontend/dist/index.html'), (err) => {
+  res.sendFile(path.join(__dirname, "../Frontend/dist/index.html"), (err) => {
     if (err) {
-      res.status(500).send('Error loading page');
+      res.status(500).send("Error loading page");
     }
   });
 });
 
 // 6. Error handling middleware for malformed URIs
 app.use((err, req, res, next) => {
+  console.error("Server error:", err.stack);
   if (err instanceof URIError) {
-    return res.status(400).send('Bad Request: Malformed URI');
+    return res.status(400).send("Bad Request: Malformed URI");
   }
-  next(err);
+  res.status(500).json({ error: "Internal Server Error" });
 });
 
 // 7. Start server
