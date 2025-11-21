@@ -29,15 +29,21 @@ router.get("/profile", requireAuth(), async (req, res) => {
 // POST profile (create or update)
 router.post("/profile", requireAuth(), async (req, res) => {
   try {
+    console.log("POST /profile - req.auth:", req.auth);
+    console.log("POST /profile - cookies:", req.cookies);
+    console.log("POST /profile - headers:", req.headers);
+    
     const { userId } = req.auth;
     if (!userId) {
-      return res.status(401).json({ error: "Unauthorized" });
+      console.error("No userId found in req.auth");
+      return res.status(401).json({ error: "Unauthorized - No userId" });
     }
 
     const { height, weight, goal, restrictions } = req.body;
     const data = { height, weight, goal, restrictions };
 
-    console.log("Updating profile for:", userId, "with data:", data);
+    console.log("Updating profile for userId:", userId);
+    console.log("Profile data:", JSON.stringify(data, null, 2));
 
     const profile = await UserProfile.findOneAndUpdate(
       { userId },
@@ -45,6 +51,7 @@ router.post("/profile", requireAuth(), async (req, res) => {
       { upsert: true, new: true }
     );
 
+    console.log("Profile saved successfully:", profile._id);
     res.status(profile ? 200 : 201).json(profile);
   } catch (err) {
     console.error("Error in POST /profile:", err);

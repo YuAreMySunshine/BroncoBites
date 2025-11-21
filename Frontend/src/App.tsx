@@ -3,6 +3,8 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import ManageRestaurants from './pages/ManageRestaurants';
+import RestaurantMenus from './pages/RestaurantMenus';
+import Settings from './pages/Settings';
 import DevToken from './pages/DevToken';  
 import "./App.css";
 
@@ -12,6 +14,8 @@ function App() {
       <div className="app-layout">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/menus" element={<RestaurantMenus />} />
+          <Route path="/settings" element={<Settings />} />
           <Route
             path="/admin"
             element={

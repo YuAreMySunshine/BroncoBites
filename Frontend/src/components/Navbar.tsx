@@ -32,6 +32,12 @@ export default function Navbar() {
         <div className="nav-links">
           <a href="#features">Features</a>
           <a href="#team">Team</a>
+          <Link to="/menus" style={{ textDecoration: 'none', color: 'inherit' }}>
+            Restaurant Menus
+          </Link>
+          <Link to="/settings" style={{ textDecoration: 'none', color: 'inherit' }}>
+            Settings
+          </Link>
           {isAdmin && (
             <Link to="/admin" style={{ color: '#4cc9f0', fontWeight: '600' }}>
               Admin
