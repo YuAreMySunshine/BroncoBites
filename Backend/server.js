@@ -5,12 +5,15 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
+import cookieParser from "cookie-parser";
+import { clerkMiddleware } from "@clerk/express";
 
 import timRoute from "./routes/tim.route.js";
 import eliRoute from "./routes/eli.route.js";
 import jaronRoute from "./routes/jaron.route.js";
 import javiRoute from "./routes/javi.route.js";
 import restaurantRoute from "./routes/restaurant.route.js";
+import userRoute from "./routes/user.route.js";
 
 dotenv.config();
 const app = express();
@@ -18,7 +21,14 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cookieParser());
+app.use(cors({
+  origin: true, // Allow all origins in development
+  credentials: true // Allow cookies/auth headers
+}));
+
+// Clerk authentication middleware
+app.use(clerkMiddleware({}))
 
 // 1. Connect to MongoDB
 mongoose
@@ -39,6 +49,7 @@ app.use("/api/eli-tolentino", eliRoute);
 app.use("/api/jaron-lin", jaronRoute);
 app.use("/api/javi-wu", javiRoute);
 app.use("/api/restaurants", restaurantRoute);
+app.use("/api/users", userRoute);
 
 // 5. Handle React Router - serve index.html for all non-API routes
 app.use((req, res, next) => {

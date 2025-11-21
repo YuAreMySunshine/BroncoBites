@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useUser } from '@clerk/clerk-react';
+import { useUser, useAuth } from '@clerk/clerk-react';
 import { Navigate } from 'react-router-dom';
 import '../style/home/Home.css';
 import Navbar from '../components/Navbar';
@@ -23,6 +23,7 @@ interface UserProfile {
 
 export default function Settings() {
   const { user, isLoaded } = useUser();
+  const { getToken } = useAuth();
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -60,21 +61,29 @@ export default function Settings() {
   useEffect(() => {
     if (!user) return;
 
-    fetch(`${API_BASE}/api/users/profile`, {
-      headers: {
-        'Authorization': `Bearer ${user.id}`,
-      },
-    })
-      .then((res) => {
+    const fetchProfile = async () => {
+      try {
+        const token = await getToken();
+        const res = await fetch(`${API_BASE}/api/users/profile`, {
+          credentials: 'include',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+
         if (res.status === 404) {
           // No profile exists yet
           setLoading(false);
-          return null;
+          return;
         }
-        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-        return res.json();
-      })
-      .then((data) => {
+        
+        if (!res.ok) {
+          const text = await res.text();
+          console.error('Response:', text);
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        
+        const data = await res.json();
         if (data) {
           setProfile(data);
           setHeightFeet(data.height.feet);
@@ -87,13 +96,15 @@ export default function Settings() {
           setRestrictions(data.restrictions || []);
         }
         setLoading(false);
-      })
-      .catch((err) => {
+      } catch (err) {
         console.error('Error fetching profile:', err);
         setMessage({ type: 'error', text: 'Failed to load profile' });
         setLoading(false);
-      });
-  }, [user, API_BASE]);
+      }
+    };
+
+    fetchProfile();
+  }, [user, API_BASE, getToken]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -116,16 +127,22 @@ export default function Settings() {
     };
 
     try {
+      const token = await getToken();
       const res = await fetch(`${API_BASE}/api/users/profile`, {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${user.id}`,
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(profileData),
       });
 
-      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+      if (!res.ok) {
+        const text = await res.text();
+        console.error('Response:', text);
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
 
       const savedProfile = await res.json();
       setProfile(savedProfile);
