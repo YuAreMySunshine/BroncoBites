@@ -26,10 +26,16 @@ jobs:
             git clean -fd
             git pull origin main
             cd Backend
+            echo "MONGO_URI=${{ secrets.MONGO_URI }}" > .env
+            echo "CLERK_PUBLISHABLE_KEY=${{ secrets.CLERK_PUBLISHABLE_KEY }}" >> .env
+            echo "CLERK_SECRET_KEY=${{ secrets.CLERK_SECRET_KEY }}" >> .env
             npm install
             cd ../Frontend
             rm -rf dist node_modules/.vite
             npm install
+            echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" > .env.production
+            echo "VITE_CLERK_PUBLISHABLE_KEY=${{ secrets.CLERK_PUBLISHABLE_KEY }}" >> .env.production
+            echo "VITE_ADMIN_EMAIL=${{ secrets.VITE_ADMIN_EMAIL }}" >> .env.production
             npm run build
             cd ..
             sudo pm2 restart all
