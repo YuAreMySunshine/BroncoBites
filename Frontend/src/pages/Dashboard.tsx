@@ -4,7 +4,6 @@ import { Navigate, Link } from 'react-router-dom';
 import {
   ChevronLeft,
   ChevronRight,
-  Calendar,
   Sparkles,
   Trash2,
   Plus,
@@ -117,36 +116,29 @@ export default function Dashboard() {
 
   const API_BASE = (import.meta.env.VITE_API_URL as string) || '';
 
-  // Format date for display
-  const formatDate = (dateStr: string) => {
-    const date = new Date(dateStr + 'T00:00:00');
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    const yesterday = new Date(today);
-    yesterday.setDate(yesterday.getDate() - 1);
+  // Generate week dates for mini calendar
+  const getWeekDates = () => {
+    const current = new Date(currentDate + 'T00:00:00');
+    const dayOfWeek = current.getDay();
+    const startOfWeek = new Date(current);
+    startOfWeek.setDate(current.getDate() - dayOfWeek);
 
-    if (date.getTime() === today.getTime()) return 'Today';
-    if (date.getTime() === tomorrow.getTime()) return 'Tomorrow';
-    if (date.getTime() === yesterday.getTime()) return 'Yesterday';
-
-    return date.toLocaleDateString('en-US', {
-      weekday: 'short',
-      month: 'short',
-      day: 'numeric'
-    });
+    const dates = [];
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(startOfWeek);
+      date.setDate(startOfWeek.getDate() + i);
+      dates.push(date.toISOString().split('T')[0]);
+    }
+    return dates;
   };
 
-  // Navigate dates
-  const goToDate = (days: number) => {
+  const weekDates = getWeekDates();
+
+  // Navigate week
+  const goToWeek = (direction: number) => {
     const date = new Date(currentDate);
-    date.setDate(date.getDate() + days);
+    date.setDate(date.getDate() + (direction * 7));
     setCurrentDate(date.toISOString().split('T')[0]);
-  };
-
-  const goToToday = () => {
-    setCurrentDate(new Date().toISOString().split('T')[0]);
   };
 
   // Fetch data
@@ -378,22 +370,38 @@ export default function Dashboard() {
               <p className="dashboard-subtitle">Plan your daily nutrition</p>
             </div>
 
-            <div className="date-navigator">
-              <button className="date-nav-btn" onClick={() => goToDate(-1)} aria-label="Previous day">
-                <ChevronLeft size={20} />
-              </button>
-              <div className="date-display">
-                <Calendar size={18} className="date-icon" />
-                <span className="date-text">{formatDate(currentDate)}</span>
-              </div>
-              <button className="date-nav-btn" onClick={() => goToDate(1)} aria-label="Next day">
-                <ChevronRight size={20} />
-              </button>
-              {currentDate !== new Date().toISOString().split('T')[0] && (
-                <button className="today-btn" onClick={goToToday}>
-                  Today
+            {/* Mini Calendar */}
+            <div className="mini-calendar">
+              <div className="mini-calendar__header">
+                <button className="mini-calendar__nav" onClick={() => goToWeek(-1)} aria-label="Previous week">
+                  <ChevronLeft size={16} />
                 </button>
-              )}
+                <span className="mini-calendar__month">
+                  {new Date(currentDate + 'T00:00:00').toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                </span>
+                <button className="mini-calendar__nav" onClick={() => goToWeek(1)} aria-label="Next week">
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+              <div className="mini-calendar__week">
+                {weekDates.map(dateStr => {
+                  const date = new Date(dateStr + 'T00:00:00');
+                  const isSelected = dateStr === currentDate;
+                  const isToday = dateStr === new Date().toISOString().split('T')[0];
+                  return (
+                    <button
+                      key={dateStr}
+                      className={`mini-calendar__day ${isSelected ? 'mini-calendar__day--selected' : ''} ${isToday ? 'mini-calendar__day--today' : ''}`}
+                      onClick={() => setCurrentDate(dateStr)}
+                    >
+                      <span className="mini-calendar__day-name">
+                        {date.toLocaleDateString('en-US', { weekday: 'short' }).slice(0, 2)}
+                      </span>
+                      <span className="mini-calendar__day-num">{date.getDate()}</span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
             <div className="dashboard-actions">

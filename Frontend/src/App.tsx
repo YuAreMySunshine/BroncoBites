@@ -8,10 +8,12 @@ import Settings from './pages/Settings';
 import Dashboard from './pages/Dashboard';
 import Preferences from './pages/Preferences';
 import DevToken from './pages/DevToken';
+import { ThemeProvider } from './context/ThemeContext';
 import "./App.css";
 
 function App() {
   return (
+    <ThemeProvider>
     <BrowserRouter>
       <div className="app-layout">
         <Routes>
@@ -35,6 +37,7 @@ function App() {
         </Routes>
       </div>
     </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

@@ -1,7 +1,22 @@
 import { useState, useEffect } from 'react';
 import { useUser, useAuth } from '@clerk/clerk-react';
 import { Navigate } from 'react-router-dom';
+import {
+  Settings as SettingsIcon,
+  User,
+  Ruler,
+  Scale,
+  Target,
+  Flame,
+  Beef,
+  Wheat,
+  Droplets,
+  AlertTriangle,
+  Check,
+  Save
+} from 'lucide-react';
 import '../style/home/Home.css';
+import '../style/pages/Settings.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
@@ -43,26 +58,6 @@ export default function Settings() {
 
   const availableRestrictions = ['Vegetarian', 'Vegan', 'Gluten-Free', 'Dairy-Free', 'Nut-Free', 'Shellfish-Free'];
 
-  // Wait for user to load
-  if (!isLoaded) {
-    return (
-      <div className="page">
-        <Navbar />
-        <main className="container" style={{ paddingTop: 'var(--space-16)', textAlign: 'center' }}>
-          <div className="spinner" style={{ margin: '0 auto' }}></div>
-          <p style={{ marginTop: 'var(--space-4)', color: 'var(--color-text-secondary)' }}>Loading...</p>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
-
-  // Redirect if not signed in
-  if (!user) {
-    return <Navigate to="/" replace />;
-  }
-
-  // Fetch user profile
   useEffect(() => {
     if (!user) return;
 
@@ -77,14 +72,11 @@ export default function Settings() {
         });
 
         if (res.status === 404) {
-          // No profile exists yet
           setLoading(false);
           return;
         }
 
         if (!res.ok) {
-          const text = await res.text();
-          console.error('Response:', text);
           throw new Error(`HTTP error! status: ${res.status}`);
         }
 
@@ -111,16 +103,32 @@ export default function Settings() {
     fetchProfile();
   }, [user, API_BASE, getToken]);
 
+  if (!isLoaded) {
+    return (
+      <div className="page">
+        <Navbar />
+        <main className="settings-main">
+          <div className="settings-loading">
+            <div className="spinner"></div>
+            <p>Loading...</p>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <Navigate to="/" replace />;
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
     setMessage(null);
 
     const profileData = {
-      height: {
-        feet: heightFeet,
-        inches: heightInches,
-      },
+      height: { feet: heightFeet, inches: heightInches },
       weight: weight,
       goal: {
         calories: calorieGoal,
@@ -144,8 +152,6 @@ export default function Settings() {
       });
 
       if (!res.ok) {
-        const text = await res.text();
-        console.error('Response:', text);
         throw new Error(`HTTP error! status: ${res.status}`);
       }
 
@@ -171,166 +177,220 @@ export default function Settings() {
   return (
     <div className="page">
       <Navbar />
-      <main className="container" style={{ paddingTop: 'var(--space-8)', paddingBottom: 'var(--space-16)', maxWidth: '800px' }}>
-        <header className="page-header">
-          <h1 className="page-title">Settings</h1>
-          <p className="page-subtitle">Manage your profile and nutrition goals</p>
-        </header>
+      <main className="settings-main">
+        <div className="settings-container">
+          <header className="settings-header">
+            <div className="settings-header__content">
+              <h1 className="settings-title">
+                <SettingsIcon size={32} className="settings-title-icon" />
+                Settings
+              </h1>
+              <p className="settings-subtitle">Manage your profile and preferences</p>
+            </div>
+          </header>
 
-        {loading && (
-          <div className="card" style={{ textAlign: 'center', padding: 'var(--space-12)' }}>
-            <div className="spinner" style={{ margin: '0 auto' }}></div>
-            <p style={{ marginTop: 'var(--space-4)', color: 'var(--color-text-secondary)' }}>Loading your profile...</p>
-          </div>
-        )}
+          {loading ? (
+            <div className="settings-loading">
+              <div className="spinner"></div>
+              <p>Loading your profile...</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="settings-form">
+              {message && (
+                <div className={`settings-alert ${message.type === 'success' ? 'settings-alert--success' : 'settings-alert--error'}`}>
+                  <Check size={18} />
+                  {message.text}
+                </div>
+              )}
 
-        {!loading && (
-          <form onSubmit={handleSubmit}>
-            {message && (
-              <div className={`alert ${message.type === 'success' ? 'alert-success' : 'alert-error'}`}>
-                {message.text}
-              </div>
-            )}
-
-            {/* Physical Stats */}
-            <div className="settings-section">
-              <h3 className="settings-section__title">Physical Stats</h3>
-              <div className="settings-form">
-                {/* Height */}
-                <div className="form-group">
-                  <label className="form-label">Height</label>
-                  <div className="settings-row">
-                    <div className="form-group">
-                      <input
-                        type="number"
-                        min="0"
-                        max="8"
-                        value={heightFeet}
-                        onChange={(e) => setHeightFeet(Number(e.target.value))}
-                        required
-                        className="form-input"
-                      />
-                      <span className="form-helper">Feet</span>
+              {/* Physical Stats */}
+              <section className="settings-section">
+                <div className="settings-section__header">
+                  <div className="settings-section__icon settings-section__icon--stats">
+                    <User size={20} />
+                  </div>
+                  <div className="settings-section__title-group">
+                    <h2 className="settings-section__title">Physical Stats</h2>
+                    <span className="settings-section__desc">Your body measurements</span>
+                  </div>
+                </div>
+                <div className="settings-grid">
+                  <div className="settings-field">
+                    <label className="settings-label">
+                      <Ruler size={16} />
+                      Height
+                    </label>
+                    <div className="height-inputs">
+                      <div className="input-with-unit">
+                        <input
+                          type="number"
+                          min="0"
+                          max="8"
+                          value={heightFeet}
+                          onChange={(e) => setHeightFeet(Number(e.target.value))}
+                          required
+                          className="settings-input"
+                        />
+                        <span className="input-unit">ft</span>
+                      </div>
+                      <div className="input-with-unit">
+                        <input
+                          type="number"
+                          min="0"
+                          max="11"
+                          value={heightInches}
+                          onChange={(e) => setHeightInches(Number(e.target.value))}
+                          required
+                          className="settings-input"
+                        />
+                        <span className="input-unit">in</span>
+                      </div>
                     </div>
-                    <div className="form-group">
+                  </div>
+                  <div className="settings-field">
+                    <label className="settings-label">
+                      <Scale size={16} />
+                      Weight
+                    </label>
+                    <div className="input-with-unit">
                       <input
                         type="number"
                         min="0"
-                        max="11"
-                        value={heightInches}
-                        onChange={(e) => setHeightInches(Number(e.target.value))}
+                        value={weight}
+                        onChange={(e) => setWeight(Number(e.target.value))}
                         required
-                        className="form-input"
+                        className="settings-input"
                       />
-                      <span className="form-helper">Inches</span>
+                      <span className="input-unit">lbs</span>
                     </div>
                   </div>
                 </div>
+              </section>
 
-                {/* Weight */}
-                <div className="form-group">
-                  <label className="form-label">Weight (lbs)</label>
-                  <input
-                    type="number"
-                    min="0"
-                    value={weight}
-                    onChange={(e) => setWeight(Number(e.target.value))}
-                    required
-                    className="form-input"
-                    style={{ maxWidth: '200px' }}
-                  />
+              {/* Nutrition Goals */}
+              <section className="settings-section">
+                <div className="settings-section__header">
+                  <div className="settings-section__icon settings-section__icon--nutrition">
+                    <Target size={20} />
+                  </div>
+                  <div className="settings-section__title-group">
+                    <h2 className="settings-section__title">Daily Nutrition Goals</h2>
+                    <span className="settings-section__desc">Set your target macros</span>
+                  </div>
                 </div>
-              </div>
-            </div>
-
-            {/* Nutrition Goals */}
-            <div className="settings-section">
-              <h3 className="settings-section__title">Daily Nutrition Goals</h3>
-              <div className="settings-form">
-                <div className="settings-row">
-                  <div className="form-group">
-                    <label className="form-label">Calories</label>
+                <div className="macro-goals">
+                  <div className="macro-goal macro-goal--calories">
+                    <div className="macro-goal__icon">
+                      <Flame size={20} />
+                    </div>
+                    <label className="macro-goal__label">Calories</label>
                     <input
                       type="number"
                       min="0"
                       value={calorieGoal}
                       onChange={(e) => setCalorieGoal(Number(e.target.value))}
                       required
-                      className="form-input"
+                      className="settings-input"
                     />
+                    <span className="macro-goal__unit">kcal</span>
                   </div>
-                  <div className="form-group">
-                    <label className="form-label">Protein (g)</label>
+                  <div className="macro-goal macro-goal--protein">
+                    <div className="macro-goal__icon">
+                      <Beef size={20} />
+                    </div>
+                    <label className="macro-goal__label">Protein</label>
                     <input
                       type="number"
                       min="0"
                       value={proteinGoal}
                       onChange={(e) => setProteinGoal(Number(e.target.value))}
                       required
-                      className="form-input"
+                      className="settings-input"
                     />
+                    <span className="macro-goal__unit">g</span>
                   </div>
-                </div>
-                <div className="settings-row">
-                  <div className="form-group">
-                    <label className="form-label">Carbs (g)</label>
+                  <div className="macro-goal macro-goal--carbs">
+                    <div className="macro-goal__icon">
+                      <Wheat size={20} />
+                    </div>
+                    <label className="macro-goal__label">Carbs</label>
                     <input
                       type="number"
                       min="0"
                       value={carbsGoal}
                       onChange={(e) => setCarbsGoal(Number(e.target.value))}
                       required
-                      className="form-input"
+                      className="settings-input"
                     />
+                    <span className="macro-goal__unit">g</span>
                   </div>
-                  <div className="form-group">
-                    <label className="form-label">Fats (g)</label>
+                  <div className="macro-goal macro-goal--fats">
+                    <div className="macro-goal__icon">
+                      <Droplets size={20} />
+                    </div>
+                    <label className="macro-goal__label">Fats</label>
                     <input
                       type="number"
                       min="0"
                       value={fatsGoal}
                       onChange={(e) => setFatsGoal(Number(e.target.value))}
                       required
-                      className="form-input"
+                      className="settings-input"
                     />
+                    <span className="macro-goal__unit">g</span>
                   </div>
                 </div>
-              </div>
-            </div>
+              </section>
 
-            {/* Dietary Restrictions */}
-            <div className="settings-section">
-              <h3 className="settings-section__title">Dietary Restrictions</h3>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-3)' }}>
-                {availableRestrictions.map((restriction) => (
-                  <label
-                    key={restriction}
-                    className={`chip ${restrictions.includes(restriction) ? 'chip--active' : ''}`}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={restrictions.includes(restriction)}
-                      onChange={() => toggleRestriction(restriction)}
-                      className="sr-only"
-                    />
-                    {restriction}
-                  </label>
-                ))}
-              </div>
-            </div>
+              {/* Dietary Restrictions */}
+              <section className="settings-section">
+                <div className="settings-section__header">
+                  <div className="settings-section__icon settings-section__icon--restrictions">
+                    <AlertTriangle size={20} />
+                  </div>
+                  <div className="settings-section__title-group">
+                    <h2 className="settings-section__title">Dietary Restrictions</h2>
+                    <span className="settings-section__desc">Select any that apply</span>
+                  </div>
+                </div>
+                <div className="restriction-chips">
+                  {availableRestrictions.map((restriction) => (
+                    <button
+                      key={restriction}
+                      type="button"
+                      className={`restriction-chip ${restrictions.includes(restriction) ? 'restriction-chip--active' : ''}`}
+                      onClick={() => toggleRestriction(restriction)}
+                    >
+                      {restrictions.includes(restriction) && <Check size={14} />}
+                      {restriction}
+                    </button>
+                  ))}
+                </div>
+              </section>
 
-            {/* Submit Button */}
-            <div style={{ display: 'flex', gap: 'var(--space-4)', justifyContent: 'flex-end', marginTop: 'var(--space-6)' }}>
-              <button
-                type="submit"
-                disabled={saving}
-                className="btn btn-primary btn-lg"
-              >
-                {saving ? 'Saving...' : profile ? 'Update Profile' : 'Create Profile'}
-              </button>
-            </div>
-          </form>
-        )}
+              {/* Submit Button */}
+              <div className="settings-actions">
+                <button
+                  type="submit"
+                  disabled={saving}
+                  className="settings-save-btn"
+                >
+                  {saving ? (
+                    <>
+                      <div className="spinner-small"></div>
+                      Saving...
+                    </>
+                  ) : (
+                    <>
+                      <Save size={18} />
+                      {profile ? 'Update Profile' : 'Create Profile'}
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
+          )}
+        </div>
       </main>
       <Footer />
     </div>

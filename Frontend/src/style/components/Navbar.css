@@ -12,9 +12,15 @@
   justify-content: space-between;
   height: 72px;
   padding: 0 var(--space-6);
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: var(--color-surface);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-border-light);
+  transition: background-color var(--duration-moderate) var(--ease-default),
+              border-color var(--duration-moderate) var(--ease-default);
+}
+
+[data-theme="dark"] .site-header {
+  background-color: rgba(31, 41, 55, 0.95);
 }
 
 .brand {
@@ -66,14 +72,14 @@
   font-family: var(--font-body);
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   text-decoration: none;
   border-radius: var(--radius-md);
   transition: all var(--duration-normal) var(--ease-default);
 }
 
 .nav-links a:hover {
-  color: var(--color-text-primary);
+  color: var(--color-primary);
   background-color: var(--color-surface-secondary);
   text-decoration: none;
 }
@@ -81,12 +87,38 @@
 .nav-links a.active,
 .nav-link--active {
   color: var(--color-primary);
-  background-color: rgba(45, 90, 61, 0.08);
+  background-color: var(--color-primary-light);
+}
+
+[data-theme="dark"] .nav-links a.active,
+[data-theme="dark"] .nav-link--active {
+  background-color: rgba(74, 222, 128, 0.15);
 }
 
 .nav-link--admin {
   color: var(--color-highlight) !important;
   font-weight: var(--font-semibold) !important;
+}
+
+/* ===== Theme Toggle Button ===== */
+.theme-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-default);
+}
+
+.theme-toggle-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: var(--color-surface-secondary);
 }
 
 /* ===== Auth Controls ===== */

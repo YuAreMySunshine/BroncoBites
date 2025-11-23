@@ -7,8 +7,10 @@ import {
   useUser,
 } from '@clerk/clerk-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Sun, Moon } from 'lucide-react';
 import BroncoBites from '../images/BroncoBites.png';
 import '../style/components/Navbar.css';
+import { useTheme } from '../context/ThemeContext';
 
 // Admin email is read from VITE_ADMIN_EMAIL environment variable
 const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL as string;
@@ -17,6 +19,7 @@ export default function Navbar() {
   const { user, isLoaded } = useUser();
   const location = useLocation();
   const navigate = useNavigate();
+  const { theme, toggleTheme } = useTheme();
 
   // Check if the current user is the admin
   const isAdmin = isLoaded && user?.primaryEmailAddress?.emailAddress === ADMIN_EMAIL;
@@ -93,6 +96,15 @@ export default function Navbar() {
         </div>
 
         <div className="auth-controls">
+          <button
+            className="theme-toggle-btn"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+            title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+          >
+            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+          </button>
+
           <SignedOut>
             <SignInButton>
               <button className="btn">Sign in</button>
