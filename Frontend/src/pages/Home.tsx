@@ -1,3 +1,27 @@
+import { Link } from 'react-router-dom';
+import {
+  Sparkles,
+  Zap,
+  Leaf,
+  ThumbsDown,
+  Target,
+  Clock,
+  MapPin,
+  Flame,
+  Beef,
+  Wallet,
+  AlertTriangle,
+  Car,
+  CalendarDays,
+  Utensils,
+  CheckCircle2,
+  ArrowRight,
+  Github,
+  Database,
+  Server,
+  Code2,
+  Layout
+} from 'lucide-react';
 import "../style/home/Home.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -15,8 +39,11 @@ export default function Home() {
       <section className="home-hero" id="home">
         <div className="container">
           <div className="home-hero__inner">
-            <div>
-              <p className="home-hero__kicker">Campus Nutrition &bull; Fitness Goals</p>
+            <div className="home-hero__content">
+              <p className="home-hero__kicker">
+                <Sparkles size={14} />
+                Campus Nutrition &bull; Fitness Goals
+              </p>
               <h1 className="home-hero__title">
                 Eat with purpose.{" "}
                 <span className="home-hero__title--accent">Crush</span> your goals.
@@ -28,34 +55,76 @@ export default function Home() {
               </p>
 
               <div className="home-hero__pills">
-                <span className="pill">Auto meal plans</span>
-                <span className="pill">Vegetarian friendly</span>
-                <span className="pill">On-campus options</span>
+                <span className="pill">
+                  <Sparkles size={14} />
+                  Auto meal plans
+                </span>
+                <span className="pill">
+                  <Leaf size={14} />
+                  Vegetarian friendly
+                </span>
+                <span className="pill">
+                  <MapPin size={14} />
+                  On-campus options
+                </span>
+              </div>
+
+              <div className="home-hero__cta">
+                <Link to="/dashboard" className="cta-btn cta-btn--primary">
+                  Get Started
+                  <ArrowRight size={18} />
+                </Link>
+                <Link to="/menus" className="cta-btn cta-btn--secondary">
+                  Browse Menus
+                </Link>
               </div>
             </div>
 
             <aside className="hero-stats" aria-label="At-a-glance stats">
-              <h3 className="hero-stats__title">Today's Sample Targets</h3>
+              <h3 className="hero-stats__title">
+                <Target size={20} />
+                Today's Sample Targets
+              </h3>
               <div className="hero-stats__grid">
-                <div className="stat-item">
-                  <div className="stat-item__kicker">Calories</div>
-                  <div className="stat-item__value">2,400 kcal</div>
-                  <p className="stat-item__meta">Based on height, weight &amp; activity</p>
+                <div className="stat-item stat-item--calories">
+                  <div className="stat-item__icon">
+                    <Flame size={20} />
+                  </div>
+                  <div className="stat-item__content">
+                    <div className="stat-item__kicker">Calories</div>
+                    <div className="stat-item__value">2,400 kcal</div>
+                    <p className="stat-item__meta">Based on height, weight &amp; activity</p>
+                  </div>
                 </div>
-                <div className="stat-item">
-                  <div className="stat-item__kicker">Protein</div>
-                  <div className="stat-item__value">150 g</div>
-                  <p className="stat-item__meta">Muscle gain goal</p>
+                <div className="stat-item stat-item--protein">
+                  <div className="stat-item__icon">
+                    <Beef size={20} />
+                  </div>
+                  <div className="stat-item__content">
+                    <div className="stat-item__kicker">Protein</div>
+                    <div className="stat-item__value">150 g</div>
+                    <p className="stat-item__meta">Muscle gain goal</p>
+                  </div>
                 </div>
-                <div className="stat-item">
-                  <div className="stat-item__kicker">Budget</div>
-                  <div className="stat-item__value">$18 / day</div>
-                  <p className="stat-item__meta">Dining dollars aware</p>
+                <div className="stat-item stat-item--budget">
+                  <div className="stat-item__icon">
+                    <Wallet size={20} />
+                  </div>
+                  <div className="stat-item__content">
+                    <div className="stat-item__kicker">Budget</div>
+                    <div className="stat-item__value">$18 / day</div>
+                    <p className="stat-item__meta">Dining dollars aware</p>
+                  </div>
                 </div>
-                <div className="stat-item">
-                  <div className="stat-item__kicker">Restrictions</div>
-                  <div className="stat-item__value">Vegetarian</div>
-                  <p className="stat-item__meta">Customizable</p>
+                <div className="stat-item stat-item--diet">
+                  <div className="stat-item__icon">
+                    <Leaf size={20} />
+                  </div>
+                  <div className="stat-item__content">
+                    <div className="stat-item__kicker">Restrictions</div>
+                    <div className="stat-item__value">Vegetarian</div>
+                    <p className="stat-item__meta">Customizable</p>
+                  </div>
                 </div>
               </div>
             </aside>
@@ -72,6 +141,9 @@ export default function Home() {
           </h2>
           <div className="problem-grid">
             <article className="problem-card">
+              <div className="problem-card__icon">
+                <Target size={24} />
+              </div>
               <h3 className="problem-card__title">Goal-driven nutrition is hard</h3>
               <p className="problem-card__text">
                 Students aiming to build muscle or lose fat need consistent
@@ -79,6 +151,9 @@ export default function Home() {
               </p>
             </article>
             <article className="problem-card">
+              <div className="problem-card__icon">
+                <Car size={24} />
+              </div>
               <h3 className="problem-card__title">Car-less = campus-bound</h3>
               <p className="problem-card__text">
                 On-campus students often rely on dining halls or groceries
@@ -86,6 +161,9 @@ export default function Home() {
               </p>
             </article>
             <article className="problem-card">
+              <div className="problem-card__icon">
+                <Clock size={24} />
+              </div>
               <h3 className="problem-card__title">Menus change, time is short</h3>
               <p className="problem-card__text">
                 Hunting for options that meet goals is tedious. People give up
@@ -105,26 +183,34 @@ export default function Home() {
           </h2>
           <div className="solution-grid">
             <div className="solution-box">
-              <h3 className="solution-box__title">What it does</h3>
+              <div className="solution-box__header">
+                <Zap size={24} className="solution-box__icon" />
+                <h3 className="solution-box__title">What it does</h3>
+              </div>
               <ul className="solution-box__list">
                 <li>
-                  Generates meal suggestions that fit your calorie &amp; protein
-                  targets.
+                  <CheckCircle2 size={16} />
+                  Generates meal suggestions that fit your calorie &amp; protein targets.
                 </li>
                 <li>
+                  <CheckCircle2 size={16} />
                   Supports dietary restrictions like vegetarian or gluten-free.
                 </li>
                 <li>
+                  <CheckCircle2 size={16} />
                   Lets you like or blacklist items to personalize future plans.
                 </li>
                 <li>
-                  Focuses on campus dining halls &amp; markets you can actually
-                  access.
+                  <CheckCircle2 size={16} />
+                  Focuses on campus dining halls &amp; markets you can actually access.
                 </li>
               </ul>
             </div>
-            <div className="solution-box">
-              <h3 className="solution-box__title">Why it helps</h3>
+            <div className="solution-box solution-box--highlight">
+              <div className="solution-box__header">
+                <AlertTriangle size={24} className="solution-box__icon" />
+                <h3 className="solution-box__title">Why it helps</h3>
+              </div>
               <p className="solution-box__text">
                 We remove the guesswork by mapping campus menus to your goals,
                 so you can fuel your day without leaving campus — or blowing
@@ -144,12 +230,10 @@ export default function Home() {
 
           <div className="features-grid">
             <article className="feature-card">
-              <div className="feature-card__header">
-                <span className="feature-card__icon" aria-hidden="true">
-                  ⚡
-                </span>
-                <h3 className="feature-card__title">Auto meal suggestions</h3>
+              <div className="feature-card__icon-wrap feature-card__icon-wrap--primary">
+                <Sparkles size={24} />
               </div>
+              <h3 className="feature-card__title">Auto meal suggestions</h3>
               <p className="feature-card__text">
                 Automatically generated plans that fit your calorie and protein
                 targets. Perfect for cutting, bulking, or maintenance.
@@ -157,12 +241,10 @@ export default function Home() {
             </article>
 
             <article className="feature-card">
-              <div className="feature-card__header">
-                <span className="feature-card__icon" aria-hidden="true">
-                  🥗
-                </span>
-                <h3 className="feature-card__title">Dietary restrictions</h3>
+              <div className="feature-card__icon-wrap feature-card__icon-wrap--green">
+                <Leaf size={24} />
               </div>
+              <h3 className="feature-card__title">Dietary restrictions</h3>
               <p className="feature-card__text">
                 Filters for common needs like <strong>vegetarian</strong> (and
                 more to come) so recommendations respect your preferences.
@@ -170,16 +252,47 @@ export default function Home() {
             </article>
 
             <article className="feature-card">
-              <div className="feature-card__header">
-                <span className="feature-card__icon" aria-hidden="true">
-                  👎
-                </span>
-                <h3 className="feature-card__title">Feedback / blacklist</h3>
+              <div className="feature-card__icon-wrap feature-card__icon-wrap--red">
+                <ThumbsDown size={24} />
               </div>
+              <h3 className="feature-card__title">Feedback / blacklist</h3>
               <p className="feature-card__text">
                 Don't like a suggestion? Give it a thumbs-down to{" "}
                 <em>blacklist</em> it. Future plans will avoid that item
                 automatically.
+              </p>
+            </article>
+
+            <article className="feature-card">
+              <div className="feature-card__icon-wrap feature-card__icon-wrap--blue">
+                <CalendarDays size={24} />
+              </div>
+              <h3 className="feature-card__title">Weekly planning</h3>
+              <p className="feature-card__text">
+                Plan your meals day by day with our interactive calendar.
+                Navigate easily between dates and track your nutrition.
+              </p>
+            </article>
+
+            <article className="feature-card">
+              <div className="feature-card__icon-wrap feature-card__icon-wrap--orange">
+                <Utensils size={24} />
+              </div>
+              <h3 className="feature-card__title">Campus menus</h3>
+              <p className="feature-card__text">
+                Browse real menus from campus dining locations with full
+                nutrition info, allergens, and dietary labels.
+              </p>
+            </article>
+
+            <article className="feature-card">
+              <div className="feature-card__icon-wrap feature-card__icon-wrap--purple">
+                <Target size={24} />
+              </div>
+              <h3 className="feature-card__title">Goal tracking</h3>
+              <p className="feature-card__text">
+                Set your daily calorie and macro goals. Track progress with
+                visual indicators that show how close you are.
               </p>
             </article>
           </div>
@@ -194,20 +307,32 @@ export default function Home() {
 
           <div className="team-grid">
             <article className="team-card">
-              <img className="team-card__avatar" src={eli} alt="Eli Tolentino" />
+              <div className="team-card__avatar-wrap">
+                <img className="team-card__avatar" src={eli} alt="Eli Tolentino" />
+              </div>
               <h3 className="team-card__name">Eli Tolentino</h3>
+              <p className="team-card__role">Developer</p>
             </article>
             <article className="team-card">
-              <img className="team-card__avatar" src={jaron} alt="Jaron Lin" />
+              <div className="team-card__avatar-wrap">
+                <img className="team-card__avatar" src={jaron} alt="Jaron Lin" />
+              </div>
               <h3 className="team-card__name">Jaron Lin</h3>
+              <p className="team-card__role">Developer</p>
             </article>
             <article className="team-card">
-              <img className="team-card__avatar" src={timothy} alt="Timothy Lee" />
+              <div className="team-card__avatar-wrap">
+                <img className="team-card__avatar" src={timothy} alt="Timothy Lee" />
+              </div>
               <h3 className="team-card__name">Timothy Lee</h3>
+              <p className="team-card__role">Developer</p>
             </article>
             <article className="team-card">
-              <img className="team-card__avatar" src={javi} alt="Javi Wu" />
+              <div className="team-card__avatar-wrap">
+                <img className="team-card__avatar" src={javi} alt="Javi Wu" />
+              </div>
               <h3 className="team-card__name">Javi Wu</h3>
+              <p className="team-card__role">Developer</p>
             </article>
           </div>
         </div>
@@ -220,10 +345,13 @@ export default function Home() {
 
           <article className="project-card">
             <div className="project-card__header">
-              <div className="project-card__icon" aria-hidden="true">
-                🍽️
+              <div className="project-card__icon">
+                <Utensils size={32} />
               </div>
-              <span className="project-card__badge">In Development</span>
+              <span className="project-card__badge">
+                <span className="badge-dot"></span>
+                In Development
+              </span>
             </div>
             <div className="project-card__body">
               <h2 className="project-card__title">BroncoBites</h2>
@@ -235,17 +363,50 @@ export default function Home() {
                 your goals and constraints. Built by students, for students.
               </p>
               <ul className="project-features">
-                <li>Auto-generated plans for calorie &amp; protein goals</li>
-                <li>Dietary filters (Vegetarian, Vegan, Gluten-free)</li>
-                <li>Thumbs-down to blacklist items you don't like</li>
-                <li>Campus-aware (Centerpointe, Vista Market, etc.)</li>
+                <li>
+                  <CheckCircle2 size={18} className="project-features__icon" />
+                  <span>Auto-generated plans for calorie &amp; protein goals</span>
+                </li>
+                <li>
+                  <CheckCircle2 size={18} className="project-features__icon" />
+                  <span>Dietary filters (Vegetarian, Vegan, Gluten-free)</span>
+                </li>
+                <li>
+                  <CheckCircle2 size={18} className="project-features__icon" />
+                  <span>Thumbs-down to blacklist items you don't like</span>
+                </li>
+                <li>
+                  <CheckCircle2 size={18} className="project-features__icon" />
+                  <span>Campus-aware (Centerpointe, Vista Market, etc.)</span>
+                </li>
               </ul>
               <div className="project-stack">
-                <span className="tech-chip">MongoDB</span>
-                <span className="tech-chip">Express</span>
-                <span className="tech-chip">React</span>
-                <span className="tech-chip">Node.js</span>
+                <span className="tech-chip">
+                  <Database size={14} />
+                  MongoDB
+                </span>
+                <span className="tech-chip">
+                  <Server size={14} />
+                  Express
+                </span>
+                <span className="tech-chip">
+                  <Layout size={14} />
+                  React
+                </span>
+                <span className="tech-chip">
+                  <Code2 size={14} />
+                  Node.js
+                </span>
               </div>
+              <a
+                href="https://github.com/YuAreMySunshine/BroncoBites"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-github"
+              >
+                <Github size={18} />
+                View on GitHub
+              </a>
             </div>
           </article>
         </div>
