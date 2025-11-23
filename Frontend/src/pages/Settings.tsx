@@ -46,8 +46,13 @@ export default function Settings() {
   // Wait for user to load
   if (!isLoaded) {
     return (
-      <div style={{ padding: '2rem', textAlign: 'center' }}>
-        <p>Loading...</p>
+      <div className="page">
+        <Navbar />
+        <main className="container" style={{ paddingTop: 'var(--space-16)', textAlign: 'center' }}>
+          <div className="spinner" style={{ margin: '0 auto' }}></div>
+          <p style={{ marginTop: 'var(--space-4)', color: 'var(--color-text-secondary)' }}>Loading...</p>
+        </main>
+        <Footer />
       </div>
     );
   }
@@ -76,13 +81,13 @@ export default function Settings() {
           setLoading(false);
           return;
         }
-        
+
         if (!res.ok) {
           const text = await res.text();
           console.error('Response:', text);
           throw new Error(`HTTP error! status: ${res.status}`);
         }
-        
+
         const data = await res.json();
         if (data) {
           setProfile(data);
@@ -164,257 +169,169 @@ export default function Settings() {
   };
 
   return (
-    <div className="bb">
+    <div className="page">
       <Navbar />
-      <div className="container" style={{ paddingTop: '2rem', paddingBottom: '4rem', maxWidth: '800px', margin: '0 auto' }}>
-        <header style={{ marginBottom: '2rem' }}>
-          <h1 style={{ color: 'var(--text)', fontSize: '2.5rem', marginBottom: '0.5rem' }}>
-            Settings
-          </h1>
-          <p style={{ color: 'var(--text-muted, #b7c2d6)', fontSize: '1.1rem' }}>
-            Manage your profile and nutrition goals
-          </p>
+      <main className="container" style={{ paddingTop: 'var(--space-8)', paddingBottom: 'var(--space-16)', maxWidth: '800px' }}>
+        <header className="page-header">
+          <h1 className="page-title">Settings</h1>
+          <p className="page-subtitle">Manage your profile and nutrition goals</p>
         </header>
 
         {loading && (
-          <div className="card" style={{ textAlign: 'center', padding: '3rem' }}>
-            <p>Loading your profile...</p>
+          <div className="card" style={{ textAlign: 'center', padding: 'var(--space-12)' }}>
+            <div className="spinner" style={{ margin: '0 auto' }}></div>
+            <p style={{ marginTop: 'var(--space-4)', color: 'var(--color-text-secondary)' }}>Loading your profile...</p>
           </div>
         )}
 
         {!loading && (
-          <form onSubmit={handleSubmit} className="card" style={{ padding: '2rem' }}>
+          <form onSubmit={handleSubmit}>
             {message && (
-              <div
-                style={{
-                  padding: '1rem',
-                  borderRadius: '8px',
-                  marginBottom: '1.5rem',
-                  background: message.type === 'success' ? 'rgba(74, 222, 128, 0.1)' : 'rgba(239, 68, 68, 0.1)',
-                  border: `1px solid ${message.type === 'success' ? '#4ade80' : '#ef4444'}`,
-                  color: message.type === 'success' ? '#4ade80' : '#ef4444',
-                }}
-              >
+              <div className={`alert ${message.type === 'success' ? 'alert-success' : 'alert-error'}`}>
                 {message.text}
               </div>
             )}
 
             {/* Physical Stats */}
-            <section style={{ marginBottom: '2rem' }}>
-              <h3 style={{ color: 'var(--text)', marginBottom: '1rem' }}>Physical Stats</h3>
-
-              {/* Height */}
-              <div style={{ marginBottom: '1.5rem' }}>
-                <label style={{ display: 'block', color: 'var(--text)', marginBottom: '0.5rem', fontWeight: '500' }}>
-                  Height
-                </label>
-                <div style={{ display: 'flex', gap: '1rem' }}>
-                  <div style={{ flex: 1 }}>
-                    <input
-                      type="number"
-                      min="0"
-                      max="8"
-                      value={heightFeet}
-                      onChange={(e) => setHeightFeet(Number(e.target.value))}
-                      required
-                      style={{
-                        width: '100%',
-                        padding: '0.75rem',
-                        borderRadius: '8px',
-                        border: '1px solid rgba(255, 255, 255, 0.2)',
-                        background: 'rgba(255, 255, 255, 0.05)',
-                        color: 'var(--text)',
-                      }}
-                    />
-                    <small style={{ color: '#999', marginTop: '0.25rem', display: 'block' }}>Feet</small>
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <input
-                      type="number"
-                      min="0"
-                      max="11"
-                      value={heightInches}
-                      onChange={(e) => setHeightInches(Number(e.target.value))}
-                      required
-                      style={{
-                        width: '100%',
-                        padding: '0.75rem',
-                        borderRadius: '8px',
-                        border: '1px solid rgba(255, 255, 255, 0.2)',
-                        background: 'rgba(255, 255, 255, 0.05)',
-                        color: 'var(--text)',
-                      }}
-                    />
-                    <small style={{ color: '#999', marginTop: '0.25rem', display: 'block' }}>Inches</small>
+            <div className="settings-section">
+              <h3 className="settings-section__title">Physical Stats</h3>
+              <div className="settings-form">
+                {/* Height */}
+                <div className="form-group">
+                  <label className="form-label">Height</label>
+                  <div className="settings-row">
+                    <div className="form-group">
+                      <input
+                        type="number"
+                        min="0"
+                        max="8"
+                        value={heightFeet}
+                        onChange={(e) => setHeightFeet(Number(e.target.value))}
+                        required
+                        className="form-input"
+                      />
+                      <span className="form-helper">Feet</span>
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="number"
+                        min="0"
+                        max="11"
+                        value={heightInches}
+                        onChange={(e) => setHeightInches(Number(e.target.value))}
+                        required
+                        className="form-input"
+                      />
+                      <span className="form-helper">Inches</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Weight */}
-              <div style={{ marginBottom: '1.5rem' }}>
-                <label style={{ display: 'block', color: 'var(--text)', marginBottom: '0.5rem', fontWeight: '500' }}>
-                  Weight (lbs)
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  value={weight}
-                  onChange={(e) => setWeight(Number(e.target.value))}
-                  required
-                  style={{
-                    width: '100%',
-                    padding: '0.75rem',
-                    borderRadius: '8px',
-                    border: '1px solid rgba(255, 255, 255, 0.2)',
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    color: 'var(--text)',
-                  }}
-                />
+                {/* Weight */}
+                <div className="form-group">
+                  <label className="form-label">Weight (lbs)</label>
+                  <input
+                    type="number"
+                    min="0"
+                    value={weight}
+                    onChange={(e) => setWeight(Number(e.target.value))}
+                    required
+                    className="form-input"
+                    style={{ maxWidth: '200px' }}
+                  />
+                </div>
               </div>
-            </section>
+            </div>
 
             {/* Nutrition Goals */}
-            <section style={{ marginBottom: '2rem' }}>
-              <h3 style={{ color: 'var(--text)', marginBottom: '1rem' }}>Daily Nutrition Goals</h3>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-                {/* Calories */}
-                <div>
-                  <label style={{ display: 'block', color: 'var(--text)', marginBottom: '0.5rem', fontWeight: '500' }}>
-                    Calories
-                  </label>
-                  <input
-                    type="number"
-                    min="0"
-                    value={calorieGoal}
-                    onChange={(e) => setCalorieGoal(Number(e.target.value))}
-                    required
-                    style={{
-                      width: '100%',
-                      padding: '0.75rem',
-                      borderRadius: '8px',
-                      border: '1px solid rgba(255, 255, 255, 0.2)',
-                      background: 'rgba(255, 255, 255, 0.05)',
-                      color: 'var(--text)',
-                    }}
-                  />
+            <div className="settings-section">
+              <h3 className="settings-section__title">Daily Nutrition Goals</h3>
+              <div className="settings-form">
+                <div className="settings-row">
+                  <div className="form-group">
+                    <label className="form-label">Calories</label>
+                    <input
+                      type="number"
+                      min="0"
+                      value={calorieGoal}
+                      onChange={(e) => setCalorieGoal(Number(e.target.value))}
+                      required
+                      className="form-input"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Protein (g)</label>
+                    <input
+                      type="number"
+                      min="0"
+                      value={proteinGoal}
+                      onChange={(e) => setProteinGoal(Number(e.target.value))}
+                      required
+                      className="form-input"
+                    />
+                  </div>
                 </div>
-
-                {/* Protein */}
-                <div>
-                  <label style={{ display: 'block', color: 'var(--text)', marginBottom: '0.5rem', fontWeight: '500' }}>
-                    Protein (g)
-                  </label>
-                  <input
-                    type="number"
-                    min="0"
-                    value={proteinGoal}
-                    onChange={(e) => setProteinGoal(Number(e.target.value))}
-                    required
-                    style={{
-                      width: '100%',
-                      padding: '0.75rem',
-                      borderRadius: '8px',
-                      border: '1px solid rgba(255, 255, 255, 0.2)',
-                      background: 'rgba(255, 255, 255, 0.05)',
-                      color: 'var(--text)',
-                    }}
-                  />
-                </div>
-
-                {/* Carbs */}
-                <div>
-                  <label style={{ display: 'block', color: 'var(--text)', marginBottom: '0.5rem', fontWeight: '500' }}>
-                    Carbs (g)
-                  </label>
-                  <input
-                    type="number"
-                    min="0"
-                    value={carbsGoal}
-                    onChange={(e) => setCarbsGoal(Number(e.target.value))}
-                    required
-                    style={{
-                      width: '100%',
-                      padding: '0.75rem',
-                      borderRadius: '8px',
-                      border: '1px solid rgba(255, 255, 255, 0.2)',
-                      background: 'rgba(255, 255, 255, 0.05)',
-                      color: 'var(--text)',
-                    }}
-                  />
-                </div>
-
-                {/* Fats */}
-                <div>
-                  <label style={{ display: 'block', color: 'var(--text)', marginBottom: '0.5rem', fontWeight: '500' }}>
-                    Fats (g)
-                  </label>
-                  <input
-                    type="number"
-                    min="0"
-                    value={fatsGoal}
-                    onChange={(e) => setFatsGoal(Number(e.target.value))}
-                    required
-                    style={{
-                      width: '100%',
-                      padding: '0.75rem',
-                      borderRadius: '8px',
-                      border: '1px solid rgba(255, 255, 255, 0.2)',
-                      background: 'rgba(255, 255, 255, 0.05)',
-                      color: 'var(--text)',
-                    }}
-                  />
+                <div className="settings-row">
+                  <div className="form-group">
+                    <label className="form-label">Carbs (g)</label>
+                    <input
+                      type="number"
+                      min="0"
+                      value={carbsGoal}
+                      onChange={(e) => setCarbsGoal(Number(e.target.value))}
+                      required
+                      className="form-input"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Fats (g)</label>
+                    <input
+                      type="number"
+                      min="0"
+                      value={fatsGoal}
+                      onChange={(e) => setFatsGoal(Number(e.target.value))}
+                      required
+                      className="form-input"
+                    />
+                  </div>
                 </div>
               </div>
-            </section>
+            </div>
 
             {/* Dietary Restrictions */}
-            <section style={{ marginBottom: '2rem' }}>
-              <h3 style={{ color: 'var(--text)', marginBottom: '1rem' }}>Dietary Restrictions</h3>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+            <div className="settings-section">
+              <h3 className="settings-section__title">Dietary Restrictions</h3>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-3)' }}>
                 {availableRestrictions.map((restriction) => (
                   <label
                     key={restriction}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                      padding: '0.75rem 1rem',
-                      borderRadius: '8px',
-                      border: '1px solid rgba(255, 255, 255, 0.2)',
-                      background: restrictions.includes(restriction)
-                        ? 'rgba(96, 91, 253, 0.2)'
-                        : 'rgba(255, 255, 255, 0.05)',
-                      cursor: 'pointer',
-                      transition: 'all 0.2s',
-                    }}
+                    className={`chip ${restrictions.includes(restriction) ? 'chip--active' : ''}`}
                   >
                     <input
                       type="checkbox"
                       checked={restrictions.includes(restriction)}
                       onChange={() => toggleRestriction(restriction)}
-                      style={{ width: '18px', height: '18px', cursor: 'pointer' }}
+                      className="sr-only"
                     />
-                    <span style={{ color: 'var(--text)' }}>{restriction}</span>
+                    {restriction}
                   </label>
                 ))}
               </div>
-            </section>
+            </div>
 
             {/* Submit Button */}
-            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end' }}>
+            <div style={{ display: 'flex', gap: 'var(--space-4)', justifyContent: 'flex-end', marginTop: 'var(--space-6)' }}>
               <button
                 type="submit"
                 disabled={saving}
-                className="btn primary"
-                style={{ padding: '0.75rem 2rem', fontSize: '1rem' }}
+                className="btn btn-primary btn-lg"
               >
                 {saving ? 'Saving...' : profile ? 'Update Profile' : 'Create Profile'}
               </button>
             </div>
           </form>
         )}
-      </div>
+      </main>
       <Footer />
     </div>
   );

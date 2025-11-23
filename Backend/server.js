@@ -14,6 +14,8 @@ import jaronRoute from "./routes/jaron.route.js";
 import javiRoute from "./routes/javi.route.js";
 import restaurantRoute from "./routes/restaurant.route.js";
 import userRoute from "./routes/user.route.js";
+import mealplanRoute from "./routes/mealplan.route.js";
+import preferencesRoute from "./routes/preferences.route.js";
 
 dotenv.config();
 const app = express();
@@ -50,6 +52,8 @@ app.use("/api/jaron-lin", jaronRoute);
 app.use("/api/javi-wu", javiRoute);
 app.use("/api/restaurants", restaurantRoute);
 app.use("/api/users", userRoute);
+app.use("/api/mealplans", mealplanRoute);
+app.use("/api/preferences", preferencesRoute);
 
 // 5. Handle React Router - serve index.html for all non-API routes
 app.use((req, res, next) => {

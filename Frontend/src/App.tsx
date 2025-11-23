@@ -5,7 +5,9 @@ import Home from './pages/Home';
 import ManageRestaurants from './pages/ManageRestaurants';
 import RestaurantMenus from './pages/RestaurantMenus';
 import Settings from './pages/Settings';
-import DevToken from './pages/DevToken';  
+import Dashboard from './pages/Dashboard';
+import Preferences from './pages/Preferences';
+import DevToken from './pages/DevToken';
 import "./App.css";
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/menus" element={<RestaurantMenus />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/preferences" element={<Preferences />} />
           <Route
             path="/admin"
             element={
@@ -27,7 +31,7 @@ function App() {
             }
           />
           {/* TEMP: always include DevToken route */}
-            <Route path="/dev-token" element={<DevToken />} />
+          <Route path="/dev-token" element={<DevToken />} />
         </Routes>
       </div>
     </BrowserRouter>

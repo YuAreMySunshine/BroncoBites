@@ -2,6 +2,7 @@ import { useUser } from '@clerk/clerk-react';
 import { Navigate, Link } from 'react-router-dom';
 import '../style/home/Home.css';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 // Admin email is read from VITE_ADMIN_EMAIL environment variable
 const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL as string;
@@ -12,8 +13,13 @@ export default function Admin() {
   // Wait for user data to load
   if (!isLoaded) {
     return (
-      <div className="container" style={{ padding: '2rem', textAlign: 'center' }}>
-        <p>Loading...</p>
+      <div className="page">
+        <Navbar />
+        <main className="container" style={{ paddingTop: 'var(--space-16)', textAlign: 'center' }}>
+          <div className="spinner" style={{ margin: '0 auto' }}></div>
+          <p style={{ marginTop: 'var(--space-4)', color: 'var(--color-text-secondary)' }}>Loading...</p>
+        </main>
+        <Footer />
       </div>
     );
   }
@@ -27,34 +33,51 @@ export default function Admin() {
   }
 
   return (
-    <div className="bb">
+    <div className="page">
       <Navbar />
-      <div className="container" style={{ paddingTop: '2rem' }}>
-        <header style={{ marginBottom: '2rem', padding: '2rem 0' }}>
-          <h1 style={{ color: 'var(--text)' }}>Admin Dashboard</h1>
-          <p style={{ color: 'var(--text-muted, #b7c2d6)' }}>
+      <main className="container" style={{ paddingTop: 'var(--space-8)', paddingBottom: 'var(--space-16)' }}>
+        <header className="page-header">
+          <h1 className="page-title">Admin Dashboard</h1>
+          <p className="page-subtitle">
             Welcome, {user?.firstName || user?.primaryEmailAddress?.emailAddress}
           </p>
         </header>
 
-        <main>
-          <section style={{ marginBottom: '3rem' }}>
-            <h2 style={{ color: 'var(--text)' }}>Restaurant Management</h2>
-            <div className="card">
-              <p>Add, edit, or remove restaurants from the platform.</p>
-              <Link to="/admin/restaurants" className="btn primary" style={{ marginTop: '1rem', display: 'inline-block', textDecoration: 'none' }}>
-                Manage Restaurants
-              </Link>
+        <div className="grid-2" style={{ marginTop: 'var(--space-8)' }}>
+          {/* Restaurant Management Card */}
+          <div className="card card-interactive">
+            <div className="feature-card__icon" style={{ marginBottom: 'var(--space-4)' }}>
+              🍽️
             </div>
-          </section>
-        </main>
+            <h3 className="card-title">Restaurant Management</h3>
+            <p className="card-subtitle" style={{ marginBottom: 'var(--space-4)' }}>
+              Add, edit, or remove restaurants from the platform.
+            </p>
+            <Link to="/admin/restaurants" className="btn btn-primary">
+              Manage Restaurants
+            </Link>
+          </div>
 
-        <footer style={{ marginTop: '4rem', textAlign: 'center', padding: '2rem 0', borderTop: '1px solid rgba(255, 255, 255, 0.06)' }}>
-          <Link to="/" className="btn" style={{ textDecoration: 'none' }}>
+          {/* Analytics Card (placeholder for future) */}
+          <div className="card" style={{ opacity: 0.6 }}>
+            <div className="feature-card__icon" style={{ marginBottom: 'var(--space-4)' }}>
+              📊
+            </div>
+            <h3 className="card-title">Analytics</h3>
+            <p className="card-subtitle" style={{ marginBottom: 'var(--space-4)' }}>
+              View usage statistics and insights.
+            </p>
+            <span className="badge badge-default">Coming Soon</span>
+          </div>
+        </div>
+
+        <div style={{ marginTop: 'var(--space-12)', textAlign: 'center' }}>
+          <Link to="/" className="btn btn-ghost">
             Back to Home
           </Link>
-        </footer>
-      </div>
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 }

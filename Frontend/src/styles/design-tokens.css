@@ -1,0 +1,133 @@
+/* ============================================
+   BroncoBites Design System - Design Tokens
+   ============================================ */
+
+:root {
+  /* ===== Colors - Primary ===== */
+  --color-primary: #2D5A3D;
+  --color-primary-light: #4A8C5E;
+  --color-primary-dark: #1E3D29;
+  --color-accent: #A8E063;
+  --color-highlight: #F5B841;
+
+  /* ===== Colors - Neutral ===== */
+  --color-background: #FFF8F0;
+  --color-surface: #FFFFFF;
+  --color-surface-secondary: #F5F5F5;
+  --color-border: #E5E5E5;
+  --color-border-light: #F0F0F0;
+
+  /* ===== Colors - Text ===== */
+  --color-text-primary: #2A2A2A;
+  --color-text-secondary: #6B7280;
+  --color-text-tertiary: #9CA3AF;
+  --color-text-inverse: #FFFFFF;
+
+  /* ===== Colors - Semantic ===== */
+  --color-success: #22C55E;
+  --color-success-light: #DCFCE7;
+  --color-warning: #F59E0B;
+  --color-warning-light: #FEF3C7;
+  --color-error: #E54D4D;
+  --color-error-light: #FEE2E2;
+  --color-info: #3B82F6;
+  --color-info-light: #DBEAFE;
+
+  /* ===== Colors - Macros ===== */
+  --color-calories: #F97316;
+  --color-protein: #06B6D4;
+  --color-carbs: #EAB308;
+  --color-fats: #F5A572;
+
+  /* ===== Gradients ===== */
+  --gradient-primary: linear-gradient(135deg, #2D5A3D 0%, #4A8C5E 50%, #A8E063 100%);
+  --gradient-subtle: linear-gradient(180deg, #FFFFFF 0%, #FFF8F0 100%);
+  --gradient-card-hover: linear-gradient(180deg, rgba(45, 90, 61, 0.02) 0%, rgba(45, 90, 61, 0.06) 100%);
+
+  /* ===== Typography - Fonts ===== */
+  --font-heading: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Space Mono', 'SF Mono', Consolas, monospace;
+
+  /* ===== Typography - Sizes ===== */
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  --text-3xl: 2rem;      /* 32px */
+  --text-4xl: 2.5rem;    /* 40px */
+  --text-hero: 3.5rem;   /* 56px */
+
+  /* ===== Typography - Weights ===== */
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* ===== Spacing ===== */
+  --space-0: 0;
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+
+  /* ===== Containers ===== */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+
+  /* ===== Shadows ===== */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.16);
+  --shadow-primary: 0 8px 24px rgba(45, 90, 61, 0.15);
+  --shadow-success: 0 4px 12px rgba(34, 197, 94, 0.2);
+  --shadow-warning: 0 4px 12px rgba(245, 158, 11, 0.2);
+  --shadow-error: 0 4px 12px rgba(229, 77, 77, 0.2);
+
+  /* ===== Border Radius ===== */
+  --radius-none: 0;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* ===== Animation ===== */
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --duration-fast: 100ms;
+  --duration-normal: 150ms;
+  --duration-moderate: 200ms;
+  --duration-slow: 300ms;
+  --duration-slower: 500ms;
+  --duration-slowest: 800ms;
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,8 @@
+# Documentation files (local only)
+CLAUDE.md
+DATABASE_SCHEMA_UPDATE.md
+DESIGN_SYSTEM.md
+
+# OS files
+.DS_Store
+node_modules/.DS_Store

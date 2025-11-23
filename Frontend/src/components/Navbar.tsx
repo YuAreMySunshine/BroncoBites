@@ -6,7 +6,7 @@ import {
   UserButton,
   useUser,
 } from '@clerk/clerk-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import BroncoBites from '../images/BroncoBites.png';
 import '../style/components/Navbar.css';
 
@@ -15,14 +15,18 @@ const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL as string;
 
 export default function Navbar() {
   const { user, isLoaded } = useUser();
+  const location = useLocation();
 
   // Check if the current user is the admin
   const isAdmin = isLoaded && user?.primaryEmailAddress?.emailAddress === ADMIN_EMAIL;
 
+  // Helper to check if link is active
+  const isActive = (path: string) => location.pathname === path;
+
   return (
     <header className="site-header">
       <div className="brand">
-        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', textDecoration: 'none', color: 'inherit' }}>
+        <Link to="/">
           <img src={BroncoBites} className="logo" alt="BroncoBites logo" />
           <h1>BroncoBites</h1>
         </Link>
@@ -32,14 +36,37 @@ export default function Navbar() {
         <div className="nav-links">
           <a href="#features">Features</a>
           <a href="#team">Team</a>
-          <Link to="/menus" style={{ textDecoration: 'none', color: 'inherit' }}>
-            Restaurant Menus
+          <Link
+            to="/menus"
+            className={isActive('/menus') ? 'active' : ''}
+          >
+            Menus
           </Link>
-          <Link to="/settings" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <SignedIn>
+            <Link
+              to="/dashboard"
+              className={isActive('/dashboard') ? 'active' : ''}
+            >
+              Dashboard
+            </Link>
+            <Link
+              to="/preferences"
+              className={isActive('/preferences') ? 'active' : ''}
+            >
+              Preferences
+            </Link>
+          </SignedIn>
+          <Link
+            to="/settings"
+            className={isActive('/settings') ? 'active' : ''}
+          >
             Settings
           </Link>
           {isAdmin && (
-            <Link to="/admin" style={{ color: '#4cc9f0', fontWeight: '600' }}>
+            <Link
+              to="/admin"
+              className={`nav-link--admin ${isActive('/admin') ? 'active' : ''}`}
+            >
               Admin
             </Link>
           )}
@@ -57,13 +84,8 @@ export default function Navbar() {
 
           <SignedIn>
             {user && (
-              <span style={{ 
-                fontSize: '0.85rem', 
-                color: '#999', 
-                marginRight: '0.75rem',
-                fontFamily: 'monospace'
-              }}>
-                ID: {user.id}
+              <span className="user-id">
+                ID: {user.id.slice(0, 8)}...
               </span>
             )}
             <UserButton />

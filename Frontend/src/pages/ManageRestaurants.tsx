@@ -3,6 +3,7 @@ import { useUser } from '@clerk/clerk-react';
 import { Navigate } from 'react-router-dom';
 import '../style/home/Home.css';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 // Admin email is read from VITE_ADMIN_EMAIL environment variable
 const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL as string;
@@ -137,8 +138,13 @@ export default function ManageRestaurants() {
   // Wait for user data to load
   if (!isLoaded) {
     return (
-      <div style={{ padding: '2rem', textAlign: 'center' }}>
-        <p>Loading...</p>
+      <div className="page">
+        <Navbar />
+        <main className="container" style={{ paddingTop: 'var(--space-16)', textAlign: 'center' }}>
+          <div className="spinner" style={{ margin: '0 auto' }}></div>
+          <p style={{ marginTop: 'var(--space-4)', color: 'var(--color-text-secondary)' }}>Loading...</p>
+        </main>
+        <Footer />
       </div>
     );
   }
@@ -313,43 +319,43 @@ export default function ManageRestaurants() {
   const dayOrder: DayName[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   return (
-    <div className="bb">
+    <div className="page">
       <Navbar />
-      <div className="container" style={{ paddingTop: '2rem' }}>
-        <header style={{ marginBottom: '2rem' }}>
-        <h1 style={{ color: 'var(--text)' }}>Manage Restaurants</h1>
-        <p style={{ color: 'var(--text-muted, #b7c2d6)' }}>
-          View every restaurant entry and all associated menu items
-        </p>
-        {/* Create */}
-        <form onSubmit={onCreateRestaurant} style={{ marginTop: '1rem', display: 'flex', gap: '0.5rem' }}>
-          <input
-            value={newName}
-            onChange={(e) => setNewName(e.target.value)}
-            placeholder="New restaurant name"
-            aria-label="New restaurant name"
-            style={{ padding: '0.5rem', borderRadius: 6, border: '1px solid rgba(255, 255, 255, 0.2)', background: 'rgba(255, 255, 255, 0.05)', color: 'var(--text)', flex: '0 1 320px' }}
-          />
-          <button className="btn primary" disabled={creating || !newName.trim()}>
-            {creating ? 'Creating...' : 'Add Restaurant'}
-          </button>
-        </form>
-      </header>
+      <main className="container" style={{ paddingTop: 'var(--space-8)', paddingBottom: 'var(--space-16)' }}>
+        <header className="page-header">
+          <h1 className="page-title">Manage Restaurants</h1>
+          <p className="page-subtitle">
+            View every restaurant entry and all associated menu items
+          </p>
+          {/* Create */}
+          <form onSubmit={onCreateRestaurant} style={{ marginTop: 'var(--space-4)', display: 'flex', gap: 'var(--space-2)' }}>
+            <input
+              value={newName}
+              onChange={(e) => setNewName(e.target.value)}
+              placeholder="New restaurant name"
+              aria-label="New restaurant name"
+              className="form-input"
+              style={{ flex: '0 1 320px' }}
+            />
+            <button className="btn btn-primary" disabled={creating || !newName.trim()}>
+              {creating ? 'Creating...' : 'Add Restaurant'}
+            </button>
+          </form>
+        </header>
 
-      <main>
         {loading && (
-          <div className="card" style={{ textAlign: 'center', padding: '3rem' }}>
-            <p>Loading restaurants...</p>
+          <div className="card" style={{ textAlign: 'center', padding: 'var(--space-12)' }}>
+            <div className="spinner" style={{ margin: '0 auto' }}></div>
+            <p style={{ marginTop: 'var(--space-4)', color: 'var(--color-text-secondary)' }}>Loading restaurants...</p>
           </div>
         )}
 
         {error && (
-          <div className="card" style={{ padding: '2rem', border: '2px solid #ff4444' }}>
-            <h3 style={{ color: '#ff4444', marginTop: 0 }}>Error</h3>
-            <p>{error}</p>
+          <div className="alert alert-error" style={{ marginTop: 'var(--space-4)' }}>
+            <strong>Error:</strong> {error}
             <button
-              className="btn primary"
-              style={{ marginTop: '1rem' }}
+              className="btn btn-primary"
+              style={{ marginTop: 'var(--space-4)' }}
               onClick={() => window.location.reload()}
             >
               Retry
@@ -358,30 +364,30 @@ export default function ManageRestaurants() {
         )}
 
         {!loading && !error && restaurants.length === 0 && (
-          <div className="card" style={{ textAlign: 'center', padding: '3rem' }}>
-            <h3>No restaurants found</h3>
-            <p style={{ color: 'var(--text-muted, #b7c2d6)' }}>The database doesn't contain any restaurant entries yet.</p>
+          <div className="card" style={{ textAlign: 'center', padding: 'var(--space-12)' }}>
+            <h3 className="card-title">No restaurants found</h3>
+            <p className="card-subtitle">The database doesn't contain any restaurant entries yet.</p>
           </div>
         )}
 
         {!loading && !error && restaurants.length > 0 && (
           <>
-            <div style={{ marginBottom: '1.5rem', padding: '1rem', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '8px' }}>
-              <p style={{ margin: 0, fontWeight: '600' }}>
-                Total Restaurants: <span style={{ color: '#605bfd' }}>{restaurants.length}</span>
-                <span style={{ marginLeft: '1rem', color: '#555', fontWeight: 400 }}>
+            <div className="card" style={{ marginBottom: 'var(--space-6)', padding: 'var(--space-4)' }}>
+              <p style={{ margin: 0, fontWeight: '600', color: 'var(--color-text-primary)' }}>
+                Total Restaurants: <span style={{ color: 'var(--color-primary)' }}>{restaurants.length}</span>
+                <span style={{ marginLeft: 'var(--space-4)', color: 'var(--color-text-secondary)', fontWeight: 400 }}>
                   Total Menu Items: <strong>{totalMenuItems}</strong>
                 </span>
               </p>
             </div>
 
-            <div style={{ display: 'grid', gap: '1.5rem' }}>
+            <div style={{ display: 'grid', gap: 'var(--space-6)' }}>
               {restaurants.map((restaurant) => (
-                <div key={restaurant._id} className="card" style={{ padding: '1.5rem' }}>
+                <div key={restaurant._id} className="card" style={{ padding: 'var(--space-6)' }}>
                   {/* Header */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '1rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: 'var(--space-4)' }}>
                     <div>
-                      <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', marginBottom: '0.5rem' }}>
+                      <div style={{ display: 'flex', gap: 'var(--space-2)', alignItems: 'center', marginBottom: 'var(--space-2)' }}>
                         <input
                           defaultValue={restaurant.name}
                           onBlur={(e) => {
@@ -389,68 +395,61 @@ export default function ManageRestaurants() {
                             if (next && next !== restaurant.name) onUpdateRestaurant(restaurant._id, { name: next });
                           }}
                           aria-label="Restaurant name"
-                          style={{ fontSize: '1.25rem', fontWeight: 700, border: '1px solid rgba(255, 255, 255, 0.2)', background: 'rgba(255, 255, 255, 0.05)', color: 'var(--text)', borderRadius: 6, padding: '0.25rem 0.5rem', minWidth: 200 }}
+                          className="form-input"
+                          style={{ fontSize: '1.25rem', fontWeight: 700, minWidth: 200 }}
                         />
-                        {savingMap[restaurant._id] && <span style={{ color: '#999' }}>Saving...</span>}
+                        {savingMap[restaurant._id] && <span style={{ color: 'var(--color-text-tertiary)' }}>Saving...</span>}
                       </div>
-                      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                        <span style={{ fontSize: '0.85rem', color: '#999' }}>ID: {restaurant._id}</span>
+                      <div style={{ display: 'flex', gap: 'var(--space-2)', flexWrap: 'wrap', alignItems: 'center' }}>
+                        <span style={{ fontSize: '0.85rem', color: 'var(--color-text-tertiary)' }}>ID: {restaurant._id}</span>
                         {typeof restaurant.isOpen === 'boolean' && (
-                          <span
-                            style={{
-                              display: 'inline-block',
-                              padding: '0.25rem 0.5rem',
-                              borderRadius: '6px',
-                              background: restaurant.isOpen ? '#e8f5e9' : '#ffebee',
-                              color: restaurant.isOpen ? '#2e7d32' : '#c62828',
-                              fontSize: '0.8rem',
-                              fontWeight: 600,
-                            }}
-                          >
+                          <span className={`badge ${restaurant.isOpen ? 'badge-open' : 'badge-closed'}`}>
                             {getStatusMessage(restaurant)}
                           </span>
                         )}
                       </div>
                     </div>
-                    <div style={{ textAlign: 'right', color: '#777', fontSize: '0.85rem' }}>
+                    <div style={{ textAlign: 'right', color: 'var(--color-text-tertiary)', fontSize: '0.85rem' }}>
                       <div>Created: {formatDate(restaurant.createdAt)}</div>
                       <div>Updated: {formatDate(restaurant.updatedAt)}</div>
                     </div>
                   </div>
 
                   {/* Hours */}
-                  <div style={{ marginBottom: '1rem' }}>
-                    <h4 style={{ fontWeight: 600, color: 'var(--text)', marginBottom: '0.75rem' }}>Hours</h4>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '0.75rem' }}>
+                  <div style={{ marginBottom: 'var(--space-4)' }}>
+                    <h4 style={{ fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 'var(--space-3)' }}>Hours</h4>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 'var(--space-3)' }}>
                       {dayOrder.map((day) => {
                         const slot = restaurant.hours?.[day];
                         return (
-                          <div key={day} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem', background: 'rgba(255, 255, 255, 0.02)', borderRadius: '6px' }}>
-                            <span style={{ color: 'var(--text)', fontWeight: 500, minWidth: '90px' }}>{day}</span>
+                          <div key={day} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', padding: 'var(--space-2)', background: 'var(--color-neutral-50)', borderRadius: 'var(--radius-sm)' }}>
+                            <span style={{ color: 'var(--color-text-primary)', fontWeight: 500, minWidth: '90px' }}>{day}</span>
                             <input
                               type="time"
                               defaultValue={slot?.open ? convertTo24Hour(slot.open) : '08:00'}
                               onBlur={(e) => {
                                 const newOpen = convertTo12Hour(e.target.value);
                                 const currentClose = slot?.close || '08:00 PM';
-                                onUpdateRestaurant(restaurant._id, { 
+                                onUpdateRestaurant(restaurant._id, {
                                   hours: { ...restaurant.hours, [day]: { open: newOpen, close: currentClose } }
                                 });
                               }}
-                              style={{ border: '1px solid rgba(255, 255, 255, 0.2)', background: 'rgba(255, 255, 255, 0.05)', color: 'var(--text)', borderRadius: 4, padding: '0.25rem 0.5rem', width: '110px' }}
+                              className="form-input"
+                              style={{ width: '110px', padding: 'var(--space-1) var(--space-2)' }}
                             />
-                            <span style={{ color: 'var(--text-muted, #b7c2d6)' }}>—</span>
+                            <span style={{ color: 'var(--color-text-secondary)' }}>—</span>
                             <input
                               type="time"
                               defaultValue={slot?.close ? convertTo24Hour(slot.close) : '20:00'}
                               onBlur={(e) => {
                                 const newClose = convertTo12Hour(e.target.value);
                                 const currentOpen = slot?.open || '08:00 AM';
-                                onUpdateRestaurant(restaurant._id, { 
+                                onUpdateRestaurant(restaurant._id, {
                                   hours: { ...restaurant.hours, [day]: { open: currentOpen, close: newClose } }
                                 });
                               }}
-                              style={{ border: '1px solid rgba(255, 255, 255, 0.2)', background: 'rgba(255, 255, 255, 0.05)', color: 'var(--text)', borderRadius: 4, padding: '0.25rem 0.5rem', width: '110px' }}
+                              className="form-input"
+                              style={{ width: '110px', padding: 'var(--space-1) var(--space-2)' }}
                             />
                           </div>
                         );
@@ -460,10 +459,10 @@ export default function ManageRestaurants() {
 
                   {/* Menu Items */}
                   <div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                      <h4 style={{ margin: 0 }}>Menu Items ({restaurant.menuItems?.length || 0})</h4>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-2)' }}>
+                      <h4 style={{ margin: 0, color: 'var(--color-text-primary)' }}>Menu Items ({restaurant.menuItems?.length || 0})</h4>
                       <button
-                        className="btn primary"
+                        className="btn btn-primary btn-sm"
                         onClick={() => onAddMenuItem(restaurant._id, {
                           itemName: 'New Item',
                           calories: 0,
@@ -472,7 +471,6 @@ export default function ManageRestaurants() {
                           allergens: []
                         })}
                         disabled={!!addingItemMap[restaurant._id]}
-                        style={{ fontSize: '0.9rem', padding: '0.4rem 0.8rem' }}
                       >
                         {addingItemMap[restaurant._id] ? 'Adding...' : 'Add Item'}
                       </button>
@@ -480,16 +478,16 @@ export default function ManageRestaurants() {
 
                     {restaurant.menuItems && restaurant.menuItems.length > 0 ? (
                       <div className="table-container">
-                        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                        <table className="table">
                           <thead>
-                            <tr style={{ textAlign: 'left', background: 'rgba(255, 255, 255, 0.05)' }}>
-                              <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>Item</th>
-                              <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>Calories</th>
-                              <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>Protein (g)</th>
-                              <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>Carbs (g)</th>
-                              <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>Fats (g)</th>
-                              <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>Vegetarian</th>
-                              <th style={{ padding: '0.5rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>Allergens</th>
+                            <tr>
+                              <th>Item</th>
+                              <th>Calories</th>
+                              <th>Protein (g)</th>
+                              <th>Carbs (g)</th>
+                              <th>Fats (g)</th>
+                              <th>Vegetarian</th>
+                              <th>Allergens</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -498,58 +496,57 @@ export default function ManageRestaurants() {
                               const savingKey = `${restaurant._id}:${itemId}`;
                               return (
                                 <tr key={`${restaurant._id}-mi-${itemId}`}>
-                                  <td style={{ padding: '0.5rem', borderBottom: '1px solid #f1f1f1' }}>
+                                  <td>
                                     <InlineEdit
                                       value={mi.itemName}
                                       onSave={(v) => onUpdateMenuItem(restaurant._id, itemId, { itemName: v })}
                                       saving={!!savingMap[savingKey]}
                                     />
                                   </td>
-                                  <td style={{ padding: '0.5rem', borderBottom: '1px solid #f1f1f1' }}>
+                                  <td>
                                     <InlineNumber
                                       value={mi.calories}
                                       onSave={(v) => onUpdateMenuItem(restaurant._id, itemId, { calories: v })}
                                       saving={!!savingMap[savingKey]}
                                     />
                                   </td>
-                                  <td style={{ padding: '0.5rem', borderBottom: '1px solid #f1f1f1' }}>
+                                  <td>
                                     <InlineNumber
                                       value={mi.nutrition?.protein}
                                       onSave={(v) => onUpdateMenuItem(restaurant._id, itemId, { nutrition: { ...mi.nutrition, protein: v } })}
                                       saving={!!savingMap[savingKey]}
                                     />
                                   </td>
-                                  <td style={{ padding: '0.5rem', borderBottom: '1px solid #f1f1f1' }}>
+                                  <td>
                                     <InlineNumber
                                       value={mi.nutrition?.carbs}
                                       onSave={(v) => onUpdateMenuItem(restaurant._id, itemId, { nutrition: { ...mi.nutrition, carbs: v } })}
                                       saving={!!savingMap[savingKey]}
                                     />
                                   </td>
-                                  <td style={{ padding: '0.5rem', borderBottom: '1px solid #f1f1f1' }}>
+                                  <td>
                                     <InlineNumber
                                       value={mi.nutrition?.fats}
                                       onSave={(v) => onUpdateMenuItem(restaurant._id, itemId, { nutrition: { ...mi.nutrition, fats: v } })}
                                       saving={!!savingMap[savingKey]}
                                     />
                                   </td>
-                                  <td style={{ padding: '0.5rem', borderBottom: '1px solid #f1f1f1' }}>
+                                  <td>
                                     <InlineCheckbox
                                       value={mi.vegetarian ?? false}
                                       onSave={(v) => onUpdateMenuItem(restaurant._id, itemId, { vegetarian: v })}
                                       saving={!!savingMap[savingKey]}
                                     />
                                   </td>
-                                  <td style={{ padding: '0.5rem', borderBottom: '1px solid #f1f1f1' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                  <td>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
                                       <InlineEdit
                                         value={Array.isArray(mi.allergens) ? mi.allergens.join(', ') : ''}
                                         onSave={(v) => onUpdateMenuItem(restaurant._id, itemId, { allergens: v.split(',').map(a => a.trim()).filter(a => a) })}
                                         saving={!!savingMap[savingKey]}
                                       />
                                       <button
-                                        className="btn"
-                                        style={{ background: '#ffebee', color: '#c62828' }}
+                                        className="btn btn-danger btn-sm"
                                         onClick={() => onDeleteMenuItem(restaurant._id, itemId)}
                                         disabled={!!deletingMap[`${restaurant._id}:${itemId}`]}
                                       >
@@ -564,15 +561,14 @@ export default function ManageRestaurants() {
                         </table>
                       </div>
                     ) : (
-                      <p style={{ color: 'var(--text-muted, #b7c2d6)' }}>No menu items for this restaurant.</p>
+                      <p style={{ color: 'var(--color-text-secondary)' }}>No menu items for this restaurant.</p>
                     )}
                   </div>
 
                   {/* Admin actions */}
-                  <div style={{ marginTop: '1rem', display: 'flex', gap: '0.5rem' }}>
+                  <div style={{ marginTop: 'var(--space-4)', display: 'flex', gap: 'var(--space-2)' }}>
                     <button
-                      className="btn"
-                      style={{ fontSize: '0.9rem', background: '#ffebee', color: '#c62828' }}
+                      className="btn btn-danger"
                       onClick={() => onDeleteRestaurant(restaurant._id)}
                       disabled={!!deletingMap[restaurant._id]}
                     >
@@ -585,7 +581,7 @@ export default function ManageRestaurants() {
           </>
         )}
       </main>
-      </div>
+      <Footer />
     </div>
   );
 }
@@ -602,7 +598,8 @@ function InlineEdit({ value, onSave, saving }: { value: string; onSave: (v: stri
         const next = val.trim();
         if (next && next !== value) onSave(next);
       }}
-      style={{ border: '1px solid rgba(255, 255, 255, 0.2)', background: 'rgba(255, 255, 255, 0.05)', color: 'var(--text)', borderRadius: 6, padding: '0.25rem 0.5rem', minWidth: 200 }}
+      className="form-input"
+      style={{ minWidth: 200 }}
       aria-label="Edit text"
       disabled={saving}
     />
@@ -631,7 +628,8 @@ function InlineNumber({ value, onSave, saving }: { value?: number; onSave: (v: n
       }}
       disabled={saving}
       placeholder="0"
-      style={{ width: 80, border: '1px solid rgba(255, 255, 255, 0.2)', background: 'rgba(255, 255, 255, 0.05)', color: 'var(--text)', borderRadius: 6, padding: '0.25rem 0.5rem' }}
+      className="form-input"
+      style={{ width: 80 }}
     />
   );
 }
@@ -649,7 +647,7 @@ function InlineCheckbox({ value, onSave, saving }: { value: boolean; onSave: (v:
         onSave(newVal);
       }}
       disabled={saving}
-      style={{ width: 20, height: 20, cursor: saving ? 'not-allowed' : 'pointer' }}
+      className="form-checkbox"
     />
   );
 }
