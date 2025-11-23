@@ -1,6 +1,28 @@
 import { useState, useEffect } from 'react';
 import { useUser, useAuth } from '@clerk/clerk-react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
+import {
+  ChevronLeft,
+  ChevronRight,
+  Calendar,
+  Sparkles,
+  Trash2,
+  Plus,
+  X,
+  Search,
+  Star,
+  Flame,
+  Beef,
+  Wheat,
+  Droplets,
+  Sun,
+  Cloud,
+  Moon,
+  Apple,
+  MapPin,
+  AlertCircle,
+  Settings
+} from 'lucide-react';
 import '../style/home/Home.css';
 import '../style/pages/Dashboard.css';
 import Navbar from '../components/Navbar';
@@ -68,12 +90,12 @@ interface UserPreferences {
   blacklistedItems: Array<{ itemId: string }>;
 }
 
-const MEAL_ICONS: Record<string, string> = {
-  Breakfast: '🌅',
-  Lunch: '☀️',
-  Dinner: '🌙',
-  Snack: '🍎'
-};
+const MEAL_CATEGORIES = [
+  { key: 'Breakfast', label: 'Breakfast', icon: Sun, color: '#F59E0B' },
+  { key: 'Lunch', label: 'Lunch', icon: Cloud, color: '#3B82F6' },
+  { key: 'Dinner', label: 'Dinner', icon: Moon, color: '#8B5CF6' },
+  { key: 'Snack', label: 'Snacks', icon: Apple, color: '#10B981' }
+] as const;
 
 export default function Dashboard() {
   const { user, isLoaded } = useUser();
@@ -137,7 +159,6 @@ export default function Dashboard() {
         const token = await getToken();
         const headers = { Authorization: `Bearer ${token}` };
 
-        // Fetch in parallel
         const [planRes, profileRes, restaurantsRes, prefsRes] = await Promise.all([
           fetch(`${API_BASE}/api/mealplans/date/${currentDate}`, { headers }),
           fetch(`${API_BASE}/api/users/profile`, { headers }),
@@ -304,7 +325,6 @@ export default function Dashboard() {
       });
     });
 
-    // Sort: favorites first
     return allItems.sort((a, b) => {
       if (a.isFavorite && !b.isFavorite) return -1;
       if (!a.isFavorite && b.isFavorite) return 1;
@@ -328,9 +348,11 @@ export default function Dashboard() {
     return (
       <div className="page">
         <Navbar />
-        <main className="container" style={{ paddingTop: 'var(--space-16)', textAlign: 'center' }}>
-          <div className="spinner" style={{ margin: '0 auto' }}></div>
-          <p style={{ marginTop: 'var(--space-4)', color: 'var(--color-text-secondary)' }}>Loading...</p>
+        <main className="dashboard-main">
+          <div className="dashboard-loading">
+            <div className="spinner"></div>
+            <p>Loading your dashboard...</p>
+          </div>
         </main>
         <Footer />
       </div>
@@ -347,248 +369,280 @@ export default function Dashboard() {
   return (
     <div className="page">
       <Navbar />
-      <main className="container" style={{ paddingTop: 'var(--space-8)', paddingBottom: 'var(--space-16)' }}>
-        {/* Header */}
-        <div className="dashboard-header">
-          <div className="dashboard-header__left">
-            <h1 className="page-title">Meal Plan</h1>
-            <div className="date-nav">
-              <button className="date-nav__btn" onClick={() => goToDate(-1)}>
-                ←
+      <main className="dashboard-main">
+        <div className="dashboard-container">
+          {/* Header Section */}
+          <header className="dashboard-header">
+            <div className="dashboard-header__title-section">
+              <h1 className="dashboard-title">Meal Planner</h1>
+              <p className="dashboard-subtitle">Plan your daily nutrition</p>
+            </div>
+
+            <div className="date-navigator">
+              <button className="date-nav-btn" onClick={() => goToDate(-1)} aria-label="Previous day">
+                <ChevronLeft size={20} />
               </button>
-              <span className="date-nav__current">{formatDate(currentDate)}</span>
-              <button className="date-nav__btn" onClick={() => goToDate(1)}>
-                →
+              <div className="date-display">
+                <Calendar size={18} className="date-icon" />
+                <span className="date-text">{formatDate(currentDate)}</span>
+              </div>
+              <button className="date-nav-btn" onClick={() => goToDate(1)} aria-label="Next day">
+                <ChevronRight size={20} />
               </button>
               {currentDate !== new Date().toISOString().split('T')[0] && (
-                <span className="date-nav__today" onClick={goToToday}>
+                <button className="today-btn" onClick={goToToday}>
                   Today
-                </span>
+                </button>
               )}
             </div>
-          </div>
-          <div className="dashboard-header__right">
-            <button
-              className="btn btn-secondary"
-              onClick={generatePlan}
-              disabled={generating}
-            >
-              {generating ? 'Generating...' : 'Auto-Generate'}
-            </button>
-            {mealPlan?.exists && (
-              <button className="btn btn-ghost" onClick={clearPlan}>
-                Clear Plan
+
+            <div className="dashboard-actions">
+              <button
+                className="action-btn action-btn--generate"
+                onClick={generatePlan}
+                disabled={generating}
+              >
+                <Sparkles size={18} />
+                {generating ? 'Generating...' : 'Auto-Generate'}
               </button>
-            )}
-          </div>
-        </div>
-
-        {loading ? (
-          <div className="card" style={{ textAlign: 'center', padding: 'var(--space-12)' }}>
-            <div className="spinner" style={{ margin: '0 auto' }}></div>
-            <p style={{ marginTop: 'var(--space-4)', color: 'var(--color-text-secondary)' }}>
-              Loading your meal plan...
-            </p>
-          </div>
-        ) : (
-          <>
-            {/* Goals Summary */}
-            {userGoals ? (
-              <div className="goals-summary">
-                <div className="goals-summary__header">
-                  <h2 className="goals-summary__title">Daily Progress</h2>
-                  <span className={`plan-status plan-status--${mealPlan?.status || 'draft'}`}>
-                    {mealPlan?.status || 'draft'}
-                  </span>
-                </div>
-                <div className="goals-summary__grid">
-                  {/* Calories */}
-                  <div className="goal-item">
-                    <div className="goal-item__label">Calories</div>
-                    <div className="goal-item__value goal-item__value--calories">
-                      {totals.calories}
-                    </div>
-                    <div className="goal-item__target">/ {userGoals.calories}</div>
-                    <div className="goal-item__progress">
-                      <div
-                        className={`goal-item__progress-fill goal-item__progress-fill--calories ${
-                          totals.calories > userGoals.calories ? 'goal-item__progress-fill--over' : ''
-                        }`}
-                        style={{ width: `${getProgress(totals.calories, userGoals.calories)}%` }}
-                      />
-                    </div>
-                  </div>
-                  {/* Protein */}
-                  <div className="goal-item">
-                    <div className="goal-item__label">Protein</div>
-                    <div className="goal-item__value goal-item__value--protein">
-                      {totals.protein}g
-                    </div>
-                    <div className="goal-item__target">/ {userGoals.protein}g</div>
-                    <div className="goal-item__progress">
-                      <div
-                        className="goal-item__progress-fill goal-item__progress-fill--protein"
-                        style={{ width: `${getProgress(totals.protein, userGoals.protein)}%` }}
-                      />
-                    </div>
-                  </div>
-                  {/* Carbs */}
-                  <div className="goal-item">
-                    <div className="goal-item__label">Carbs</div>
-                    <div className="goal-item__value goal-item__value--carbs">
-                      {totals.carbs}g
-                    </div>
-                    <div className="goal-item__target">/ {userGoals.carbs}g</div>
-                    <div className="goal-item__progress">
-                      <div
-                        className="goal-item__progress-fill goal-item__progress-fill--carbs"
-                        style={{ width: `${getProgress(totals.carbs, userGoals.carbs)}%` }}
-                      />
-                    </div>
-                  </div>
-                  {/* Fats */}
-                  <div className="goal-item">
-                    <div className="goal-item__label">Fats</div>
-                    <div className="goal-item__value goal-item__value--fats">
-                      {totals.fats}g
-                    </div>
-                    <div className="goal-item__target">/ {userGoals.fats}g</div>
-                    <div className="goal-item__progress">
-                      <div
-                        className="goal-item__progress-fill goal-item__progress-fill--fats"
-                        style={{ width: `${getProgress(totals.fats, userGoals.fats)}%` }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="alert alert-info" style={{ marginBottom: 'var(--space-6)' }}>
-                Set up your nutrition goals in <a href="/settings">Settings</a> to see progress tracking.
-              </div>
-            )}
-
-            {/* Meal Sections */}
-            <div className="meal-sections">
-              {(['Breakfast', 'Lunch', 'Dinner', 'Snack'] as const).map(category => {
-                const items = getItemsByCategory(category);
-                const categoryCalories = items.reduce((sum, item) => sum + item.calories, 0);
-
-                return (
-                  <div key={category} className="meal-section">
-                    <div className="meal-section__header">
-                      <h3 className="meal-section__title">
-                        <span className="meal-section__icon">{MEAL_ICONS[category]}</span>
-                        {category}
-                      </h3>
-                      <span className="meal-section__calories">{categoryCalories} cal</span>
-                    </div>
-                    <div className="meal-section__content">
-                      {items.length === 0 ? (
-                        <div className="meal-section__empty">
-                          <p className="meal-section__empty-text">No items added yet</p>
-                          <button
-                            className="btn btn-secondary btn-sm"
-                            onClick={() => {
-                              setAddCategory(category);
-                              setShowAddModal(true);
-                            }}
-                          >
-                            + Add Item
-                          </button>
-                        </div>
-                      ) : (
-                        <>
-                          {items.map(item => (
-                            <div key={item._id} className="meal-item">
-                              <div className="meal-item__info">
-                                <div className="meal-item__name">{item.name}</div>
-                                <div className="meal-item__restaurant">{item.restaurantName}</div>
-                              </div>
-                              <div className="meal-item__macros">
-                                <div className="meal-item__macro">
-                                  <span className="meal-item__macro-value">{item.calories}</span>
-                                  <span className="meal-item__macro-label">cal</span>
-                                </div>
-                                <div className="meal-item__macro">
-                                  <span className="meal-item__macro-value">{item.protein}g</span>
-                                  <span className="meal-item__macro-label">pro</span>
-                                </div>
-                              </div>
-                              <button
-                                className="meal-item__remove"
-                                onClick={() => item._id && removeItem(item._id)}
-                                title="Remove item"
-                              >
-                                ×
-                              </button>
-                            </div>
-                          ))}
-                          <button
-                            className="btn btn-ghost btn-sm"
-                            style={{ marginTop: 'var(--space-2)' }}
-                            onClick={() => {
-                              setAddCategory(category);
-                              setShowAddModal(true);
-                            }}
-                          >
-                            + Add More
-                          </button>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
+              {mealPlan?.exists && (
+                <button className="action-btn action-btn--clear" onClick={clearPlan}>
+                  <Trash2 size={18} />
+                  Clear
+                </button>
+              )}
             </div>
-          </>
-        )}
+          </header>
+
+          {loading ? (
+            <div className="dashboard-loading">
+              <div className="spinner"></div>
+              <p>Loading your meal plan...</p>
+            </div>
+          ) : (
+            <>
+              {/* Nutrition Overview */}
+              {userGoals ? (
+                <section className="nutrition-overview">
+                  <div className="nutrition-card">
+                    <div className="nutrition-card__icon nutrition-card__icon--calories">
+                      <Flame size={24} />
+                    </div>
+                    <div className="nutrition-card__content">
+                      <span className="nutrition-card__label">Calories</span>
+                      <div className="nutrition-card__values">
+                        <span className="nutrition-card__current">{totals.calories}</span>
+                        <span className="nutrition-card__separator">/</span>
+                        <span className="nutrition-card__goal">{userGoals.calories}</span>
+                      </div>
+                      <div className="nutrition-card__progress">
+                        <div
+                          className={`nutrition-card__progress-fill nutrition-card__progress-fill--calories ${
+                            totals.calories > userGoals.calories ? 'nutrition-card__progress-fill--over' : ''
+                          }`}
+                          style={{ width: `${getProgress(totals.calories, userGoals.calories)}%` }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="nutrition-card">
+                    <div className="nutrition-card__icon nutrition-card__icon--protein">
+                      <Beef size={24} />
+                    </div>
+                    <div className="nutrition-card__content">
+                      <span className="nutrition-card__label">Protein</span>
+                      <div className="nutrition-card__values">
+                        <span className="nutrition-card__current">{totals.protein}g</span>
+                        <span className="nutrition-card__separator">/</span>
+                        <span className="nutrition-card__goal">{userGoals.protein}g</span>
+                      </div>
+                      <div className="nutrition-card__progress">
+                        <div
+                          className="nutrition-card__progress-fill nutrition-card__progress-fill--protein"
+                          style={{ width: `${getProgress(totals.protein, userGoals.protein)}%` }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="nutrition-card">
+                    <div className="nutrition-card__icon nutrition-card__icon--carbs">
+                      <Wheat size={24} />
+                    </div>
+                    <div className="nutrition-card__content">
+                      <span className="nutrition-card__label">Carbs</span>
+                      <div className="nutrition-card__values">
+                        <span className="nutrition-card__current">{totals.carbs}g</span>
+                        <span className="nutrition-card__separator">/</span>
+                        <span className="nutrition-card__goal">{userGoals.carbs}g</span>
+                      </div>
+                      <div className="nutrition-card__progress">
+                        <div
+                          className="nutrition-card__progress-fill nutrition-card__progress-fill--carbs"
+                          style={{ width: `${getProgress(totals.carbs, userGoals.carbs)}%` }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="nutrition-card">
+                    <div className="nutrition-card__icon nutrition-card__icon--fats">
+                      <Droplets size={24} />
+                    </div>
+                    <div className="nutrition-card__content">
+                      <span className="nutrition-card__label">Fats</span>
+                      <div className="nutrition-card__values">
+                        <span className="nutrition-card__current">{totals.fats}g</span>
+                        <span className="nutrition-card__separator">/</span>
+                        <span className="nutrition-card__goal">{userGoals.fats}g</span>
+                      </div>
+                      <div className="nutrition-card__progress">
+                        <div
+                          className="nutrition-card__progress-fill nutrition-card__progress-fill--fats"
+                          style={{ width: `${getProgress(totals.fats, userGoals.fats)}%` }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              ) : (
+                <div className="no-goals-banner">
+                  <AlertCircle size={20} />
+                  <span>Set up your nutrition goals in</span>
+                  <Link to="/settings" className="no-goals-link">
+                    <Settings size={16} />
+                    Settings
+                  </Link>
+                  <span>to track your progress.</span>
+                </div>
+              )}
+
+              {/* Meal Sections */}
+              <section className="meals-grid">
+                {MEAL_CATEGORIES.map(({ key, label, icon: Icon, color }) => {
+                  const items = getItemsByCategory(key);
+                  const categoryCalories = items.reduce((sum, item) => sum + item.calories, 0);
+
+                  return (
+                    <div key={key} className="meal-card">
+                      <div className="meal-card__header" style={{ '--meal-color': color } as React.CSSProperties}>
+                        <div className="meal-card__title">
+                          <div className="meal-card__icon">
+                            <Icon size={20} />
+                          </div>
+                          <h3>{label}</h3>
+                        </div>
+                        <span className="meal-card__calories">{categoryCalories} cal</span>
+                      </div>
+
+                      <div className="meal-card__body">
+                        {items.length === 0 ? (
+                          <div className="meal-card__empty">
+                            <p>No items yet</p>
+                            <button
+                              className="add-meal-btn"
+                              onClick={() => {
+                                setAddCategory(key);
+                                setShowAddModal(true);
+                              }}
+                            >
+                              <Plus size={16} />
+                              Add Item
+                            </button>
+                          </div>
+                        ) : (
+                          <div className="meal-card__items">
+                            {items.map(item => (
+                              <div key={item._id} className="meal-item">
+                                <div className="meal-item__content">
+                                  <span className="meal-item__name">{item.name}</span>
+                                  <span className="meal-item__restaurant">
+                                    <MapPin size={12} />
+                                    {item.restaurantName}
+                                  </span>
+                                </div>
+                                <div className="meal-item__stats">
+                                  <span className="meal-item__cal">{item.calories} cal</span>
+                                  <span className="meal-item__protein">{item.protein}g pro</span>
+                                </div>
+                                <button
+                                  className="meal-item__remove"
+                                  onClick={() => item._id && removeItem(item._id)}
+                                  aria-label="Remove item"
+                                >
+                                  <X size={16} />
+                                </button>
+                              </div>
+                            ))}
+                            <button
+                              className="add-more-btn"
+                              onClick={() => {
+                                setAddCategory(key);
+                                setShowAddModal(true);
+                              }}
+                            >
+                              <Plus size={14} />
+                              Add More
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </section>
+            </>
+          )}
+        </div>
 
         {/* Add Item Modal */}
         {showAddModal && (
-          <div className="add-item-modal" onClick={() => setShowAddModal(false)}>
-            <div className="add-item-modal__content" onClick={e => e.stopPropagation()}>
-              <div className="add-item-modal__header">
-                <h2 className="add-item-modal__title">Add to {addCategory}</h2>
-                <button
-                  className="add-item-modal__close"
-                  onClick={() => setShowAddModal(false)}
-                >
-                  ×
+          <div className="modal-overlay" onClick={() => setShowAddModal(false)}>
+            <div className="modal" onClick={e => e.stopPropagation()}>
+              <div className="modal__header">
+                <h2>Add to {addCategory}</h2>
+                <button className="modal__close" onClick={() => setShowAddModal(false)}>
+                  <X size={20} />
                 </button>
               </div>
-              <div className="add-item-modal__search">
+
+              <div className="modal__search">
+                <Search size={18} className="modal__search-icon" />
                 <input
                   type="text"
-                  className="form-input"
                   placeholder="Search menu items..."
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
                   autoFocus
                 />
               </div>
-              <div className="add-item-modal__list">
+
+              <div className="modal__list">
                 {getFilteredItems().slice(0, 50).map(({ item, restaurant, isFavorite }) => (
                   <div
                     key={`${restaurant._id}-${item._id}`}
-                    className={`add-item-modal__item ${isFavorite ? 'add-item-modal__item--favorite' : ''}`}
+                    className={`modal__item ${isFavorite ? 'modal__item--favorite' : ''}`}
                     onClick={() => addItem(item, restaurant)}
                   >
-                    <div className="add-item-modal__item-info">
-                      <div className="add-item-modal__item-name">
-                        {isFavorite && '⭐ '}{item.itemName}
-                      </div>
-                      <div className="add-item-modal__item-restaurant">{restaurant.name}</div>
+                    <div className="modal__item-info">
+                      <span className="modal__item-name">
+                        {isFavorite && <Star size={14} className="favorite-icon" />}
+                        {item.itemName}
+                      </span>
+                      <span className="modal__item-restaurant">
+                        <MapPin size={12} />
+                        {restaurant.name}
+                      </span>
                     </div>
-                    <div className="add-item-modal__item-macros">
-                      {item.calories} cal · {item.nutrition?.protein || 0}g protein
+                    <div className="modal__item-stats">
+                      <span>{item.calories} cal</span>
+                      <span>{item.nutrition?.protein || 0}g protein</span>
                     </div>
                   </div>
                 ))}
                 {getFilteredItems().length === 0 && (
-                  <p style={{ textAlign: 'center', color: 'var(--color-text-secondary)' }}>
-                    No items found
-                  </p>
+                  <p className="modal__empty">No items found</p>
                 )}
               </div>
             </div>
