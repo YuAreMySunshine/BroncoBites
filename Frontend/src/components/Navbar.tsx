@@ -6,7 +6,7 @@ import {
   UserButton,
   useUser,
 } from '@clerk/clerk-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import BroncoBites from '../images/BroncoBites.png';
 import '../style/components/Navbar.css';
 
@@ -16,12 +16,32 @@ const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL as string;
 export default function Navbar() {
   const { user, isLoaded } = useUser();
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Check if the current user is the admin
   const isAdmin = isLoaded && user?.primaryEmailAddress?.emailAddress === ADMIN_EMAIL;
 
   // Helper to check if link is active
   const isActive = (path: string) => location.pathname === path;
+
+  // Handle anchor navigation to home page sections
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    e.preventDefault();
+
+    if (location.pathname === '/') {
+      // Already on home page, just scroll to section
+      const element = document.getElementById(sectionId);
+      element?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // Navigate to home page first, then scroll
+      navigate('/');
+      // Wait for navigation then scroll
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        element?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  };
 
   return (
     <header className="site-header">
@@ -34,8 +54,8 @@ export default function Navbar() {
 
       <nav className="main-nav" aria-label="Main navigation">
         <div className="nav-links">
-          <a href="#features">Features</a>
-          <a href="#team">Team</a>
+          <a href="/#features" onClick={(e) => handleAnchorClick(e, 'features')}>Features</a>
+          <a href="/#team" onClick={(e) => handleAnchorClick(e, 'team')}>Team</a>
           <Link
             to="/menus"
             className={isActive('/menus') ? 'active' : ''}
