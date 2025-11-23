@@ -86,13 +86,14 @@
 
 .nav-links a.active,
 .nav-link--active {
-  color: var(--color-primary);
-  background-color: var(--color-primary-light);
+  color: white;
+  background-color: var(--color-primary);
 }
 
 [data-theme="dark"] .nav-links a.active,
 [data-theme="dark"] .nav-link--active {
-  background-color: rgba(74, 222, 128, 0.15);
+  color: var(--color-text-inverse);
+  background-color: var(--color-primary);
 }
 
 .nav-link--admin {
