@@ -270,19 +270,7 @@ router.post('/generate', requireAuth(), async (req, res) => {
       });
     }
 
-    // Sort: favorites first, then by protein-to-calorie ratio
-    allItems.sort((a, b) => {
-      if (a.isFavorite && !b.isFavorite) return -1;
-      if (!a.isFavorite && b.isFavorite) return 1;
-      const ratioA = (a.nutrition?.protein || 0) / (a.calories || 1);
-      const ratioB = (b.nutrition?.protein || 0) / (b.calories || 1);
-      return ratioB - ratioA;
-    });
-
-    // Simple greedy algorithm to fill the day
-    const selectedItems = [];
-    let currentTotals = { calories: 0, protein: 0, carbs: 0, fats: 0 };
-    const categories = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
+    // Category calorie targets (percentage of daily goal)
     const categoryTargets = {
       Breakfast: 0.25,
       Lunch: 0.35,
@@ -290,19 +278,52 @@ router.post('/generate', requireAuth(), async (req, res) => {
       Snack: 0.10
     };
 
+    // Score items based on how well they fit the goals
+    const scoreItem = (item, targetCalories) => {
+      let score = 0;
+
+      // Favor items close to target calories (within 20%)
+      const calorieRatio = item.calories / targetCalories;
+      if (calorieRatio >= 0.5 && calorieRatio <= 1.2) {
+        score += 50 - Math.abs(1 - calorieRatio) * 30;
+      }
+
+      // Bonus for favorites
+      if (item.isFavorite) score += 30;
+
+      // Bonus for good protein-to-calorie ratio
+      const proteinRatio = (item.nutrition?.protein || 0) / (item.calories || 1);
+      score += proteinRatio * 100;
+
+      return score;
+    };
+
+    const selectedItems = [];
+    let currentTotals = { calories: 0, protein: 0, carbs: 0, fats: 0 };
+    const usedItemIds = new Set();
+    const categories = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
+
     for (const category of categories) {
       const targetCalories = goals.calories * categoryTargets[category];
+      const maxItemsForCategory = category === 'Snack' ? 1 : 2;
+      let categoryItemCount = 0;
       let categoryCalories = 0;
 
-      for (const item of allItems) {
-        if (categoryCalories >= targetCalories * 0.8) break;
-        if (currentTotals.calories + item.calories > goals.calories * 1.1) continue;
+      // Sort items by score for this category's target
+      const scoredItems = allItems
+        .filter(item => !usedItemIds.has(item.itemId.toString()))
+        .map(item => ({ ...item, score: scoreItem(item, targetCalories) }))
+        .sort((a, b) => b.score - a.score);
 
-        // Check if item is already selected
-        const alreadySelected = selectedItems.some(
-          s => s.itemId.toString() === item.itemId.toString()
-        );
-        if (alreadySelected) continue;
+      for (const item of scoredItems) {
+        // Stop if we have enough items for this category
+        if (categoryItemCount >= maxItemsForCategory) break;
+
+        // Stop if adding this item would exceed daily calorie goal
+        if (currentTotals.calories + item.calories > goals.calories * 1.05) continue;
+
+        // Skip if this item alone is way too many calories for the category
+        if (item.calories > targetCalories * 1.5 && categoryItemCount === 0) continue;
 
         selectedItems.push({
           name: item.itemName,
@@ -318,11 +339,16 @@ router.post('/generate', requireAuth(), async (req, res) => {
           allergens: item.allergens || []
         });
 
+        usedItemIds.add(item.itemId.toString());
+        categoryItemCount++;
         categoryCalories += item.calories;
         currentTotals.calories += item.calories;
         currentTotals.protein += item.nutrition?.protein || 0;
         currentTotals.carbs += item.nutrition?.carbs || 0;
         currentTotals.fats += item.nutrition?.fats || 0;
+
+        // If we've hit close to the category target with one item, move on
+        if (categoryCalories >= targetCalories * 0.7) break;
       }
     }
 
