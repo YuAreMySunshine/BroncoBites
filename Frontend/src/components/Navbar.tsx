@@ -22,7 +22,7 @@ export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
 
   // Check if the current user is the admin
-  const isAdmin = isLoaded && user?.primaryEmailAddress?.emailAddress === ADMIN_EMAIL;
+  const isAdmin = isLoaded && user && user.primaryEmailAddress?.emailAddress === ADMIN_EMAIL;
 
   // Helper to check if link is active
   const isActive = (path: string) => location.pathname === path;
@@ -57,8 +57,13 @@ export default function Navbar() {
 
       <nav className="main-nav" aria-label="Main navigation">
         <div className="nav-links">
-          <a href="/#features" onClick={(e) => handleAnchorClick(e, 'features')}>Features</a>
-          <a href="/#team" onClick={(e) => handleAnchorClick(e, 'team')}>Team</a>
+          {/* Core app features - always visible */}
+          <Link
+            to="/dashboard"
+            className={isActive('/dashboard') ? 'active' : ''}
+          >
+            Dashboard
+          </Link>
           <Link
             to="/menus"
             className={isActive('/menus') ? 'active' : ''}
@@ -67,24 +72,26 @@ export default function Navbar() {
           </Link>
           <SignedIn>
             <Link
-              to="/dashboard"
-              className={isActive('/dashboard') ? 'active' : ''}
-            >
-              Dashboard
-            </Link>
-            <Link
               to="/preferences"
               className={isActive('/preferences') ? 'active' : ''}
             >
               Preferences
             </Link>
+            <Link
+              to="/settings"
+              className={isActive('/settings') ? 'active' : ''}
+            >
+              Settings
+            </Link>
           </SignedIn>
-          <Link
-            to="/settings"
-            className={isActive('/settings') ? 'active' : ''}
-          >
-            Settings
-          </Link>
+
+          {/* Show About links only when signed out or on home page */}
+          <SignedOut>
+            <span className="nav-divider" />
+            <a href="/#features" onClick={(e) => handleAnchorClick(e, 'features')}>Features</a>
+            <a href="/#team" onClick={(e) => handleAnchorClick(e, 'team')}>Team</a>
+          </SignedOut>
+
           {isAdmin && (
             <Link
               to="/admin"
@@ -115,11 +122,6 @@ export default function Navbar() {
           </SignedOut>
 
           <SignedIn>
-            {user && (
-              <span className="user-id">
-                ID: {user.id.slice(0, 8)}...
-              </span>
-            )}
             <UserButton />
           </SignedIn>
         </div>
