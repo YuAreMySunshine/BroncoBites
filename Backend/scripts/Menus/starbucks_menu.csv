@@ -1,149 +1,149 @@
 Item Name,Calories,Protein,Carbohydrates,Fats,Vegetarian,Allergens
-Iced Vanilla Protein Latte,270,29,31,4,TRUE,
-Iced Protein Matcha,300,36,29,5,TRUE,
-Vanilla Protein Latte,310,27,36,6,TRUE,
-Protein Matcha,300,28,32,7,TRUE,
-Iced Sugar-Free Vanilla Protein Latte,200,29,12,4,TRUE,
-Iced Sugar-Free Vanilla Protein Matcha,250,36,14,5,TRUE,
-Sugar-Free Vanilla Protein Latte,230,27,17,6,TRUE,
-Sugar-Free Vanilla Protein Matcha,240,28,18,7,TRUE,
-Iced Banana Cream Protein Matcha,430,24,39,20,TRUE,
-Chocolate Cream Protein Cold Brew,330,19,28,15,TRUE,
-Iced Vanilla Cream Protein Latte,390,26,27,21,TRUE,
-Blonde Roast - Starbucks® Christmas Blonde,5,1,0,0,TRUE,
-Medium Roast - Pike Place® Roast,5,1,0,0,TRUE,
-Dark Roast - Starbucks® Thanksgiving Blend,5,1,0,0,TRUE,
-Dark Roast - Caffè Verona®,5,1,0,0,TRUE,
-Decaf Roast - Pike Place® Roast,5,1,0,0,TRUE,
-Caffè Misto,110,7,10,4,TRUE,
-Caffè Americano,15,1,2,0,TRUE,
-Caffè Latte,190,13,19,7,TRUE,
-Sugar Cookie Latte,260,11,39,6,TRUE,
-Caramel Brulée Latte,410,12,61,14,TRUE,
-Gingerbread Latte,310,12,35,14,TRUE,
-Sugar Cookie Breve,460,9,36,32,TRUE,
-Pumpkin Spice Latte,390,14,52,14,TRUE,
-Pecan Crunch Oatmilk Latte,270,3,47,9,TRUE,
-Cinnamon Dolce Latte,340,12,43,14,TRUE,
-Starbucks® Blonde Vanilla Latte,250,12,37,6,TRUE,
-Cappuccino,140,9,14,5,TRUE,
-Caffè Mocha,370,14,43,15,TRUE,
-Peppermint Mocha,440,13,63,16,TRUE,
-Peppermint White Chocolate Mocha,480,14,68,18,TRUE,
-White Chocolate Mocha,390,13,47,17,TRUE,
-Espresso Macchiato,15,1,2,0,TRUE,
-Caramel Macchiato,250,10,35,7,TRUE,
-Flat White,170,9,14,9,TRUE,
-Cortado,90,5,8,4,TRUE,
-Pecan Oatmilk Cortado,120,1,22,3,TRUE,
-Brown Sugar Oatmilk Cortado,130,1,24,3,TRUE,
-Espresso,10,1,2,0,TRUE,
-Espresso Con Panna,35,1,2,2,TRUE,
-Cold Brew,5,0,0,0,TRUE,
-Pumpkin Cream Cold Brew,250,3,31,12,TRUE,
-Vanilla Sweet Cream Cold Brew,110,1,14,5,TRUE,
-Salted Caramel Cream Cold Brew,240,2,26,14,TRUE,
-Chocolate Cream Cold Brew,240,3,26,14,TRUE,
-Nondairy Vanilla Sweet Cream Cold Brew,100,1,14,4,TRUE,
-Nondairy Salted Caramel Cream Cold Brew,150,2,19,6,TRUE,
-Cold Brew with Nondairy Vanilla Sweet Cream Cold Foam,160,3,19,8,TRUE,
-Nondairy Chocolate Cream Cold Brew,190,3,24,9,TRUE,
-Nitro Cold Brew,5,0,0,0,TRUE,
-Vanilla Sweet Cream Nitro Cold Brew,70,1,4,5,TRUE,
-Iced Coffee,5,0,0,0,TRUE,
-Iced Shaken Espresso,100,4,17,2,TRUE,
-Iced Brown Sugar Oatmilk Shaken Espresso,150,2,27,4,TRUE,
-Iced Hazelnut Oatmilk Shaken Espresso,150,2,27,4,TRUE,
-Iced Espresso,10,1,2,0,TRUE,
-Iced Caffè Americano,15,1,2,0,TRUE,
-Iced Caffè Latte,130,8,13,4,TRUE,
-Iced Sugar Cookie Latte,210,8,34,4,TRUE,
-Iced Caramel Brulée Latte,400,8,56,16,TRUE,
-Iced Gingerbread Latte,300,9,30,16,TRUE,
-Iced Sugar Cookie Breve,380,7,33,24,TRUE,
-Iced Pumpkin Spice Latte,370,11,47,16,TRUE,
-Iced Pecan Crunch Oatmilk Latte,410,4,54,21,TRUE,
-Iced Starbucks® Blonde Vanilla Latte,190,7,30,4,TRUE,
-Iced Cinnamon Dolce Latte,300,8,38,13,TRUE,
-Iced Caffè Mocha,350,10,38,17,TRUE,
-Iced Peppermint Mocha,420,9,57,17,TRUE,
-Iced Peppermint White Chocolate Mocha,460,10,63,20,TRUE,
-Iced White Chocolate Mocha,390,11,44,20,TRUE,
-Iced Caramel Macchiato,250,10,37,7,TRUE,
-Iced Flat White,110,6,10,6,TRUE,
-Chai Latte,240,8,45,4,TRUE,
-Gingerbread Chai,290,7,59,3,TRUE,
-Matcha Latte,220,11,31,6,TRUE,
-London Fog Latte,180,7,29,4,TRUE,
-Honey Citrus Mint Tea,130,0,33,0,TRUE,
-Royal English Breakfast Tea,0,0,0,0,TRUE,
-Emperor's Clouds & Mist® Tea,0,0,0,0,TRUE,
-Mint Majesty® Tea,0,0,0,0,TRUE,
-Earl Grey Tea,0,0,0,0,TRUE,
-Chamomile Mint Blossom Tea,5,0,1,0,TRUE,
-Iced Chai Latte,240,7,44,4,TRUE,
-Iced Gingerbread Chai,420,9,61,17,TRUE,
-Iced Pumpkin Cream Chai,460,10,68,17,TRUE,
-Iced Matcha Latte,190,9,27,5,TRUE,
-Iced London Fog Latte,140,4,25,2,TRUE,
-Iced Black Tea,0,0,0,0,TRUE,
-Iced Black Tea Lemonade,50,0,12,0,TRUE,
-Iced Green Tea,0,0,0,0,TRUE,
-Iced Green Tea Lemonade,50,0,12,0,TRUE,
-Iced Peach Green Tea,60,0,15,0,TRUE,
-Iced Peach Green Tea Lemonade,80,0,21,0,TRUE,
-Iced Passion Tango® Tea,5,0,1,0,TRUE,
-Iced Passion Tango® Tea Lemonade,50,0,13,0,TRUE,
-Matcha Crème Frappuccino® Blended Beverage,320,5,46,13,TRUE,
-Strawberry Açaí Lemonade Refresher,140,0,35,0,TRUE,
-Mango Dragonfruit Lemonade Refresher,140,0,34,0,TRUE,
-Pink Drink,140,1,28,2,TRUE,
-Dragon Drink®,130,1,26,3,TRUE,
-Strawberry Açaí Refresher,100,0,23,0,TRUE,
-Mango Dragonfruit Refresher,90,0,22,0,TRUE,
-Caramel Ribbon Crunch Frappuccino® Blended Beverage,470,5,65,22,TRUE,
-Sugar Cookie Frappuccino® Blended Beverage,360,4,54,15,TRUE,
-Caramel Brulée Frappuccino® Blended Beverage,400,4,64,15,TRUE,
-Peppermint Mocha Frappuccino® Blended Beverage,430,5,67,16,TRUE,
-Peppermint White Chocolate Mocha Frappuccino® Blended Beverage,440,5,68,17,TRUE,
-Pumpkin Spice Frappuccino® Blended Beverage,420,6,66,15,TRUE,
-Caramel Frappuccino® Blended Beverage,380,4,55,16,TRUE,
-Mocha Cookie Crumble Frappuccino® Blended Beverage,480,6,62,24,TRUE,
-Mocha Frappuccino® Blended Beverage,370,5,54,15,TRUE,
-Coffee Frappuccino® Blended Beverage,230,3,46,3,TRUE,
-Vanilla Bean Crème Frappuccino® Blended Crème,380,5,53,16,TRUE,
-Sugar Cookie Crème Frappuccino® Blended Beverage,330,5,43,16,TRUE,
-Caramel Brulée Crème Frappuccino® Blended Beverage,380,5,54,16,TRUE,
-Peppermint Mocha Crème Frappuccino® Blended Beverage,390,6,53,18,TRUE,
-Peppermint White Chocolate Crème Frappuccino® Blended Beverage,400,6,54,18,TRUE,
-Pumpkin Spice Crème Frappuccino® Blended Beverage,360,6,47,16,TRUE,
-Strawberry Crème Frappuccino® Blended Beverage,370,5,51,16,TRUE,
-Hot Chocolate,370,14,43,16,TRUE,
-Peppermint Hot Chocolate,440,13,62,16,TRUE,
-Peppermint White Hot Chocolate,480,13,67,18,TRUE,
-Lemonade,120,0,28,0,TRUE,
-Blended Strawberry Lemonade,190,0,46,0,TRUE,
-Cold Milk,260,17,25,10,TRUE,
-Steamed Milk,200,13,19,8,TRUE,
-Vanilla Crème,350,13,44,14,TRUE,
-Caramel Brulée Crème,420,13,61,14,TRUE,
-Pumpkin Spice Crème,400,15,52,15,TRUE,
+Iced Vanilla Protein Latte,270,29,31,4,TRUE,""
+Iced Protein Matcha,300,36,29,5,TRUE,""
+Vanilla Protein Latte,310,27,36,6,TRUE,""
+Protein Matcha,300,28,32,7,TRUE,""
+Iced Sugar-Free Vanilla Protein Latte,200,29,12,4,TRUE,""
+Iced Sugar-Free Vanilla Protein Matcha,250,36,14,5,TRUE,""
+Sugar-Free Vanilla Protein Latte,230,27,17,6,TRUE,""
+Sugar-Free Vanilla Protein Matcha,240,28,18,7,TRUE,""
+Iced Banana Cream Protein Matcha,430,24,39,20,TRUE,""
+Chocolate Cream Protein Cold Brew,330,19,28,15,TRUE,""
+Iced Vanilla Cream Protein Latte,390,26,27,21,TRUE,""
+Blonde Roast - Starbucks® Christmas Blonde,5,0,0,0,TRUE,""
+Medium Roast - Pike Place® Roast,5,0,0,0,TRUE,""
+Dark Roast - Starbucks® Thanksgiving Blend,5,0,0,0,TRUE,""
+Dark Roast - Caffè Verona®,5,0,0,0,TRUE,""
+Decaf Roast - Pike Place® Roast,5,0,0,0,TRUE,""
+Caffè Misto,110,7,10,4,TRUE,""
+Caffè Americano,15,1,2,0,TRUE,""
+Caffè Latte,190,13,19,7,TRUE,""
+Sugar Cookie Latte,260,11,39,6,TRUE,""
+Caramel Brulée Latte,410,12,61,14,TRUE,""
+Gingerbread Latte,310,12,35,14,TRUE,""
+Sugar Cookie Breve,460,9,36,32,TRUE,""
+Pumpkin Spice Latte,390,14,52,14,TRUE,""
+Pecan Crunch Oatmilk Latte,270,3,47,9,TRUE,""
+Cinnamon Dolce Latte,340,12,43,14,TRUE,""
+Starbucks® Blonde Vanilla Latte,250,12,37,6,TRUE,""
+Cappuccino,140,9,14,5,TRUE,""
+Caffè Mocha,370,14,43,15,TRUE,""
+Peppermint Mocha,440,13,63,16,TRUE,""
+Peppermint White Chocolate Mocha,480,14,68,18,TRUE,""
+White Chocolate Mocha,390,13,47,17,TRUE,""
+Espresso Macchiato,15,1,2,0,TRUE,""
+Caramel Macchiato,250,10,35,7,TRUE,""
+Flat White,170,9,14,9,TRUE,""
+Cortado,90,5,8,4,TRUE,""
+Pecan Oatmilk Cortado,120,1,22,3,TRUE,""
+Brown Sugar Oatmilk Cortado,130,1,24,3,TRUE,""
+Espresso,10,1,2,0,TRUE,""
+Espresso Con Panna,35,1,2,2,TRUE,""
+Cold Brew,5,0,0,0,TRUE,""
+Pumpkin Cream Cold Brew,250,3,31,12,TRUE,""
+Vanilla Sweet Cream Cold Brew,110,1,14,5,TRUE,""
+Salted Caramel Cream Cold Brew,240,2,26,14,TRUE,""
+Chocolate Cream Cold Brew,240,3,26,14,TRUE,""
+Nondairy Vanilla Sweet Cream Cold Brew,100,1,14,4,TRUE,""
+Nondairy Salted Caramel Cream Cold Brew,150,2,19,6,TRUE,""
+Cold Brew with Nondairy Vanilla Sweet Cream Cold Foam,160,3,19,8,TRUE,""
+Nondairy Chocolate Cream Cold Brew,190,3,24,9,TRUE,""
+Nitro Cold Brew,5,0,0,0,TRUE,""
+Vanilla Sweet Cream Nitro Cold Brew,70,1,4,5,TRUE,""
+Iced Coffee,5,0,0,0,TRUE,""
+Iced Shaken Espresso,100,4,17,2,TRUE,""
+Iced Brown Sugar Oatmilk Shaken Espresso,150,2,27,4,TRUE,""
+Iced Hazelnut Oatmilk Shaken Espresso,150,2,27,4,TRUE,""
+Iced Espresso,10,1,2,0,TRUE,""
+Iced Caffè Americano,15,1,2,0,TRUE,""
+Iced Caffè Latte,130,8,13,4,TRUE,""
+Iced Sugar Cookie Latte,210,8,34,4,TRUE,""
+Iced Caramel Brulée Latte,400,8,56,16,TRUE,""
+Iced Gingerbread Latte,300,9,30,16,TRUE,""
+Iced Sugar Cookie Breve,380,7,33,24,TRUE,""
+Iced Pumpkin Spice Latte,370,11,47,16,TRUE,""
+Iced Pecan Crunch Oatmilk Latte,410,4,54,21,TRUE,""
+Iced Starbucks® Blonde Vanilla Latte,190,7,30,4,TRUE,""
+Iced Cinnamon Dolce Latte,300,8,38,13,TRUE,""
+Iced Caffè Mocha,350,10,38,17,TRUE,""
+Iced Peppermint Mocha,420,9,57,17,TRUE,""
+Iced Peppermint White Chocolate Mocha,460,10,63,20,TRUE,""
+Iced White Chocolate Mocha,390,11,44,20,TRUE,""
+Iced Caramel Macchiato,250,10,37,7,TRUE,""
+Iced Flat White,110,6,10,6,TRUE,""
+Chai Latte,240,8,45,4,TRUE,""
+Gingerbread Chai,290,7,59,3,TRUE,""
+Matcha Latte,220,11,31,6,TRUE,""
+London Fog Latte,180,7,29,4,TRUE,""
+Honey Citrus Mint Tea,130,0,33,0,TRUE,""
+Royal English Breakfast Tea,0,0,0,0,TRUE,""
+Emperor's Clouds & Mist® Tea,0,0,0,0,TRUE,""
+Mint Majesty® Tea,0,0,0,0,TRUE,""
+Earl Grey Tea,0,0,0,0,TRUE,""
+Chamomile Mint Blossom Tea,5,0,1,0,TRUE,""
+Iced Chai Latte,240,7,44,4,TRUE,""
+Iced Gingerbread Chai,420,9,61,17,TRUE,""
+Iced Pumpkin Cream Chai,460,10,68,17,TRUE,""
+Iced Matcha Latte,190,9,27,5,TRUE,""
+Iced London Fog Latte,140,4,25,2,TRUE,""
+Iced Black Tea,0,0,0,0,TRUE,""
+Iced Black Tea Lemonade,50,0,12,0,TRUE,""
+Iced Green Tea,0,0,0,0,TRUE,""
+Iced Green Tea Lemonade,50,0,12,0,TRUE,""
+Iced Peach Green Tea,60,0,15,0,TRUE,""
+Iced Peach Green Tea Lemonade,80,0,21,0,TRUE,""
+Iced Passion Tango® Tea,5,0,1,0,TRUE,""
+Iced Passion Tango® Tea Lemonade,50,0,13,0,TRUE,""
+Matcha Crème Frappuccino® Blended Beverage,320,5,46,13,TRUE,""
+Strawberry Açaí Lemonade Refresher,140,0,35,0,TRUE,""
+Mango Dragonfruit Lemonade Refresher,140,0,34,0,TRUE,""
+Pink Drink,140,1,28,2,TRUE,""
+Dragon Drink®,130,1,26,3,TRUE,""
+Strawberry Açaí Refresher,100,0,23,0,TRUE,""
+Mango Dragonfruit Refresher,90,0,22,0,TRUE,""
+Caramel Ribbon Crunch Frappuccino® Blended Beverage,470,5,65,22,TRUE,""
+Sugar Cookie Frappuccino® Blended Beverage,360,4,54,15,TRUE,""
+Caramel Brulée Frappuccino® Blended Beverage,400,4,64,15,TRUE,""
+Peppermint Mocha Frappuccino® Blended Beverage,430,5,67,16,TRUE,""
+Peppermint White Chocolate Mocha Frappuccino® Blended Beverage,440,5,68,17,TRUE,""
+Pumpkin Spice Frappuccino® Blended Beverage,420,6,66,15,TRUE,""
+Caramel Frappuccino® Blended Beverage,380,4,55,16,TRUE,""
+Mocha Cookie Crumble Frappuccino® Blended Beverage,480,6,62,24,TRUE,""
+Mocha Frappuccino® Blended Beverage,370,5,54,15,TRUE,""
+Coffee Frappuccino® Blended Beverage,230,3,46,3,TRUE,""
+Vanilla Bean Crème Frappuccino® Blended Crème,380,5,53,16,TRUE,""
+Sugar Cookie Crème Frappuccino® Blended Beverage,330,5,43,16,TRUE,""
+Caramel Brulée Crème Frappuccino® Blended Beverage,380,5,54,16,TRUE,""
+Peppermint Mocha Crème Frappuccino® Blended Beverage,390,6,53,18,TRUE,""
+Peppermint White Chocolate Crème Frappuccino® Blended Beverage,400,6,54,18,TRUE,""
+Pumpkin Spice Crème Frappuccino® Blended Beverage,360,6,47,16,TRUE,""
+Strawberry Crème Frappuccino® Blended Beverage,370,5,51,16,TRUE,""
+Hot Chocolate,370,14,43,16,TRUE,""
+Peppermint Hot Chocolate,440,13,62,16,TRUE,""
+Peppermint White Hot Chocolate,480,13,67,18,TRUE,""
+Lemonade,120,0,28,0,TRUE,""
+Blended Strawberry Lemonade,190,0,46,0,TRUE,""
+Cold Milk,260,17,25,10,TRUE,""
+Steamed Milk,200,13,19,8,TRUE,""
+Vanilla Crème,350,13,44,14,TRUE,""
+Caramel Brulée Crème,420,13,61,14,TRUE,""
+Pumpkin Spice Crème,400,15,52,15,TRUE,""
 "Egg, Pesto & Mozzarella Sandwich",390,21,36,16,TRUE,"E,M,W"
 "Bacon, Gouda & Egg Sandwich",360,18,35,18,FALSE,"E,M,W"
 "Double-Smoked Bacon, Cheddar & Egg Sandwich",500,21,43,27,FALSE,"E,M,W"
 "Sausage, Cheddar & Egg Sandwich",480,18,34,29,FALSE,"E,M,W"
 "Turkey Bacon, Cheddar & Egg White Sandwich",230,17,28,5,FALSE,"E,M,W"
 Impossible™ Breakfast Sandwich,420,21,36,22,TRUE,"E,M,S,T,W,SS"
-Avocado Spread,90,1,5,8,TRUE,
+Avocado Spread,90,1,5,8,TRUE,""
 "Bacon, Sausage & Egg Wrap",640,27,57,33,FALSE,"E,M,W"
 "Spinach, Feta & Egg White Wrap",290,20,34,8,TRUE,"E,M,S,W,SS"
 Bacon & Gruyère Egg Bites,300,19,9,20,FALSE,"E,M"
 Italian Sausage Egg Bites,240,15,10,19,FALSE,"E,M"
 Egg White & Roasted Red Pepper Egg Bites,170,12,11,8,TRUE,"E,M"
 "Potato, Cheddar & Chive Bakes",210,12,11,13,TRUE,"E,M"
-Rolled & Steel-Cut Oatmeal,160,5,28,2,TRUE,
-Ellenos Strawberry Shortcake Greek Yogurt,0,0,0,0,TRUE,
-Ellenos Muesli Yogurt,0,0,0,0,TRUE,
+Rolled & Steel-Cut Oatmeal,160,5,28,2,TRUE,""
+Ellenos Strawberry Shortcake Greek Yogurt,0,0,0,0,TRUE,""
+Ellenos Muesli Yogurt,0,0,0,0,TRUE,""
 Cinnamon Pull-Apart,300,6,38,13,TRUE,"M,S,W"
 Sugar Plum Cheese Danish,330,7,42,15,TRUE,"M,W"
 Cheese Danish,290,7,33,14,TRUE,"E,M,W"
