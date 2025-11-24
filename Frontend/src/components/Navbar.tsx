@@ -85,13 +85,6 @@ export default function Navbar() {
             </Link>
           </SignedIn>
 
-          {/* Show About links only when signed out or on home page */}
-          <SignedOut>
-            <span className="nav-divider" />
-            <a href="/#features" onClick={(e) => handleAnchorClick(e, 'features')}>Features</a>
-            <a href="/#team" onClick={(e) => handleAnchorClick(e, 'team')}>Team</a>
-          </SignedOut>
-
           {isAdmin && (
             <Link
               to="/admin"
