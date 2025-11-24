@@ -45,9 +45,9 @@ Fajita Vegan Bowl,530,17,79,17,TRUE,
 Fajita Veggies (2 oz.),40,1,3,3,TRUE,
 Fanta Orange (Reg),270,0,73,0,TRUE,
 Fanta Orange (Lrg),410,0,110,0,TRUE,
-Flour Tortilla (5.5"),70,2,12,1.5,TRUE,W
-Flour Tortilla (10"),210,6,36,5,TRUE,W
-Flour Tortilla (12.5"),300,8,52,7,TRUE,W
+"Flour Tortilla (5.5"")",70,2,12,1.5,TRUE,W
+"Flour Tortilla (10"")",210,6,36,5,TRUE,W
+"Flour Tortilla (12.5"")",300,8,52,7,TRUE,W
 Gold Peak Black Ice Tea,0,0,0,0,TRUE,
 Gold Peak Classic Blend Tea (Reg),10,0,3,0,TRUE,
 Gold Peak Classic Blend Tea (Lrg),15,0,4,0,TRUE,
@@ -167,5 +167,5 @@ Milk Chocolate lowfat 1% (7 fl. oz.) (CA Standards),140,8,22,2,TRUE,M
 Milk Chocolate lowfat 1% (8 fl. oz.) (Fed Standards),160,9,25,2.5,TRUE,M
 Milk White lowfat 1% (7 fl. oz.) (CA Standards),90,7,11,2,TRUE,M
 Milk White lowfat 1% (8 fl. oz.) (Fed Standards),100,8,12,2.5,TRUE,M
-Double Chocolate Brownie (US),390,6,49,19,FALSE,"S,E,M,W,G"
-Chocolate Chunk Cookie (US),250,3,33,12,FALSE,"S,E,M,W,G"
+Double Chocolate Brownie (US),390,6,49,19,FALSE,"S,E,M,W"
+Chocolate Chunk Cookie (US),250,3,33,12,FALSE,"S,E,M,W"

@@ -15,11 +15,11 @@ Steak & Cheese,360,24,43,10,FALSE,"W,M"
 Sweet Onion Chicken Teriyaki,430,24,59,5,FALSE,"W,M,S"
 Tuna (includes Mayonnaise),470,20,42,22,FALSE,"E,F,M,S,W"
 Turkey Breast,270,19,44,5,FALSE,"W,M"
-Veggie Delite®,210,10,40,3,TRUE,"W"
+Veggie Delite®,210,10,40,3,TRUE,W
 Veggie Patty,390,16,57,12,TRUE,"W,S"
 Great Canadian Club,530,27,49,20,FALSE,"W,M"
 Smashed Avocado & Turkey,600,24,50,28,FALSE,"W,M"
-Big Veggie,330,20,60,25,TRUE,"W"
+Big Veggie,330,20,60,25,TRUE,W
 Grilled Chicken,290,21,41,4,FALSE,"W,M"
 Honey Mustard Ham,370,13,42,13,FALSE,"W,M,S"
 Turkey Ranch,420,14,40,15,FALSE,"W,M"
@@ -30,7 +30,7 @@ Classic Rotisserie-Style Chicken,500,29,56,29,FALSE,"W,M"
 Classic Steak,570,26,59,27,FALSE,"W,M"
 Classic Sweet Onion Chicken Teriyaki,430,27,79,12,FALSE,"W,M,S"
 Classic Tuna,550,23,56,45,FALSE,"E,F,M,S,W"
-Classic Veggie Delite,330,16,73,30,TRUE,"W"
+Classic Veggie Delite,330,16,73,30,TRUE,W
 Southwest Steak & Avocado,620,26,62,34,FALSE,"W,M"
 Bacon & Egg,440,22,44,31,FALSE,"E,M,W"
 Cheese & Egg,360,19,44,28,FALSE,"E,M,W"
@@ -41,48 +41,48 @@ English Muffin,220,5,23,1,TRUE,"W,M"
 Ciabatta,220,6,36,5,TRUE,"W,M"
 Potato Bun,200,3,20,2,TRUE,"W,M"
 Wrap,330,8,50,8,TRUE,"W,M"
-Barrel Bourbon BBQ Sauce,30,0,5,0,TRUE,"S"
+Barrel Bourbon BBQ Sauce,30,0,5,0,TRUE,S
 Chipotle Southwest Sauce,100,0,1,6,TRUE,"E,M,S"
 Garlic Aioli Sauce,110,0,1,7,TRUE,"E,M,S"
 House Sandwich Sauce,120,0,1,8,TRUE,"E,M,S"
 Mayonnaise,110,0,0,11,TRUE,"E,S"
-Nashville-Style Hot Sauce,40,0,3,3,TRUE,"S"
+Nashville-Style Hot Sauce,40,0,3,3,TRUE,S
 Peppercorn Ranch Sauce,120,0,1,8,TRUE,"E,M,S"
-Piri Piri Style Sauce,60,0,1,4,TRUE,"S"
+Piri Piri Style Sauce,60,0,1,4,TRUE,S
 Smoky Honey Mustard Sauce,70,0,3,5,TRUE,"E,S"
-Sweet Onion Teriyaki Sauce,80,0,8,0,TRUE,"S"
-Wild Rice (4 oz),150,4,41,3,TRUE,""
-Salt,0,0,0,0,TRUE,""
-Pepper,0,0,0,0,TRUE,""
-Banana Peppers,0,0,0,0,TRUE,""
-Cucumbers,5,0,1,0,TRUE,""
-Green Peppers,5,0,0,0,TRUE,""
-Jalapeno Peppers,5,0,0,0,TRUE,""
-Lettuce,5,0,0,0,TRUE,""
-Pickles,5,0,0,0,TRUE,""
-Tomatoes,10,0,1,0,TRUE,""
-Canadian Cheddar,110,3,0,4,FALSE,"M"
-Habanero Jack,110,3,0,4,FALSE,"M"
-Swiss,120,4,0,4,FALSE,"M"
-Bacon Slices (2 strips),80,4,0,4,FALSE,""
-Beef Brisket,250,20,2,15,FALSE,""
-Cold Cut Combo Meats,240,9,3,16,FALSE,""
+Sweet Onion Teriyaki Sauce,80,0,8,0,TRUE,S
+Wild Rice (4 oz),150,4,41,3,TRUE,
+Salt,0,0,0,0,TRUE,
+Pepper,0,0,0,0,TRUE,
+Banana Peppers,0,0,0,0,TRUE,
+Cucumbers,5,0,1,0,TRUE,
+Green Peppers,5,0,0,0,TRUE,
+Jalapeno Peppers,5,0,0,0,TRUE,
+Lettuce,5,0,0,0,TRUE,
+Pickles,5,0,0,0,TRUE,
+Tomatoes,10,0,1,0,TRUE,
+Canadian Cheddar,110,3,0,4,FALSE,M
+Habanero Jack,110,3,0,4,FALSE,M
+Swiss,120,4,0,4,FALSE,M
+Bacon Slices (2 strips),80,4,0,4,FALSE,
+Beef Brisket,250,20,2,15,FALSE,
+Cold Cut Combo Meats,240,9,3,16,FALSE,
 Meatballs with Marinara,300,15,12,15,FALSE,"M,W"
 Pepperoni (3 slices),150,4,1,7,FALSE,"M,W"
-Rotisserie-Style Chicken,220,17,1,3,FALSE,""
+Rotisserie-Style Chicken,220,17,1,3,FALSE,
 Salami,240,11,2,20,FALSE,"M,W"
-Steak (no cheese),250,14,3,5,FALSE,"W"
+Steak (no cheese),250,14,3,5,FALSE,W
 Tuna (includes Mayonnaise),470,11,0,20,FALSE,"E,F,M,S,W"
-Turkey Breast,270,9,4,2,FALSE,"W"
+Turkey Breast,270,9,4,2,FALSE,W
 Veggie Patty,390,6,17,9,TRUE,"W,S"
 Chocolate Chunk Cookie,210,2,29,10,FALSE,"E,M,S,W"
 Double Chocolate Cookie,210,2,29,9,FALSE,"E,M,S,W"
 Chocolate Chip with M&M® Candies Cookie,220,3,29,9,FALSE,"E,M,S,W,T"
 Oatmeal Raisin Cookie,210,3,30,8,FALSE,"E,M,S,W"
 White Chip Macadamia Nut Cookie,220,2,28,10,FALSE,"E,M,S,W,T"
-Fiesta Beans & Corn Side Salad,150,6,19,5,TRUE,""
+Fiesta Beans & Corn Side Salad,150,6,19,5,TRUE,
 Potato Rings (4),180,2,19,8,TRUE,"W,M"
-Beef & Barley Soup,90,2,9,0,FALSE,"W"
+Beef & Barley Soup,90,2,9,0,FALSE,W
 Chicken Noodle Soup,100,7,9,2,FALSE,"E,W"
 Cream of Broccoli Soup,180,5,23,5,FALSE,"M,W"
 Cream of Mushroom Soup,150,2,10,10,FALSE,"M,W"

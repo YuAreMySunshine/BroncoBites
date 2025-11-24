@@ -1,0 +1,53 @@
+Item Name,Calories,Protein,Carbohydrates,Fats,Vegetarian,Allergens
+Cheeseburger (1 each),423,21,28,12,FALSE,"M,S,W"
+Hamburger (1 each),353,18,27,10,FALSE,W
+Malibu Vegan Burger (1 each),371,12,48,8,TRUE,"S,W"
+Seasoned Fries (3 ounce cooked weight),141,1,23,7,TRUE,
+Korean Pork Belly Pizza (1 slice),481,23,62,12,FALSE,"M,S,SS,W"
+Cheese Pizza (1 slice),237,10,35,9,TRUE,"E,M,S,W"
+Veggie Supreme Pizza (Vegan) (1 slice),120,4,20,5,TRUE,
+Penne Pasta (4 ounce cooked weight),199,7,42,2,TRUE,"E,W"
+Meatballs (2 ball),77,4,3,5,FALSE,"M,S,W"
+Marinara Sauce (2 oz),32,1,5,0,TRUE,
+Creamy Pesto Sauce (2.5 oz),183,4,5,15,TRUE,"M,T"
+Garlic Bread (1 each),139,3,15,6,TRUE,"M,S,W"
+Hawaiian "Loco Moco" Bowl (8 ounce cooked weight),481,17,54,10,FALSE,"E,F,M,S,W"
+Hawaiian Portabella Moco Bowl (vegan) (8 ounce cooked weight),115,2,22,1,TRUE,"M,S,W"
+Jasmine Rice (3 ounce cooked weight),109,2,25,0,TRUE,
+Mac Salad (2 ounce cooked weight),217,7,46,0,TRUE,"E,W"
+Pork Al Pastor (3 oz),130,12,1,3,FALSE,
+Cilantro Lime Chicken (4 ounce cooked weight),172,22,1,1,FALSE,
+Chile Relleno (Vegetarian) (3 ounce cooked weight),164,6,5,6,TRUE,"E,M,S,W"
+Brown Rice (3 ounce cooked weight),139,3,30,0,TRUE,
+Cilantro Lime Rice (3 ounce cooked weight),92,2,20,0,TRUE,
+Black Beans (3 ounce cooked weight),89,6,16,0,TRUE,
+Pico De Gallo (1 oz),5,0,1,0,TRUE,
+Guacamole (1 oz),45,1,2,4,TRUE,
+Wheat Slice (1 slice),90,2,13,0,TRUE,W
+White Slice (1 slice),71,2,13,0,TRUE,W
+Sourdough Slice (1 slice),61,2,12,0,TRUE,W
+3 Seeded Keto Slice (1 slice),51,8,13,0,TRUE,W
+English Muffin (1 each),99,4,20,0,TRUE,"M,W"
+Roast Beef (1 oz),70,10,0,1,FALSE,
+Bacon (1 piece),200,13,0,5,FALSE,
+Salami (1 oz),117,6,1,4,FALSE,
+Turkey (1 slice),13,3,0,0,FALSE,
+Tuna (1 oz),30,7,0,0,FALSE,F
+Ham (1 oz),29,4,0,0,FALSE,
+Cheddar (1 slice),80,5,1,4,TRUE,M
+Provolone (1 slice),53,4,0,3,TRUE,M
+Pepper Jack (1 slice),80,5,1,4,TRUE,M
+Swiss (1 oz),111,8,0,5,TRUE,M
+Vegan Cheddar (1 slice),50,0,4,2,TRUE,
+Tomato (1 case),6,0,1,0,TRUE,
+Green Leaf Lettuce (1 oz),7,0,0,0,TRUE,
+Olive Black Ripe Sliced (1 case),45,0,2,4,TRUE,
+Pepper Jalapeno Sliced (1 case),5,0,1,0,TRUE,
+Hummus (1 lbs),30,1,3,0,TRUE,"S,SS"
+Avocado (1 oz),45,1,2,4,TRUE,
+Mayonnaise (1 oz),90,0,0,10,TRUE,E
+Ranch (1 fl oz),137,0,2,15,TRUE,"E,M"
+Vegenaise (1 oz),6,0,0,0,TRUE,S
+California Sushi Roll (3 piece),249,5,54,0,TRUE,"F,S,W"
+Vegan Sushi Roll (3 piece),235,4,52,0,TRUE,
+Orange Chicken and Broccoli Bowl (8 ounce cooked weight),143,2,34,5,FALSE,"E,M,S,SS,W"

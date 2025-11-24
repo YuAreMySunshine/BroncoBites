@@ -1,37 +1,37 @@
 Item Name,Calories,Protein,Carbohydrates,Fats,Vegetarian,Allergens
-Chicken Avocado Greens,503,39,17,32,FALSE,
-Vegan Salad,379,9,33,17.4,TRUE,
-Tuna Nicoise,570,25,30,38.2,FALSE,
-Chicken Feta Sandwich,570,49,138,28,FALSE,
-Creek Kofta Sandwich,613,54,135,17.6,FALSE,
-Moroccan Sausage Sandwich,652,31,96,40,FALSE,
-Flying Avocado Sandwich,656,48,118,36,FALSE,
-Mother Earth Bowl,668,49,30,44,TRUE,
-Marrakech Express Bowl,615,54,54.4,21,FALSE,
-Harissa Chicken Bowl,608,40,46.6,30,FALSE,
-Brown Rice,120,3,21,1,TRUE,
-Quinoa,109,4,21,3,TRUE,
-Cucumber,15,0,3,0,TRUE,
-Olives,15,0,1,1,TRUE,
-Onions,16,0,3,0,TRUE,
-Tomatoes,18,0,3,0,TRUE,
-Avocado,120,1,12,12,TRUE,
-Whole Egg,65,7,0,4,FALSE,
-Lemon Wedge,2,0,0,0,TRUE,
-Cilantro,1,0,0,0,TRUE,
-Basil,10,0,0,0,TRUE,
-Arugula,25,2,3,0,TRUE,
-Spinach,22,3,3,0,TRUE,
-Romaine Lettuce,17,1,2,0,TRUE,
-Hemp Seeds,51,5,0,4.3,TRUE,
-Caramelized Onions,25,2,3,1,TRUE,
-Manchego Cheese,120,7,0,10,FALSE,
-Feta Cheese,38,3,0,3,FALSE,
-Smoked Gouda Cheese,110,7,0,9,FALSE,
-Turkey (4oz),128,15,0,3.4,FALSE,
-Kofta (5oz),303,35,0,9.7,FALSE,
-Chicken (4oz),266,35,0,13,FALSE,
-Merguez (5oz),343,20,2.4,24,FALSE,
-Avocado Vinaigrette,90,0,0,10,TRUE,
-Harissa Mayo,158,0,0,16.4,FALSE,
-Lemon Cilantro Vinaigrette,63,0,0,6.8,TRUE,
+Chicken Avocado Greens,503,39,17,32,FALSE,"E,M"
+Vegan Salad,379,9,33,17.4,TRUE,"S,W"
+Tuna Nicoise,570,25,30,38.2,FALSE,"F,E"
+Chicken Feta Sandwich,570,49,138,28,FALSE,"W,M,E"
+Creek Kofta Sandwich,613,54,135,17.6,FALSE,"W,M"
+Moroccan Sausage Sandwich,652,31,96,40,FALSE,"W,M"
+Flying Avocado Sandwich,656,48,118,36,FALSE,"W,M"
+Mother Earth Bowl,668,49,30,44,TRUE,"S,W"
+Marrakech Express Bowl,615,54,54.4,21,FALSE,"W,S"
+Harissa Chicken Bowl,608,40,46.6,30,FALSE,"S,W"
+Brown Rice,120,3,21,1,TRUE,""
+Quinoa,109,4,21,3,TRUE,""
+Cucumber,15,0,3,0,TRUE,""
+Olives,15,0,1,1,TRUE,""
+Onions,16,0,3,0,TRUE,""
+Tomatoes,18,0,3,0,TRUE,""
+Avocado,120,1,12,12,TRUE,""
+Whole Egg,65,7,0,4,FALSE,"E"
+Lemon Wedge,2,0,0,0,TRUE,""
+Cilantro,1,0,0,0,TRUE,""
+Basil,10,0,0,0,TRUE,""
+Arugula,25,2,3,0,TRUE,""
+Spinach,22,3,3,0,TRUE,""
+Romaine Lettuce,17,1,2,0,TRUE,""
+Hemp Seeds,51,5,0,4.3,TRUE,"S"
+Caramelized Onions,25,2,3,1,TRUE,""
+Manchego Cheese,120,7,0,10,FALSE,"M"
+Feta Cheese,38,3,0,3,FALSE,"M"
+Smoked Gouda Cheese,110,7,0,9,FALSE,"M"
+Turkey (4oz),128,15,0,3.4,FALSE,""
+Kofta (5oz),303,35,0,9.7,FALSE,"W,M"
+Chicken (4oz),266,35,0,13,FALSE,""
+Merguez (5oz),343,30,2.4,24,FALSE,"W,M"
+Avocado Vinaigrette,90,0,0,10,TRUE,"S"
+Harissa Mayo,158,0,0,16.4,FALSE,"E"
+Lemon Cilantro Vinaigrette,63,0,0,6.8,TRUE,"S"
