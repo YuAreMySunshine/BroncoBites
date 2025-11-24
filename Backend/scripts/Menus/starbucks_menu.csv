@@ -1,0 +1,218 @@
+Item Name,Calories,Protein,Carbohydrates,Fats,Vegetarian,Allergens
+Iced Vanilla Protein Latte,270,29,31,4,FALSE,
+Iced Protein Matcha,300,36,29,5,FALSE,
+Vanilla Protein Latte,310,27,36,6,FALSE,
+Protein Matcha,300,28,32,7,FALSE,
+Iced Sugar-Free Vanilla Protein Latte,200,29,12,4,FALSE,
+Iced Sugar-Free Vanilla Protein Matcha,250,36,14,5,FALSE,
+Sugar-Free Vanilla Protein Latte,230,27,17,6,FALSE,
+Sugar-Free Vanilla Protein Matcha,240,28,18,7,FALSE,
+Iced Banana Cream Protein Matcha,430,24,39,20,FALSE,
+Chocolate Cream Protein Cold Brew,330,19,28,15,FALSE,
+Iced Vanilla Cream Protein Latte,390,26,27,21,FALSE,
+Blonde Roast - Starbucks® Christmas Blonde,5,1,0,0,FALSE,
+Medium Roast - Pike Place® Roast,5,1,0,0,FALSE,
+Dark Roast - Starbucks® Thanksgiving Blend,5,1,0,0,FALSE,
+Dark Roast - Caffè Verona®,5,1,0,0,FALSE,
+Decaf Roast - Pike Place® Roast,5,1,0,0,FALSE,
+Caffè Misto,110,7,10,4,FALSE,
+Caffè Americano,15,1,2,0,FALSE,
+Caffè Latte,190,13,19,7,FALSE,
+Sugar Cookie Latte,260,11,39,6,FALSE,
+Caramel Brulée Latte,410,12,61,14,FALSE,
+Gingerbread Latte,310,12,35,14,FALSE,
+Sugar Cookie Breve,460,9,36,32,FALSE,
+Pumpkin Spice Latte,390,14,52,14,FALSE,
+Pecan Crunch Oatmilk Latte,270,3,47,9,FALSE,
+Cinnamon Dolce Latte,340,12,43,14,FALSE,
+Starbucks® Blonde Vanilla Latte,250,12,37,6,FALSE,
+Cappuccino,140,9,14,5,FALSE,
+Caffè Mocha,370,14,43,15,FALSE,
+Peppermint Mocha,440,13,63,16,FALSE,
+Peppermint White Chocolate Mocha,480,14,68,18,FALSE,
+White Chocolate Mocha,390,13,47,17,FALSE,
+Espresso Macchiato,15,1,2,0,FALSE,
+Caramel Macchiato,250,10,35,7,FALSE,
+Flat White,170,9,14,9,FALSE,
+Cortado,90,5,8,4,FALSE,
+Pecan Oatmilk Cortado,120,1,22,3,FALSE,
+Brown Sugar Oatmilk Cortado,130,1,24,3,FALSE,
+Espresso,10,1,2,0,FALSE,
+Espresso Con Panna,35,1,2,2,FALSE,
+Coffee Traveler – Pike Place® Roast,5,1,0,0,FALSE,
+Coffee Traveler – Decaf Pike Place® Roast,5,1,0,0,FALSE,
+Cold Brew,5,0,0,0,FALSE,
+Pumpkin Cream Cold Brew,250,3,31,12,FALSE,
+Vanilla Sweet Cream Cold Brew,110,1,14,5,FALSE,
+Salted Caramel Cream Cold Brew,240,2,26,14,FALSE,
+Chocolate Cream Cold Brew,240,3,26,14,FALSE,
+Nondairy Vanilla Sweet Cream Cold Brew,100,1,14,4,FALSE,
+Nondairy Salted Caramel Cream Cold Brew,150,2,19,6,FALSE,
+Cold Brew with Nondairy Vanilla Sweet Cream Cold Foam,160,3,19,8,FALSE,
+Nondairy Chocolate Cream Cold Brew,190,3,24,9,FALSE,
+Nitro Cold Brew,5,0,0,0,FALSE,
+Vanilla Sweet Cream Nitro Cold Brew,70,1,4,5,FALSE,
+Iced Coffee,5,0,0,0,FALSE,
+Iced Shaken Espresso,100,4,17,2,FALSE,
+Iced Brown Sugar Oatmilk Shaken Espresso,150,2,27,4,FALSE,
+Iced Hazelnut Oatmilk Shaken Espresso,150,2,27,4,FALSE,
+Iced Espresso,10,1,2,0,FALSE,
+Iced Caffè Americano,15,1,2,0,FALSE,
+Iced Caffè Latte,130,8,13,4,FALSE,
+Iced Sugar Cookie Latte,210,8,34,4,FALSE,
+Iced Caramel Brulée Latte,400,8,56,16,FALSE,
+Iced Gingerbread Latte,300,9,30,16,FALSE,
+Iced Sugar Cookie Breve,380,7,33,24,FALSE,
+Iced Pumpkin Spice Latte,370,11,47,16,FALSE,
+Iced Pecan Crunch Oatmilk Latte,410,4,54,21,FALSE,
+Iced Starbucks® Blonde Vanilla Latte,190,7,30,4,FALSE,
+Iced Cinnamon Dolce Latte,300,8,38,13,FALSE,
+Iced Caffè Mocha,350,10,38,17,FALSE,
+Iced Peppermint Mocha,420,9,57,17,FALSE,
+Iced Peppermint White Chocolate Mocha,460,10,63,20,FALSE,
+Iced White Chocolate Mocha,390,11,44,20,FALSE,
+Iced Caramel Macchiato,250,10,37,7,FALSE,
+Iced Flat White,110,6,10,6,FALSE,
+Chai Latte,240,8,45,4,FALSE,
+Gingerbread Chai,290,7,59,3,FALSE,
+Matcha Latte,220,11,31,6,FALSE,
+London Fog Latte,180,7,29,4,FALSE,
+Honey Citrus Mint Tea,130,0,33,0,FALSE,
+Royal English Breakfast Tea,0,0,0,0,FALSE,
+Emperor's Clouds & Mist® Tea,0,0,0,0,FALSE,
+Mint Majesty® Tea,0,0,0,0,FALSE,
+Earl Grey Tea,0,0,0,0,FALSE,
+Chamomile Mint Blossom Tea,5,0,1,0,FALSE,
+Iced Chai Latte,240,7,44,4,FALSE,
+Iced Gingerbread Chai,420,9,61,17,FALSE,
+Iced Pumpkin Cream Chai,460,10,68,17,FALSE,
+Iced Matcha Latte,190,9,27,5,FALSE,
+Iced London Fog Latte,140,4,25,2,FALSE,
+Iced Black Tea,0,0,0,0,FALSE,
+Iced Black Tea Lemonade,50,0,12,0,FALSE,
+Iced Green Tea,0,0,0,0,FALSE,
+Iced Green Tea Lemonade,50,0,12,0,FALSE,
+Iced Peach Green Tea,60,0,15,0,FALSE,
+Iced Peach Green Tea Lemonade,80,0,21,0,FALSE,
+Iced Passion Tango® Tea,5,0,1,0,FALSE,
+Iced Passion Tango® Tea Lemonade,50,0,13,0,FALSE,
+Matcha Crème Frappuccino® Blended Beverage,320,5,46,13,FALSE,
+Strawberry Açaí Lemonade Refresher,140,0,35,0,FALSE,
+Mango Dragonfruit Lemonade Refresher,140,0,34,0,FALSE,
+Pink Drink,140,1,28,2,FALSE,
+Dragon Drink®,130,1,26,3,FALSE,
+Strawberry Açaí Refresher,100,0,23,0,FALSE,
+Mango Dragonfruit Refresher,90,0,22,0,FALSE,
+Caramel Ribbon Crunch Frappuccino® Blended Beverage,470,5,65,22,FALSE,
+Sugar Cookie Frappuccino® Blended Beverage,360,4,54,15,FALSE,
+Caramel Brulée Frappuccino® Blended Beverage,400,4,64,15,FALSE,
+Peppermint Mocha Frappuccino® Blended Beverage,430,5,67,16,FALSE,
+Peppermint White Chocolate Mocha Frappuccino® Blended Beverage,440,5,68,17,FALSE,
+Pumpkin Spice Frappuccino® Blended Beverage,420,6,66,15,FALSE,
+Caramel Frappuccino® Blended Beverage,380,4,55,16,FALSE,
+Mocha Cookie Crumble Frappuccino® Blended Beverage,480,6,62,24,FALSE,
+Mocha Frappuccino® Blended Beverage,370,5,54,15,FALSE,
+Coffee Frappuccino® Blended Beverage,230,3,46,3,FALSE,
+Vanilla Bean Crème Frappuccino® Blended Crème,380,5,53,16,FALSE,
+Sugar Cookie Crème Frappuccino® Blended Beverage,330,5,43,16,FALSE,
+Caramel Brulée Crème Frappuccino® Blended Beverage,380,5,54,16,FALSE,
+Peppermint Mocha Crème Frappuccino® Blended Beverage,390,6,53,18,FALSE,
+Peppermint White Chocolate Crème Frappuccino® Blended Beverage,400,6,54,18,FALSE,
+Pumpkin Spice Crème Frappuccino® Blended Beverage,360,6,47,16,FALSE,
+Strawberry Crème Frappuccino® Blended Beverage,370,5,51,16,FALSE,
+Hot Chocolate,370,14,43,16,FALSE,
+Peppermint Hot Chocolate,440,13,62,16,FALSE,
+Peppermint White Hot Chocolate,480,13,67,18,FALSE,
+Lemonade,120,0,28,0,FALSE,
+Blended Strawberry Lemonade,190,0,46,0,FALSE,
+Cold Milk,260,17,25,10,FALSE,
+Steamed Milk,200,13,19,8,FALSE,
+Vanilla Crème,350,13,44,14,FALSE,
+Caramel Brulée Crème,420,13,61,14,FALSE,
+Pumpkin Spice Crème,400,15,52,15,FALSE,
+Ethos® Water,0,0,0,0,FALSE,
+Spindrift® Lemon Sparkling Water,0,0,0,0,FALSE,
+Spindrift® Raspberry Lime Sparkling Water,9,0,2,0,FALSE,
+DASANI® Water,0,0,0,0,FALSE,
+Hawai'i Volcanic™ Water,0,0,0,0,FALSE,
+Koia® Cacao Bean Protein Shake,190,18,13,7,FALSE,
+Koia® Vanilla Bean Protein Shake,190,18,13,7,FALSE,
+Koia® Cacao Bean Nutrition Shake,180,20,12,6,FALSE,
+Koia® Vanilla Bean Nutrition Shake,180,20,12,6,FALSE,
+Horizon Organic® Lowfat Chocolate Milk,0,0,0,0,FALSE,
+Horizon Organic® Lowfat Milk,0,0,0,0,FALSE,
+Sol-ti® GINGER SuperShot®,20,1,4,0,FALSE,
+Sol-ti® TURMERIC SuperShot®,20,1,4,0,FALSE,
+Evolution Fresh® Pure Orange,170,3,39,0,FALSE,
+Evolution Fresh® Organic Defense Up®,170,2,41,0,FALSE,
+Evolution Fresh® Organic Super Fruit Greens,180,3,41,0,FALSE,
+Tree Top® Organic Apple Juice,120,0,29,0,FALSE,
+Olipop® Classic Root Beer,0,0,0,0,FALSE,
+Olipop® Classic Grape,0,0,0,0,FALSE,
+Starbucks® Iced Energy Blueberry Lemonade,5,0,0,0,FALSE,
+Starbucks® Iced Energy Tropical Peach,5,0,0,0,FALSE,
+"Egg, Pesto & Mozzarella Sandwich",390,21,36,16,FALSE,"E, M, W"
+"Bacon, Gouda & Egg Sandwich",360,18,35,18,FALSE,"E, M, W"
+"Double-Smoked Bacon, Cheddar & Egg Sandwich",500,21,43,27,FALSE,"E, M, W"
+"Sausage, Cheddar & Egg Sandwich",480,18,34,29,FALSE,"E, M, W"
+"Turkey Bacon, Cheddar & Egg White Sandwich",230,17,28,5,FALSE,"E, M, W"
+Impossible™ Breakfast Sandwich,420,21,36,22,FALSE,"E, M, S, T, W, SS"
+Avocado Spread,90,1,5,8,FALSE,
+"Bacon, Sausage & Egg Wrap",640,27,57,33,FALSE,"E, M, W"
+"Spinach, Feta & Egg White Wrap",290,20,34,8,FALSE,"E, M, S, W, SS"
+Bacon & Gruyère Egg Bites,300,19,9,20,FALSE,"E, M"
+Italian Sausage Egg Bites,240,15,10,19,FALSE,"E, M"
+Egg White & Roasted Red Pepper Egg Bites,170,12,11,8,FALSE,"E, M"
+"Potato, Cheddar & Chive Bakes",210,12,11,13,FALSE,"E, M"
+Rolled & Steel-Cut Oatmeal,160,5,28,2,FALSE,
+Ellenos Strawberry Shortcake Greek Yogurt,0,0,0,0,FALSE,
+Ellenos Muesli Yogurt,0,0,0,0,FALSE,
+Cinnamon Pull-Apart,300,6,38,13,FALSE,"M, S, W"
+Sugar Plum Cheese Danish,330,7,42,15,FALSE,"M, W"
+Cheese Danish,290,7,33,14,FALSE,"E, M, W"
+Ham & Swiss Croissant,320,14,28,17,FALSE,"E, M, W"
+Chocolate Croissant,300,5,34,18,FALSE,"E, M, S, W"
+Butter Croissant,250,5,26,14,FALSE,"E, M, W"
+Baked Apple Croissant,250,4,35,10,FALSE,"M, W"
+"Banana, Walnut & Pecan Loaf",380,6,46,20,FALSE,"E, S, W"
+Iced Lemon Loaf,410,5,59,17,FALSE,"E, M, S, W"
+Pumpkin & Pepita Loaf,360,6,52,14,FALSE,"E, S, W"
+Cinnamon Coffee Cake,380,4,57,15,FALSE,"E, M, S, W"
+Petite Vanilla Bean Scone,140,2,20,6,FALSE,"E, M, S, W"
+Blueberry Streusel Muffin,370,5,47,18,FALSE,"E, M, S, W"
+Pumpkin Cream Cheese Muffin,350,5,53,14,FALSE,"E, M, S, W"
+Plain Bagel,250,9,51,1,FALSE,W
+Everything Bagel,270,10,52,2,FALSE,"W, SS"
+Polar Bear Cake Pop,180,2,23,9,FALSE,"E, M, S, W"
+Birthday Cake Pop,160,2,21,8,FALSE,"E, M, S, W"
+Chocolate Cake Pop,150,2,21,8,FALSE,"E, M, S, W"
+Raccoon Cake Pop,150,1,19,7,FALSE,"E, M, S, W"
+Snowman Cookie,400,3,48,22,FALSE,"E, M, S, W"
+Cranberry Bliss® Bar,290,3,39,15,FALSE,"E, M, S, W"
+Cranberry Bliss® Bar Tray,290,3,39,15,FALSE,"E, M, S, W"
+Chocolate Chip Cookie,370,5,47,19,FALSE,"E, M, S, W"
+Double Chocolate Brownie,480,6,55,28,FALSE,"E, M, S, W"
+Crispy Grilled Cheese on Sourdough,520,21,48,27,FALSE,"M, W"
+Ham & Swiss on Baguette,510,25,43,25,FALSE,"M, W"
+Tomato & Mozzarella on Focaccia,360,15,47,12,FALSE,"M, W"
+Spicy Falafel Pocket,230,8,34,7,FALSE,"W, SS"
+Jalapeño Chicken Pocket,200,11,23,7,FALSE,"M, W"
+Cheese Trio Protein Box,520,20,59,24,FALSE,"M, W"
+Eggs & Cheddar Protein Box,460,22,40,24,FALSE,"E, M, P, W, SS"
+Cheese & Fruit Protein Box,470,20,37,28,FALSE,"M, W"
+"All In™ Madagascar Vanilla, Honey & Almonds Bar",170,4,21,9,FALSE,
+Perfect Bar® – Dark Chocolate Chip Peanut Butter,330,15,24,20,FALSE,"E, M, P, SS"
+Perfect Bar® Peanut Butter,340,17,27,19,FALSE,"E, M, P, SS"
+KIND - Almond Coconut Cashew Chai,200,5,18,14,FALSE,
+KIND® Salted Caramel & Dark Chocolate Nut Bar,200,6,16,15,FALSE,
+That's It® – Apple + Mango Bar,100,0,27,0,FALSE,
+That's It® – Apple + Blueberry Bar,100,1,26,0,FALSE,
+Siete Sea Salt Kettle Cooked Potato Chips,210,0,27,10,FALSE,
+Country Archer™ – Hickory Smoke Turkey Jerky,70,10,5,1,FALSE,
+Madeleines,220,3,26,11,FALSE,"E, M, W"
+Vanilla Biscotti with Almonds,200,5,25,9,FALSE,
+Marshmallow Dream Bar,230,1,44,5,FALSE,M
+SkinnyDipped Dark Chocolate Cocoa Almonds,170,5,15,12,FALSE,
+SkinnyDipped Lemon Bliss Almonds,170,4,17,11,FALSE,
+Organic Valley Stringles® Mozzarella String Cheese,0,0,0,0,FALSE,
+Peter Rabbit™ Organics Strawberry Banana,80,1,18,0,FALSE,
