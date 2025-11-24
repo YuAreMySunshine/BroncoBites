@@ -115,7 +115,16 @@ export default function Navbar() {
           </SignedOut>
 
           <SignedIn>
-            <UserButton />
+            <UserButton 
+              appearance={{
+                elements: {
+                  userButtonBox: {
+                    flexDirection: 'row-reverse',
+                  },
+                },
+              }}
+              showName={false}
+            />
           </SignedIn>
         </div>
       </nav>
