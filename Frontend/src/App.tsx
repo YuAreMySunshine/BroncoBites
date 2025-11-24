@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import GoogleAnalytics from './components/GoogleAnalytics';
 import Home from './pages/Home';
 import ManageRestaurants from './pages/ManageRestaurants';
 import RestaurantMenus from './pages/RestaurantMenus';
@@ -15,6 +16,7 @@ function App() {
   return (
     <ThemeProvider>
     <BrowserRouter>
+      <GoogleAnalytics />
       <div className="app-layout">
         <Routes>
           <Route path="/" element={<Home />} />
