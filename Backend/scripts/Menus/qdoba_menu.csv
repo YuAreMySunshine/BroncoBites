@@ -32,7 +32,6 @@ Coca-Cola Zero (Lrg),0,0,0,0,TRUE,
 Cotija Cheese (.25 oz.),25,1,0,2,FALSE,M
 Crispy Taco Shell,60,1,8,2.5,TRUE,W
 Crunchy Tortilla Shell,390,7,41,22,TRUE,W
-Dasani Water,0,0,0,0,TRUE,
 Diet Coke (Bottle),0,0,0,0,TRUE,
 Diet Coke (Reg),0,0,0,0,TRUE,
 Diet Coke (Lrg),0,0,0,0,TRUE,
@@ -163,9 +162,5 @@ Simply Orange Juice (11.5 fl. oz.),160,2,37,0,TRUE,
 Vitamin Water Power C (20 fl. oz.),100,0,27,0,TRUE,
 Vitamin Water XXX (20 fl. oz.),90,0,26,0,TRUE,
 Vitamin Water Zero Squeezed Lemonade (20 fl. oz.),0,0,4,0,TRUE,
-Milk Chocolate lowfat 1% (7 fl. oz.) (CA Standards),140,8,22,2,TRUE,M
-Milk Chocolate lowfat 1% (8 fl. oz.) (Fed Standards),160,9,25,2.5,TRUE,M
-Milk White lowfat 1% (7 fl. oz.) (CA Standards),90,7,11,2,TRUE,M
-Milk White lowfat 1% (8 fl. oz.) (Fed Standards),100,8,12,2.5,TRUE,M
 Double Chocolate Brownie (US),390,6,49,19,FALSE,"S,E,M,W"
 Chocolate Chunk Cookie (US),250,3,33,12,FALSE,"S,E,M,W"
