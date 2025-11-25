@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { SignUpButton } from "@clerk/clerk-react";
 import {
   Sparkles,
   Zap,
@@ -20,8 +21,8 @@ import {
   Database,
   Server,
   Code2,
-  Layout
-} from 'lucide-react';
+  Layout,
+} from "lucide-react";
 import "../style/home/Home.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -46,12 +47,13 @@ export default function Home() {
               </p>
               <h1 className="home-hero__title">
                 Eat with purpose.{" "}
-                <span className="home-hero__title--accent">Crush</span> your goals.
+                <span className="home-hero__title--accent">Crush</span> your
+                goals.
               </h1>
               <p className="home-hero__lead">
-                BroncoBites suggests affordable, nearby meals from campus dining and
-                markets that match your calories, protein, and dietary needs — no
-                car required.
+                BroncoBites suggests nearby meals from campus dining and markets
+                that match your calories, protein, and dietary needs — no car
+                required.
               </p>
 
               <div className="home-hero__pills">
@@ -70,10 +72,12 @@ export default function Home() {
               </div>
 
               <div className="home-hero__cta">
-                <Link to="/dashboard" className="cta-btn cta-btn--primary">
-                  Get Started
-                  <ArrowRight size={18} />
-                </Link>
+                <SignUpButton>
+                  <button className="cta-btn cta-btn--primary">
+                    Get Started
+                    <ArrowRight size={18} />
+                  </button>
+                </SignUpButton>
                 <Link to="/menus" className="cta-btn cta-btn--secondary">
                   Browse Menus
                 </Link>
@@ -85,7 +89,18 @@ export default function Home() {
                 <Target size={20} />
                 Today's Sample Targets
               </h3>
+
               <div className="hero-stats__grid">
+                <div className="stat-item stat-item--date">
+                  <div className="stat-item__icon">
+                    <CalendarDays size={20} />
+                  </div>
+                  <div className="stat-item__content">
+                    <div className="stat-item__kicker">Today</div>
+                    <div className="stat-item__value">Monday, November 24</div>
+                    <p className="stat-item__meta">Change targets daily</p>
+                  </div>
+                </div>
                 <div className="stat-item stat-item--calories">
                   <div className="stat-item__icon">
                     <Flame size={20} />
@@ -93,7 +108,9 @@ export default function Home() {
                   <div className="stat-item__content">
                     <div className="stat-item__kicker">Calories</div>
                     <div className="stat-item__value">2,400 kcal</div>
-                    <p className="stat-item__meta">Based on height, weight &amp; activity</p>
+                    <p className="stat-item__meta">
+                      Based on height, weight &amp; activity
+                    </p>
                   </div>
                 </div>
                 <div className="stat-item stat-item--protein">
@@ -104,16 +121,6 @@ export default function Home() {
                     <div className="stat-item__kicker">Protein</div>
                     <div className="stat-item__value">150 g</div>
                     <p className="stat-item__meta">Muscle gain goal</p>
-                  </div>
-                </div>
-                <div className="stat-item stat-item--budget">
-                  <div className="stat-item__icon">
-                    <Wallet size={20} />
-                  </div>
-                  <div className="stat-item__content">
-                    <div className="stat-item__kicker">Budget</div>
-                    <div className="stat-item__value">$18 / day</div>
-                    <p className="stat-item__meta">Dining dollars aware</p>
                   </div>
                 </div>
                 <div className="stat-item stat-item--diet">
@@ -144,7 +151,9 @@ export default function Home() {
               <div className="problem-card__icon">
                 <Target size={24} />
               </div>
-              <h3 className="problem-card__title">Goal-driven nutrition is hard</h3>
+              <h3 className="problem-card__title">
+                Goal-driven nutrition is hard
+              </h3>
               <p className="problem-card__text">
                 Students aiming to build muscle or lose fat need consistent
                 calories and macros — which is tough without planning.
@@ -164,7 +173,9 @@ export default function Home() {
               <div className="problem-card__icon">
                 <Clock size={24} />
               </div>
-              <h3 className="problem-card__title">Menus change, time is short</h3>
+              <h3 className="problem-card__title">
+                Menus change, time is short
+              </h3>
               <p className="problem-card__text">
                 Hunting for options that meet goals is tedious. People give up
                 and settle for whatever's close.
@@ -179,7 +190,8 @@ export default function Home() {
         <div className="container">
           <p className="home-section__kicker">Proposed Solution</p>
           <h2 className="home-section__title">
-            Meet <span className="home-section__title--accent">BroncoBites</span>
+            Meet{" "}
+            <span className="home-section__title--accent">BroncoBites</span>
           </h2>
           <div className="solution-grid">
             <div className="solution-box">
@@ -190,7 +202,8 @@ export default function Home() {
               <ul className="solution-box__list">
                 <li>
                   <CheckCircle2 size={16} />
-                  Generates meal suggestions that fit your calorie &amp; protein targets.
+                  Generates meal suggestions that fit your calorie &amp; protein
+                  targets.
                 </li>
                 <li>
                   <CheckCircle2 size={16} />
@@ -202,7 +215,8 @@ export default function Home() {
                 </li>
                 <li>
                   <CheckCircle2 size={16} />
-                  Focuses on campus dining halls &amp; markets you can actually access.
+                  Focuses on campus dining halls &amp; markets you can actually
+                  access.
                 </li>
               </ul>
             </div>
@@ -213,9 +227,9 @@ export default function Home() {
               </div>
               <p className="solution-box__text">
                 We remove the guesswork by mapping campus menus to your goals,
-                so you can fuel your day without leaving campus — or blowing
-                your budget. No more scrolling through confusing dining hall
-                websites or guessing at nutrition info.
+                so you can fuel your day without leaving campus. No more
+                scrolling through confusing dining hall websites or guessing at
+                nutrition info.
               </p>
             </div>
           </div>
@@ -230,7 +244,7 @@ export default function Home() {
 
           <div className="features-grid">
             <article className="feature-card">
-              <div className="feature-card__icon-wrap feature-card__icon-wrap--primary">
+              <div className="feature-card__icon-wrap feature-card__icon-wrap--pink">
                 <Sparkles size={24} />
               </div>
               <h3 className="feature-card__title">Auto meal suggestions</h3>
@@ -308,21 +322,33 @@ export default function Home() {
           <div className="team-grid">
             <article className="team-card">
               <div className="team-card__avatar-wrap">
-                <img className="team-card__avatar" src={eli} alt="Eli Tolentino" />
+                <img
+                  className="team-card__avatar"
+                  src={eli}
+                  alt="Eli Tolentino"
+                />
               </div>
               <h3 className="team-card__name">Eli Tolentino</h3>
               <p className="team-card__role">Developer</p>
             </article>
             <article className="team-card">
               <div className="team-card__avatar-wrap">
-                <img className="team-card__avatar" src={jaron} alt="Jaron Lin" />
+                <img
+                  className="team-card__avatar"
+                  src={jaron}
+                  alt="Jaron Lin"
+                />
               </div>
               <h3 className="team-card__name">Jaron Lin</h3>
               <p className="team-card__role">Developer</p>
             </article>
             <article className="team-card">
               <div className="team-card__avatar-wrap">
-                <img className="team-card__avatar" src={timothy} alt="Timothy Lee" />
+                <img
+                  className="team-card__avatar"
+                  src={timothy}
+                  alt="Timothy Lee"
+                />
               </div>
               <h3 className="team-card__name">Timothy Lee</h3>
               <p className="team-card__role">Developer</p>
@@ -365,7 +391,9 @@ export default function Home() {
               <ul className="project-features">
                 <li>
                   <CheckCircle2 size={18} className="project-features__icon" />
-                  <span>Auto-generated plans for calorie &amp; protein goals</span>
+                  <span>
+                    Auto-generated plans for calorie &amp; protein goals
+                  </span>
                 </li>
                 <li>
                   <CheckCircle2 size={18} className="project-features__icon" />

@@ -16,7 +16,7 @@
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-border-light);
   transition: background-color var(--duration-moderate) var(--ease-default),
-              border-color var(--duration-moderate) var(--ease-default);
+    border-color var(--duration-moderate) var(--ease-default);
 }
 
 [data-theme="dark"] .site-header {

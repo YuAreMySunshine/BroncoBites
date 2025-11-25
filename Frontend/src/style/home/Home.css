@@ -235,7 +235,7 @@
   color: #2563EB;
 }
 
-.stat-item--budget .stat-item__icon {
+.stat-item--date .stat-item__icon {
   background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
   color: #059669;
 }
@@ -483,6 +483,11 @@
 .feature-card__icon-wrap--primary {
   background: linear-gradient(135deg, var(--color-primary-light) 0%, #D1FAE5 100%);
   color: var(--color-primary);
+}
+
+.feature-card__icon-wrap--pink {
+  background: linear-gradient(135deg, #f3d1fa 0%, #f3a7ef 100%);
+  color: #960580;
 }
 
 .feature-card__icon-wrap--green {
