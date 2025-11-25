@@ -86,6 +86,11 @@
   color: var(--color-primary);
 }
 
+[data-theme="dark"] .date-nav-btn:hover {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
 .date-display {
   display: flex;
   align-items: center;
@@ -120,7 +125,17 @@
 
 .today-btn:hover {
   background: var(--color-primary);
-  color: white;
+  color: var(--color-text-inverse);
+}
+
+[data-theme="dark"] .today-btn {
+  background: rgba(74, 222, 128, 0.15);
+  color: var(--color-primary);
+}
+
+[data-theme="dark"] .today-btn:hover {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
 }
 
 /* Mini Calendar */
@@ -215,7 +230,8 @@
 }
 
 .mini-calendar__day--selected .mini-calendar__day-name {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--color-text-inverse);
+  opacity: 0.7;
 }
 
 .mini-calendar__day-num {
@@ -230,7 +246,7 @@
 }
 
 .mini-calendar__day--selected .mini-calendar__day-num {
-  color: white;
+  color: var(--color-text-inverse);
 }
 
 /* Action Buttons */
@@ -347,6 +363,26 @@
   color: #7C3AED;
 }
 
+[data-theme="dark"] .nutrition-card__icon--calories {
+  background: linear-gradient(135deg, rgba(251, 146, 60, 0.2) 0%, rgba(251, 146, 60, 0.15) 100%);
+  color: #FB923C;
+}
+
+[data-theme="dark"] .nutrition-card__icon--protein {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.15) 100%);
+  color: #60A5FA;
+}
+
+[data-theme="dark"] .nutrition-card__icon--carbs {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(34, 197, 94, 0.15) 100%);
+  color: #4ADE80;
+}
+
+[data-theme="dark"] .nutrition-card__icon--fats {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(168, 85, 247, 0.15) 100%);
+  color: #A78BFA;
+}
+
 .nutrition-card__content {
   flex: 1;
   min-width: 0;
@@ -419,6 +455,11 @@
   font-size: var(--text-sm);
 }
 
+[data-theme="dark"] .no-goals-banner {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.2) 0%, rgba(251, 191, 36, 0.15) 100%);
+  color: #FCD34D;
+}
+
 .no-goals-link {
   display: inline-flex;
   align-items: center;
@@ -426,6 +467,10 @@
   color: #D97706;
   font-weight: 600;
   text-decoration: none;
+}
+
+[data-theme="dark"] .no-goals-link {
+  color: #FBBF24;
 }
 
 .no-goals-link:hover {
@@ -556,7 +601,11 @@
 .add-meal-btn:hover {
   border-color: var(--color-primary);
   color: var(--color-primary);
-  background: var(--color-primary-light);
+  background: rgba(45, 90, 61, 0.08);
+}
+
+[data-theme="dark"] .add-meal-btn:hover {
+  background: rgba(74, 222, 128, 0.15);
 }
 
 .meal-card__items {
@@ -799,6 +848,15 @@
 
 .modal__item--favorite:hover {
   background: #FEF3C7;
+}
+
+[data-theme="dark"] .modal__item--favorite {
+  border-color: #FBBF24;
+  background: rgba(251, 191, 36, 0.15);
+}
+
+[data-theme="dark"] .modal__item--favorite:hover {
+  background: rgba(251, 191, 36, 0.2);
 }
 
 .modal__item-info {

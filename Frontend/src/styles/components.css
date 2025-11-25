@@ -84,6 +84,18 @@
   background-color: rgba(45, 90, 61, 0.08);
 }
 
+[data-theme="dark"] .btn-secondary:hover:not(:disabled) {
+  background-color: rgba(74, 222, 128, 0.1);
+}
+
+[data-theme="dark"] .btn-secondary:active:not(:disabled) {
+  background-color: rgba(74, 222, 128, 0.15);
+}
+
+[data-theme="dark"] .btn-ghost:hover:not(:disabled) {
+  background-color: rgba(74, 222, 128, 0.12);
+}
+
 /* Danger Button */
 .btn-danger {
   background-color: var(--color-error);
@@ -463,6 +475,47 @@
   color: #991B1B;
 }
 
+/* Dark Mode Badge Overrides */
+[data-theme="dark"] .badge-success {
+  background-color: rgba(74, 222, 128, 0.15);
+  color: #86EFAC;
+}
+
+[data-theme="dark"] .badge-warning {
+  background-color: rgba(251, 191, 36, 0.15);
+  color: #FCD34D;
+}
+
+[data-theme="dark"] .badge-error {
+  background-color: rgba(248, 113, 113, 0.15);
+  color: #FCA5A5;
+}
+
+[data-theme="dark"] .badge-info {
+  background-color: rgba(96, 165, 250, 0.15);
+  color: #93C5FD;
+}
+
+[data-theme="dark"] .badge-vegetarian {
+  background-color: rgba(74, 222, 128, 0.15);
+  color: #86EFAC;
+}
+
+[data-theme="dark"] .badge-high-protein {
+  background-color: rgba(96, 165, 250, 0.15);
+  color: #93C5FD;
+}
+
+[data-theme="dark"] .badge-budget {
+  background-color: rgba(251, 191, 36, 0.15);
+  color: #FCD34D;
+}
+
+[data-theme="dark"] .badge-allergen {
+  background-color: rgba(248, 113, 113, 0.15);
+  color: #FCA5A5;
+}
+
 /* Status Badges */
 .badge-open {
   background-color: var(--color-success-light);
@@ -477,6 +530,16 @@
 .badge-closed {
   background-color: var(--color-surface-secondary);
   color: var(--color-text-secondary);
+}
+
+[data-theme="dark"] .badge-open {
+  background-color: rgba(74, 222, 128, 0.15);
+  color: #86EFAC;
+}
+
+[data-theme="dark"] .badge-closing-soon {
+  background-color: rgba(251, 191, 36, 0.15);
+  color: #FCD34D;
 }
 
 /* ===== Filter Chips ===== */
@@ -510,6 +573,10 @@
 
 .chip--active:hover {
   background-color: var(--color-primary-light);
+}
+
+[data-theme="dark"] .chip:hover {
+  background-color: rgba(74, 222, 128, 0.1);
 }
 
 /* ===== Progress Bars ===== */

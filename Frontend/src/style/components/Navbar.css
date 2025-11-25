@@ -93,12 +93,6 @@
 
 .nav-links a.active,
 .nav-link--active {
-  color: white;
-  background-color: var(--color-primary);
-}
-
-[data-theme="dark"] .nav-links a.active,
-[data-theme="dark"] .nav-link--active {
   color: var(--color-text-inverse);
   background-color: var(--color-primary);
 }

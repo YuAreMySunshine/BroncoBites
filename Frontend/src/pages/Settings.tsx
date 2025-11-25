@@ -203,23 +203,29 @@ export default function Settings() {
                 </div>
               )}
 
-              {/* Physical Stats */}
-              <section className="settings-section">
-                <div className="settings-section__header">
-                  <div className="settings-section__icon settings-section__icon--stats">
-                    <User size={20} />
+              <div className="settings-layout">
+                {/* Sidebar */}
+                <aside className="settings-sidebar">
+                  {/* User Info Card */}
+                  <div className="sidebar-card">
+                    <div className="sidebar-card__avatar">
+                      <User size={32} />
+                    </div>
+                    <div className="sidebar-card__info">
+                      <h3 className="sidebar-card__name">{user.fullName || 'User'}</h3>
+                      <p className="sidebar-card__email">{user.primaryEmailAddress?.emailAddress}</p>
+                    </div>
                   </div>
-                  <div className="settings-section__title-group">
-                    <h2 className="settings-section__title">Physical Stats</h2>
-                    <span className="settings-section__desc">Your body measurements</span>
-                  </div>
-                </div>
-                <div className="settings-grid">
-                  <div className="settings-field">
-                    <label className="settings-label">
-                      <Ruler size={16} />
-                      Height
-                    </label>
+
+                  {/* Physical Stats */}
+                  <section className="sidebar-section">
+                    <h3 className="sidebar-section__title">
+                      <Ruler size={18} />
+                      Physical Stats
+                    </h3>
+
+                    <div className="settings-field">
+                      <label className="settings-label">Height</label>
                     <div className="height-inputs">
                       <div className="input-with-unit">
                         <input
@@ -246,12 +252,10 @@ export default function Settings() {
                         <span className="input-unit">in</span>
                       </div>
                     </div>
-                  </div>
-                  <div className="settings-field">
-                    <label className="settings-label">
-                      <Scale size={16} />
-                      Weight
-                    </label>
+                    </div>
+
+                    <div className="settings-field">
+                      <label className="settings-label">Weight</label>
                     <div className="input-with-unit">
                       <input
                         type="number"
@@ -263,12 +267,14 @@ export default function Settings() {
                       />
                       <span className="input-unit">lbs</span>
                     </div>
-                  </div>
-                </div>
-              </section>
+                    </div>
+                  </section>
+                </aside>
 
-              {/* Nutrition Goals */}
-              <section className="settings-section">
+                {/* Main Content */}
+                <div className="settings-main-content">
+                  {/* Nutrition Goals */}
+                  <section className="settings-section">
                 <div className="settings-section__header">
                   <div className="settings-section__icon settings-section__icon--nutrition">
                     <Target size={20} />
@@ -366,10 +372,10 @@ export default function Settings() {
                     </button>
                   ))}
                 </div>
-              </section>
+                  </section>
 
-              {/* Submit Button */}
-              <div className="settings-actions">
+                  {/* Submit Button */}
+                  <div className="settings-actions">
                 <button
                   type="submit"
                   disabled={saving}
@@ -387,6 +393,8 @@ export default function Settings() {
                     </>
                   )}
                 </button>
+                  </div>
+                </div>
               </div>
             </form>
           )}
