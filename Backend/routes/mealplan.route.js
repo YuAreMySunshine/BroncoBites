@@ -207,6 +207,16 @@ router.delete('/date/:date', requireAuth(), async (req, res) => {
   }
 });
 
+// Fisher-Yates shuffle algorithm for proper randomization
+const shuffleArray = (array) => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
+
 // Auto-generate meal plan based on user goals
 router.post('/generate', requireAuth(), async (req, res) => {
   try {
@@ -252,6 +262,9 @@ router.post('/generate', requireAuth(), async (req, res) => {
         // Apply dietary restrictions
         if (restrictions.includes('Vegetarian') && !item.vegetarian) continue;
 
+        // Skip items with less than 50 calories (too small to be a full meal)
+        if (item.calories < 50) continue;
+
         allItems.push({
           ...item.toObject(),
           itemId: item._id,
@@ -269,6 +282,9 @@ router.post('/generate', requireAuth(), async (req, res) => {
         error: 'No menu items available. Please ensure restaurants have menu items in the database.'
       });
     }
+
+    // Shuffle items to ensure different meal plans each time
+    allItems = shuffleArray(allItems);
 
     // Category calorie targets (percentage of daily goal)
     const categoryTargets = {
@@ -295,6 +311,10 @@ router.post('/generate', requireAuth(), async (req, res) => {
       const proteinRatio = (item.nutrition?.protein || 0) / (item.calories || 1);
       score += proteinRatio * 100;
 
+      // Add randomness to prevent same meal plan every time
+      // Random component provides significant variation while still respecting nutrition goals
+      score += Math.random() * 70;
+
       return score;
     };
 
@@ -308,22 +328,42 @@ router.post('/generate', requireAuth(), async (req, res) => {
       const maxItemsForCategory = category === 'Snack' ? 1 : 2;
       let categoryItemCount = 0;
       let categoryCalories = 0;
+      let selectedRestaurantId = null;
+
+      // For Breakfast, Lunch, and Dinner, pick one restaurant and stick with it
+      // For Snacks, allow any restaurant
+      const shouldLockRestaurant = ['Breakfast', 'Lunch', 'Dinner'].includes(category);
 
       // Sort items by score for this category's target
+      // Note: scoreItem includes randomness, so each call produces different results
       const scoredItems = allItems
         .filter(item => !usedItemIds.has(item.itemId.toString()))
         .map(item => ({ ...item, score: scoreItem(item, targetCalories) }))
         .sort((a, b) => b.score - a.score);
 
-      for (const item of scoredItems) {
+      // Take top candidates (top 20 or all if less) and shuffle properly to add variety
+      const topCandidates = scoredItems.slice(0, Math.min(20, scoredItems.length));
+      const shuffledCandidates = shuffleArray(topCandidates);
+
+      for (const item of shuffledCandidates) {
         // Stop if we have enough items for this category
         if (categoryItemCount >= maxItemsForCategory) break;
+
+        // If we've selected a restaurant for this category, only pick items from that restaurant
+        if (shouldLockRestaurant && selectedRestaurantId && item.restaurantId.toString() !== selectedRestaurantId) {
+          continue;
+        }
 
         // Stop if adding this item would exceed daily calorie goal
         if (currentTotals.calories + item.calories > goals.calories * 1.05) continue;
 
         // Skip if this item alone is way too many calories for the category
         if (item.calories > targetCalories * 1.5 && categoryItemCount === 0) continue;
+
+        // Lock in the restaurant for this category (first item selected)
+        if (shouldLockRestaurant && !selectedRestaurantId) {
+          selectedRestaurantId = item.restaurantId.toString();
+        }
 
         selectedItems.push({
           name: item.itemName,
