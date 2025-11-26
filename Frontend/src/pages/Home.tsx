@@ -82,9 +82,8 @@ export default function Home() {
                   Browse Menus
                 </Link>
               </div>
-            </div>
 
-            <aside className="hero-stats" aria-label="At-a-glance stats">
+              <aside className="hero-stats" aria-label="At-a-glance stats">
               <h3 className="hero-stats__title">
                 <Target size={20} />
                 Today's Sample Targets
@@ -134,7 +133,8 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </aside>
+              </aside>
+            </div>
           </div>
         </div>
       </section>

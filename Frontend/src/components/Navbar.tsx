@@ -8,9 +8,11 @@ import {
 } from '@clerk/clerk-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Sun, Moon } from 'lucide-react';
+import { useState } from 'react';
 import BroncoBites from '../images/BroncoBites.png';
 import '../style/components/Navbar.css';
 import { useTheme } from '../context/ThemeContext';
+import MobileNav from './MobileNav';
 
 // Admin email is read from VITE_ADMIN_EMAIL environment variable
 const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL as string;
@@ -20,6 +22,7 @@ export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   // Check if the current user is the admin
   const isAdmin = isLoaded && user && user.primaryEmailAddress?.emailAddress === ADMIN_EMAIL;
@@ -47,16 +50,17 @@ export default function Navbar() {
   };
 
   return (
-    <header className="site-header">
-      <div className="brand">
-        <Link to="/">
-          <img src={BroncoBites} className="logo" alt="BroncoBites logo" />
-          <h1>BroncoBites</h1>
-        </Link>
-      </div>
+    <>
+      <header className="site-header">
+        <div className="brand">
+          <Link to="/">
+            <img src={BroncoBites} className="logo" alt="BroncoBites logo" />
+            <h1>BroncoBites</h1>
+          </Link>
+        </div>
 
-      <nav className="main-nav" aria-label="Main navigation">
-        <div className="nav-links">
+        <nav className="main-nav" aria-label="Main navigation">
+          <div className="nav-links">
           {/* Core app features - always visible */}
           <Link
             to="/dashboard"
@@ -97,7 +101,7 @@ export default function Navbar() {
 
         <div className="auth-controls">
           <button
-            className="theme-toggle-btn"
+            className="theme-toggle-btn hide-mobile"
             onClick={toggleTheme}
             aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
             title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
@@ -107,27 +111,42 @@ export default function Navbar() {
 
           <SignedOut>
             <SignInButton>
-              <button className="btn">Sign in</button>
+              <button className="btn hide-mobile">Sign in</button>
             </SignInButton>
             <SignUpButton>
-              <button className="btn">Sign up</button>
+              <button className="btn hide-mobile">Sign up</button>
             </SignUpButton>
           </SignedOut>
 
           <SignedIn>
-            <UserButton 
-              appearance={{
-                elements: {
-                  userButtonBox: {
-                    flexDirection: 'row-reverse',
+            <div className="hide-mobile">
+              <UserButton
+                appearance={{
+                  elements: {
+                    userButtonBox: {
+                      flexDirection: 'row-reverse',
+                    },
                   },
-                },
-              }}
-              showName={false}
-            />
+                }}
+                showName={false}
+              />
+            </div>
           </SignedIn>
+
+          <button
+            className="hamburger-btn hide-desktop"
+            onClick={() => setIsMobileNavOpen(true)}
+            aria-label="Open menu"
+          >
+            <span className="hamburger-btn__line"></span>
+            <span className="hamburger-btn__line"></span>
+            <span className="hamburger-btn__line"></span>
+          </button>
         </div>
       </nav>
     </header>
+
+    <MobileNav isOpen={isMobileNavOpen} onClose={() => setIsMobileNavOpen(false)} />
+    </>
   );
 }

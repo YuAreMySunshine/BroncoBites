@@ -366,6 +366,17 @@
 }
 
 /* Responsive */
+@media (max-width: 768px) {
+  .preferences-main {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .pref-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
 @media (max-width: 640px) {
   .preferences-title {
     font-size: var(--text-2xl);
@@ -381,5 +392,35 @@
 
   .pref-item {
     padding: var(--space-3);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .pref-item__info {
+    width: 100%;
+  }
+
+  /* Hide date on very small screens */
+  .pref-item__meta {
+    display: none;
+  }
+
+  .pref-item__remove {
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .preferences-title {
+    font-size: var(--text-xl);
+  }
+
+  .pref-section-title {
+    font-size: var(--text-base);
+  }
+
+  .pref-item__name {
+    font-size: var(--text-sm);
   }
 }

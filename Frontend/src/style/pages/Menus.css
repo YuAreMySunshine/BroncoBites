@@ -614,9 +614,74 @@
 }
 
 /* Responsive */
-@media (max-width: 640px) {
+@media (max-width: 900px) {
+  .menus-main {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .menu-items-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Horizontal scroll for allergen chips */
+  .allergen-filters {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: var(--space-2);
+  }
+
+  .allergen-filters::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .allergen-filters::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: var(--radius-full);
+  }
+}
+
+@media (max-width: 768px) {
   .menus-title {
     font-size: var(--text-2xl);
+  }
+
+  .search-bar__input {
+    font-size: 16px; /* Prevent iOS zoom */
+  }
+
+  /* Make filter button visible on mobile */
+  .filter-toggle-mobile {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-5);
+    border: none;
+    border-radius: var(--radius-lg);
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 200ms ease;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .filter-toggle-mobile:hover {
+    background: var(--color-primary-light);
+    transform: translateY(-1px);
+  }
+}
+
+@media (max-width: 640px) {
+  .menus-title {
+    font-size: var(--text-xl);
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .menus-subtitle {
+    font-size: var(--text-base);
   }
 
   .restaurant-card__header {
@@ -636,5 +701,48 @@
 
   .nutrition-filters {
     grid-template-columns: 1fr;
+  }
+
+  /* Stack macro min/max inputs */
+  .macro-inputs {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  /* Stacked nutrition macros display */
+  .item-macros {
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .macro {
+    flex: 1 1 calc(50% - var(--space-1));
+    min-width: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-section {
+    padding: var(--space-4);
+  }
+
+  .restaurant-card {
+    padding: var(--space-4);
+  }
+
+  .restaurant-card__name {
+    font-size: var(--text-lg);
+  }
+
+  .menu-item-card {
+    padding: var(--space-3);
+  }
+
+  .item-name {
+    font-size: var(--text-sm);
+  }
+
+  .macro__value {
+    font-size: var(--text-xs);
   }
 }

@@ -166,8 +166,75 @@
   margin-right: var(--space-3);
 }
 
+/* ===== Hamburger Button ===== */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  gap: 6px;
+}
+
+.hamburger-btn__line {
+  width: 24px;
+  height: 2px;
+  background: var(--color-text-primary);
+  transition: all var(--duration-normal) var(--ease-default);
+  border-radius: var(--radius-full);
+}
+
+.hamburger-btn:hover .hamburger-btn__line {
+  background: var(--color-primary);
+}
+
 /* ===== Responsive ===== */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
+  .site-header {
+    height: 64px;
+    padding: 0 var(--space-4);
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .auth-controls .hide-mobile {
+    display: none;
+  }
+
+  .logo {
+    height: 40px;
+    width: 40px;
+  }
+
+  .brand h1 {
+    font-size: var(--text-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    height: 36px;
+    width: 36px;
+  }
+
+  .brand h1 {
+    font-size: var(--text-base);
+  }
+}
+
+/* Keep old tablet breakpoint for fallback */
+@media (min-width: 769px) and (max-width: 900px) {
   .site-header {
     height: auto;
     flex-direction: column;
@@ -191,22 +258,6 @@
   .auth-controls {
     width: 100%;
     justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .nav-links a {
-    padding: var(--space-2) var(--space-3);
-    font-size: var(--text-xs);
-  }
-
-  .logo {
-    height: 36px;
-    width: 36px;
-  }
-
-  .brand h1 {
-    font-size: var(--text-lg);
   }
 }
 

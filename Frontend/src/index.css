@@ -4,6 +4,8 @@
 
 /* Import design tokens */
 @import './styles/design-tokens.css';
+@import './styles/components.css';
+@import './styles/responsive.css';
 
 /* ===== CSS Reset & Base ===== */
 *,

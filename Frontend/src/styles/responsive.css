@@ -1,0 +1,149 @@
+/* ============================================
+   BroncoBites - Responsive Utilities
+   ============================================ */
+
+/* Mobile-friendly touch targets */
+@media (max-width: 768px) {
+  .btn {
+    min-height: 44px;
+    padding-left: var(--space-5);
+    padding-right: var(--space-5);
+  }
+
+  .form-input,
+  .form-select {
+    min-height: 48px;
+    font-size: 16px; /* Prevent iOS zoom */
+  }
+
+  /* Reduce container padding */
+  .container {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+
+  /* Page padding */
+  .page-content {
+    padding: var(--space-6) var(--space-4);
+  }
+}
+
+/* iOS safe area support */
+@supports (padding: env(safe-area-inset-left)) {
+  .site-header {
+    padding-left: max(var(--space-6), env(safe-area-inset-left));
+    padding-right: max(var(--space-6), env(safe-area-inset-right));
+  }
+
+  .mobile-nav {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Horizontal scroll containers */
+.scroll-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.scroll-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+}
+
+/* Prevent body scroll when modals/drawers open */
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* Mobile-only utilities */
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .hide-desktop {
+    display: none !important;
+  }
+}
+
+/* Full-screen modal on mobile */
+@media (max-width: 768px) {
+  .modal {
+    max-width: 100% !important;
+    max-height: 100vh !important;
+    height: 100vh !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+
+  .modal--full-mobile {
+    max-width: 100% !important;
+    max-height: 100vh !important;
+    height: 100vh !important;
+    border-radius: 0 !important;
+  }
+}
+
+/* Responsive Grid Utilities */
+@media (max-width: 900px) {
+  .grid-4-cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-3-cols {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-2-cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid-4-cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Stack elements on mobile */
+@media (max-width: 768px) {
+  .stack-mobile {
+    flex-direction: column !important;
+  }
+
+  .full-width-mobile {
+    width: 100% !important;
+  }
+
+  .text-center-mobile {
+    text-align: center !important;
+  }
+}
+
+/* Responsive spacing */
+@media (max-width: 768px) {
+  .responsive-padding {
+    padding: var(--space-4) !important;
+  }
+
+  .responsive-gap {
+    gap: var(--space-3) !important;
+  }
+}
+
+/* Touch-friendly spacing between interactive elements */
+@media (max-width: 768px) {
+  button + button,
+  a + a {
+    margin-top: var(--space-2);
+  }
+}

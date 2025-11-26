@@ -904,6 +904,12 @@
 
 /* Responsive */
 @media (max-width: 900px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
   .mini-calendar {
     order: 2;
     width: 100%;
@@ -911,6 +917,59 @@
 
   .mini-calendar__week {
     justify-content: space-between;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .dashboard-actions {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .action-btn {
+    flex: 1;
+    min-width: 140px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-main {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  /* Mini calendar horizontal scroll */
+  .mini-calendar {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mini-calendar__week {
+    min-width: min-content;
+  }
+
+  /* Full-width action buttons on mobile */
+  .dashboard-actions {
+    flex-direction: column;
+  }
+
+  .action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Meal item mobile layout */
+  .meal-item {
+    flex-wrap: wrap;
+  }
+
+  .meal-item__content {
+    flex-basis: 100%;
+  }
+
+  .meal-item__stats {
+    flex-direction: row;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
   }
 }
 
@@ -920,12 +979,17 @@
     align-items: stretch;
   }
 
-  .date-navigator {
-    justify-content: center;
+  .dashboard-title {
+    font-size: var(--text-2xl);
   }
 
-  .dashboard-actions {
+  .date-navigator {
     justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .date-display {
+    min-width: 140px;
   }
 
   .nutrition-card {
@@ -937,6 +1001,10 @@
     height: 40px;
   }
 
+  .nutrition-card__current {
+    font-size: var(--text-xl);
+  }
+
   .mini-calendar__day {
     min-width: 36px;
     padding: var(--space-1);
@@ -944,5 +1012,59 @@
 
   .mini-calendar__day-num {
     font-size: var(--text-xs);
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-title {
+    font-size: var(--text-xl);
+  }
+
+  .dashboard-subtitle {
+    font-size: var(--text-sm);
+  }
+
+  .date-nav-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .date-text {
+    font-size: var(--text-base);
+  }
+
+  .nutrition-card {
+    padding: var(--space-3);
+    gap: var(--space-3);
+  }
+
+  .nutrition-card__icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .nutrition-card__current {
+    font-size: var(--text-lg);
+  }
+
+  .meal-card__header {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .meal-card__title h3 {
+    font-size: var(--text-base);
+  }
+
+  .meal-card__icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .meal-item {
+    padding: var(--space-2);
+  }
+
+  .meal-item__name {
+    font-size: var(--text-sm);
   }
 }
