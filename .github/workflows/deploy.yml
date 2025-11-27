@@ -46,10 +46,12 @@ jobs:
             echo "VITE_CLERK_PUBLISHABLE_KEY=${{ secrets.CLERK_PUBLISHABLE_KEY }}" > .env.local
             echo "VITE_ADMIN_EMAIL=${{ secrets.VITE_ADMIN_EMAIL }}" >> .env.local
             echo "VITE_GA_MEASUREMENT_ID=${{ secrets.VITE_GA_MEASUREMENT_ID }}" >> .env.local
+            echo "=== Building frontend ==="
+            npm run build
             echo "=== Restarting services ==="
-            cd ..
-            sudo pm2 delete broncobites 2>/dev/null || true
-            sudo pm2 start npm --name "broncobites" -- run dev
+            cd ../Backend
+            sudo pm2 delete broncobites-backend 2>/dev/null || true
+            sudo pm2 start server.js --name "broncobites-backend" --node-args="--experimental-modules"
             sudo pm2 save
             sudo systemctl reload nginx
             echo "=== Deployment complete ==="
