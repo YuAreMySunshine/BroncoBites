@@ -37,6 +37,7 @@ jobs:
             echo "VITE_ADMIN_EMAIL=${{ secrets.VITE_ADMIN_EMAIL }}" >> .env.local
             echo "VITE_GA_MEASUREMENT_ID=${{ secrets.VITE_GA_MEASUREMENT_ID }}" >> .env.local
             cd ..
-            sudo pm2 restart all || (cd /home/ec2-user/BroncoBites && sudo pm2 start npm --name "broncobites" -- run dev)
+            sudo pm2 delete broncobites 2>/dev/null || true
+            sudo pm2 start npm --name "broncobites" -- run dev
             sudo pm2 save
             sudo systemctl reload nginx
