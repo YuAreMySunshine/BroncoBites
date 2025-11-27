@@ -19,26 +19,39 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_RSA_KEY }}
+          command_timeout: 30m
           script: |
-            cd BroncoBites
+            set -e
+            echo "=== Starting deployment ==="
+            cd BroncoBites || exit 1
+            echo "=== Setting git remote ==="
             git remote set-url origin https://${{ secrets.USERNAME }}:${{ secrets.DEPLOY_PAT }}@github.com/YuAreMySunshine/BroncoBites.git
+            echo "=== Resetting git ==="
             git reset --hard HEAD
             git clean -fd
+            echo "=== Pulling latest code ==="
             git pull origin main
+            echo "=== Backend setup ==="
             cd Backend
             echo "MONGO_URI=${{ secrets.MONGO_URI }}" > .env
             echo "CLERK_PUBLISHABLE_KEY=${{ secrets.CLERK_PUBLISHABLE_KEY }}" >> .env
             echo "CLERK_SECRET_KEY=${{ secrets.CLERK_SECRET_KEY }}" >> .env
-            npm install
+            echo "=== Installing backend dependencies ==="
+            npm install --silent
+            echo "=== Frontend setup ==="
             cd ../Frontend
             rm -rf dist node_modules/.vite
-            npm install
+            echo "=== Installing frontend dependencies ==="
+            npm install --silent
             echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" > .env.production
             echo "VITE_CLERK_PUBLISHABLE_KEY=${{ secrets.CLERK_PUBLISHABLE_KEY }}" >> .env.production
             echo "VITE_ADMIN_EMAIL=${{ secrets.VITE_ADMIN_EMAIL }}" >> .env.production
             echo "VITE_GA_MEASUREMENT_ID=${{ secrets.VITE_GA_MEASUREMENT_ID }}" >> .env.production
+            echo "=== Building frontend ==="
             npm run build
+            echo "=== Restarting services ==="
             cd ..
             sudo pm2 restart all
             sudo pm2 save
             sudo systemctl reload nginx
+            echo "=== Deployment complete ==="
