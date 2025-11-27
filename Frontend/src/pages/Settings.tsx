@@ -5,7 +5,6 @@ import {
   Settings as SettingsIcon,
   User,
   Ruler,
-  Scale,
   Target,
   Flame,
   Beef,

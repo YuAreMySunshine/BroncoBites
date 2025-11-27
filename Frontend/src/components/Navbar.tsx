@@ -6,7 +6,7 @@ import {
   UserButton,
   useUser,
 } from '@clerk/clerk-react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Sun, Moon } from 'lucide-react';
 import { useState } from 'react';
 import BroncoBites from '../images/BroncoBites.png';
@@ -20,7 +20,6 @@ const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL as string;
 export default function Navbar() {
   const { user, isLoaded } = useUser();
   const location = useLocation();
-  const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
@@ -29,25 +28,6 @@ export default function Navbar() {
 
   // Helper to check if link is active
   const isActive = (path: string) => location.pathname === path;
-
-  // Handle anchor navigation to home page sections
-  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
-    e.preventDefault();
-
-    if (location.pathname === '/') {
-      // Already on home page, just scroll to section
-      const element = document.getElementById(sectionId);
-      element?.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      // Navigate to home page first, then scroll
-      navigate('/');
-      // Wait for navigation then scroll
-      setTimeout(() => {
-        const element = document.getElementById(sectionId);
-        element?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    }
-  };
 
   return (
     <>

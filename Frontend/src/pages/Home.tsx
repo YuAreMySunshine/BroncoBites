@@ -10,7 +10,6 @@ import {
   MapPin,
   Flame,
   Beef,
-  Wallet,
   AlertTriangle,
   Car,
   CalendarDays,
