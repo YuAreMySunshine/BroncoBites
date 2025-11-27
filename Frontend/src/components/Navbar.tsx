@@ -61,13 +61,6 @@ export default function Navbar() {
 
         <nav className="main-nav" aria-label="Main navigation">
           <div className="nav-links">
-          {/* Core app features - always visible */}
-          <Link
-            to="/dashboard"
-            className={isActive('/dashboard') ? 'active' : ''}
-          >
-            Dashboard
-          </Link>
           <Link
             to="/menus"
             className={isActive('/menus') ? 'active' : ''}
@@ -75,6 +68,12 @@ export default function Navbar() {
             Menus
           </Link>
           <SignedIn>
+            <Link
+              to="/dashboard"
+              className={isActive('/dashboard') ? 'active' : ''}
+            >
+              Dashboard
+            </Link>
             <Link
               to="/preferences"
               className={isActive('/preferences') ? 'active' : ''}

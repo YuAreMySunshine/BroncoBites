@@ -3,12 +3,20 @@
    ============================================ */
 
 :root {
+  /* ===== Colors - CPP Branding ===== */
+  --color-cpp-green: #1e4d2b;
+  --color-cpp-green-light: #2a6d3f;
+  --color-cpp-green-dark: #143820;
+  --color-cpp-gold: #c69214;
+  --color-cpp-gold-light: #d4a744;
+  --color-cpp-gold-dark: #a07810;
+
   /* ===== Colors - Primary ===== */
-  --color-primary: #2D5A3D;
-  --color-primary-light: #4A8C5E;
-  --color-primary-dark: #1E3D29;
+  --color-primary: #1e4d2b;
+  --color-primary-light: #2a6d3f;
+  --color-primary-dark: #143820;
   --color-accent: #A8E063;
-  --color-highlight: #F5B841;
+  --color-highlight: #c69214;
 
   /* ===== Colors - Neutral ===== */
   --color-background: #FFF8F0;
@@ -40,9 +48,11 @@
   --color-fats: #F5A572;
 
   /* ===== Gradients ===== */
-  --gradient-primary: linear-gradient(135deg, #2D5A3D 0%, #4A8C5E 50%, #A8E063 100%);
+  --gradient-primary: linear-gradient(135deg, #1e4d2b 0%, #2a6d3f 50%, #c69214 100%);
+  --gradient-cpp: linear-gradient(135deg, #1e4d2b 0%, #c69214 100%);
+  --gradient-cpp-reverse: linear-gradient(135deg, #c69214 0%, #1e4d2b 100%);
   --gradient-subtle: linear-gradient(180deg, #FFFFFF 0%, #FFF8F0 100%);
-  --gradient-card-hover: linear-gradient(180deg, rgba(45, 90, 61, 0.02) 0%, rgba(45, 90, 61, 0.06) 100%);
+  --gradient-card-hover: linear-gradient(180deg, rgba(30, 77, 43, 0.02) 0%, rgba(30, 77, 43, 0.06) 100%);
 
   /* ===== Typography - Fonts ===== */
   --font-heading: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
@@ -93,7 +103,8 @@
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
   --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.16);
-  --shadow-primary: 0 8px 24px rgba(45, 90, 61, 0.15);
+  --shadow-primary: 0 8px 24px rgba(30, 77, 43, 0.15);
+  --shadow-cpp-gold: 0 8px 24px rgba(198, 146, 20, 0.2);
   --shadow-success: 0 4px 12px rgba(34, 197, 94, 0.2);
   --shadow-warning: 0 4px 12px rgba(245, 158, 11, 0.2);
   --shadow-error: 0 4px 12px rgba(229, 77, 77, 0.2);
@@ -133,12 +144,20 @@
 
 /* ===== Dark Mode ===== */
 [data-theme="dark"] {
-  /* Colors - Primary (keep accent colors bright) */
-  --color-primary: #4ADE80;
-  --color-primary-light: #22C55E;
-  --color-primary-dark: #16A34A;
-  --color-accent: #A8E063;
-  --color-highlight: #FCD34D;
+  /* Colors - CPP Branding (brightened for dark backgrounds) */
+  --color-cpp-green: #4ade80;
+  --color-cpp-green-light: #6ee7a0;
+  --color-cpp-green-dark: #2dd15f;
+  --color-cpp-gold: #fbbf24;
+  --color-cpp-gold-light: #fcd34d;
+  --color-cpp-gold-dark: #f59e0b;
+
+  /* Colors - Primary (bright green for visibility on dark) */
+  --color-primary: #4ade80;
+  --color-primary-light: #6ee7a0;
+  --color-primary-dark: #2dd15f;
+  --color-accent: #a8e063;
+  --color-highlight: #fbbf24;
 
   /* Colors - Neutral */
   --color-background: #111827;
@@ -174,10 +193,13 @@
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
   --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
-  --shadow-primary: 0 8px 24px rgba(74, 222, 128, 0.15);
+  --shadow-primary: 0 8px 24px rgba(74, 222, 128, 0.3);
+  --shadow-cpp-gold: 0 8px 24px rgba(251, 191, 36, 0.3);
 
-  /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #22C55E 0%, #4ADE80 50%, #A8E063 100%);
+  /* Gradients - CPP branded for dark mode (bright colors) */
+  --gradient-primary: linear-gradient(135deg, #4ade80 0%, #6ee7a0 50%, #fbbf24 100%);
+  --gradient-cpp: linear-gradient(135deg, #4ade80 0%, #fbbf24 100%);
+  --gradient-cpp-reverse: linear-gradient(135deg, #fbbf24 0%, #4ade80 100%);
   --gradient-subtle: linear-gradient(180deg, #1F2937 0%, #111827 100%);
   --gradient-card-hover: linear-gradient(180deg, rgba(74, 222, 128, 0.02) 0%, rgba(74, 222, 128, 0.06) 100%);
 }

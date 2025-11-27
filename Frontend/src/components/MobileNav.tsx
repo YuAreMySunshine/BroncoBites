@@ -65,18 +65,18 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
 
         <nav className="mobile-nav__links">
           <Link
-            to="/dashboard"
-            className={`mobile-nav__link ${isActive('/dashboard') ? 'mobile-nav__link--active' : ''}`}
-          >
-            Dashboard
-          </Link>
-          <Link
             to="/menus"
             className={`mobile-nav__link ${isActive('/menus') ? 'mobile-nav__link--active' : ''}`}
           >
             Menus
           </Link>
           <SignedIn>
+            <Link
+              to="/dashboard"
+              className={`mobile-nav__link ${isActive('/dashboard') ? 'mobile-nav__link--active' : ''}`}
+            >
+              Dashboard
+            </Link>
             <Link
               to="/preferences"
               className={`mobile-nav__link ${isActive('/preferences') ? 'mobile-nav__link--active' : ''}`}

@@ -23,6 +23,7 @@ import {
   Code2,
   Layout,
 } from "lucide-react";
+import { GiHorseHead } from "react-icons/gi";
 import "../style/home/Home.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -42,32 +43,32 @@ export default function Home() {
           <div className="home-hero__inner">
             <div className="home-hero__content">
               <p className="home-hero__kicker">
-                <Sparkles size={14} />
-                Campus Nutrition &bull; Fitness Goals
+                <GiHorseHead size={14} />
+                Bronco Bites, Better Gains
               </p>
               <h1 className="home-hero__title">
-                Eat with purpose.{" "}
-                <span className="home-hero__title--accent">Crush</span> your
-                goals.
+                Fuel Your{" "}
+                <span className="home-hero__title--accent">Bronco</span>{" "}
+                Build
               </h1>
               <p className="home-hero__lead">
-                BroncoBites suggests nearby meals from campus dining and markets
-                that match your calories, protein, and dietary needs — no car
-                required.
+                Smart meal planning for Cal Poly Pomona students. Get personalized
+                suggestions from campus dining halls and markets that match your
+                fitness goals — all within walking distance.
               </p>
 
               <div className="home-hero__pills">
-                <span className="pill">
-                  <Sparkles size={14} />
-                  Auto meal plans
-                </span>
-                <span className="pill">
-                  <Leaf size={14} />
-                  Vegetarian friendly
-                </span>
-                <span className="pill">
+                <span className="pill pill--cpp-green">
                   <MapPin size={14} />
-                  On-campus options
+                  CPP Campus Only
+                </span>
+                <span className="pill pill--cpp-gold">
+                  <Flame size={14} />
+                  BRIC-Ready Nutrition
+                </span>
+                <span className="pill pill--accent">
+                  <Sparkles size={14} />
+                  Auto Meal Plans
                 </span>
               </div>
 
@@ -142,9 +143,9 @@ export default function Home() {
       {/* ====== Problem ====== */}
       <section className="home-section" id="problem">
         <div className="container">
-          <p className="home-section__kicker">The Problem</p>
+          <p className="home-section__kicker">The Challenge</p>
           <h2 className="home-section__title">
-            Fitness goals, limited campus choices
+            CPP student life meets fitness goals
           </h2>
           <div className="problem-grid">
             <article className="problem-card">
@@ -152,21 +153,21 @@ export default function Home() {
                 <Target size={24} />
               </div>
               <h3 className="problem-card__title">
-                Goal-driven nutrition is hard
+                BRIC gains need proper fuel
               </h3>
               <p className="problem-card__text">
-                Students aiming to build muscle or lose fat need consistent
-                calories and macros — which is tough without planning.
+                CPP students hitting the BRIC need consistent calories and protein,
+                but navigating Centerpointe's rotating menu is time-consuming.
               </p>
             </article>
             <article className="problem-card">
               <div className="problem-card__icon">
                 <Car size={24} />
               </div>
-              <h3 className="problem-card__title">Car-less = campus-bound</h3>
+              <h3 className="problem-card__title">Walking campus, limited options</h3>
               <p className="problem-card__text">
-                On-campus students often rely on dining halls or groceries
-                nearby when travel is limited.
+                Most students rely on on-campus dining. Without a car, you're
+                limited to what's within walking distance between classes.
               </p>
             </article>
             <article className="problem-card">
@@ -174,11 +175,11 @@ export default function Home() {
                 <Clock size={24} />
               </div>
               <h3 className="problem-card__title">
-                Menus change, time is short
+                Busy schedule, quick decisions
               </h3>
               <p className="problem-card__text">
-                Hunting for options that meet goals is tedious. People give up
-                and settle for whatever's close.
+                Between lectures, labs, and studying, CPP students don't have time
+                to calculate macros or hunt for the right meal options.
               </p>
             </article>
           </div>
@@ -202,34 +203,34 @@ export default function Home() {
               <ul className="solution-box__list">
                 <li>
                   <CheckCircle2 size={16} />
-                  Generates meal suggestions that fit your calorie &amp; protein
-                  targets.
+                  Auto-generates meal plans from Centerpointe, Vista Market, and
+                  other CPP dining locations.
                 </li>
                 <li>
                   <CheckCircle2 size={16} />
-                  Supports dietary restrictions like vegetarian or gluten-free.
+                  Matches your daily calorie &amp; protein targets for muscle gain,
+                  cutting, or maintenance.
                 </li>
                 <li>
                   <CheckCircle2 size={16} />
-                  Lets you like or blacklist items to personalize future plans.
+                  Respects dietary restrictions (vegetarian, vegan, gluten-free).
                 </li>
                 <li>
                   <CheckCircle2 size={16} />
-                  Focuses on campus dining halls &amp; markets you can actually
-                  access.
+                  Personalized blacklist so you never see foods you dislike.
                 </li>
               </ul>
             </div>
             <div className="solution-box solution-box--highlight">
               <div className="solution-box__header">
                 <AlertTriangle size={24} className="solution-box__icon" />
-                <h3 className="solution-box__title">Why it helps</h3>
+                <h3 className="solution-box__title">Built for CPP Students</h3>
               </div>
               <p className="solution-box__text">
-                We remove the guesswork by mapping campus menus to your goals,
-                so you can fuel your day without leaving campus. No more
-                scrolling through confusing dining hall websites or guessing at
-                nutrition info.
+                BroncoBites knows your schedule is packed. We map CPP's dining menus
+                to your fitness goals, so you can grab the right meal between classes
+                without the guesswork. Focus on your studies and gains — we'll handle
+                the nutrition planning.
               </p>
             </div>
           </div>
