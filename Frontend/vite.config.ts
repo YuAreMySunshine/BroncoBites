@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',  // expose to 0.0.0.0
     port: 5173,
-    allowedHosts: ['ec2-54-193-99-243.us-west-1.compute.amazonaws.com', 'broncobites.com', 'www.broncobites.com'],
+    allowedHosts: ['ec2-54-176-112-70.us-west-1.compute.amazonaws.com', '54.176.112.70', 'broncobites.com', 'www.broncobites.com'],
     proxy: {
       '/api': {
         target: 'http://localhost:3001',
